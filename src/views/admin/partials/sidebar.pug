@@ -1,0 +1,41 @@
+sidebar#layoutSidenav
+  #layoutSidenav_nav
+    nav#sidenavAccordion.sb-sidenav.accordion.sb-sidenav-light
+      .sb-sidenav-menu
+        .nav.fw-bold
+          .sb-sidenav-menu-heading Core
+          a.nav-link(href=`${prefixAdmin}/`)
+            .sb-nav-link-icon
+              i.fas.fa-tachometer-alt
+            | Dashboard
+          a.nav-link.collapsed(href='#' data-bs-toggle='collapse' data-bs-target='#collapseLayouts' aria-expanded='false' aria-controls='collapseLayouts')
+            .sb-nav-link-icon
+              i.fas.fa-columns
+            | Management
+            .sb-sidenav-collapse-arrow
+              i.fas.fa-angle-down
+          #collapseLayouts.collapse(aria-labelledby='headingOne' data-bs-parent='#sidenavAccordion')
+            nav.sb-sidenav-menu-nested.nav
+              a.nav-link(href=`${prefixAdmin}/tours`) Tours
+              a.nav-link(href=`${prefixAdmin}/categories`) Categories
+              a.nav-link(href=`${prefixAdmin}/accounts`) Accounts
+          a.nav-link.collapsed(href='#' data-bs-toggle='collapse' data-bs-target='#collapsePages' aria-expanded='false' aria-controls='collapsePages')
+            .sb-nav-link-icon
+              i(class="fa-solid fa-trash")
+            | Trash
+            .sb-sidenav-collapse-arrow
+              i.fas.fa-angle-down
+          #collapsePages.collapse(aria-labelledby='headingTwo' data-bs-parent='#sidenavAccordion')
+            nav#sidenavAccordionPages.sb-sidenav-menu-nested.nav.accordion
+              a.nav-link(href=`${prefixAdmin}/trash/tours`) Tours
+              a.nav-link(href=`${prefixAdmin}/trash/categories`) Categories
+              a.nav-link(href=`${prefixAdmin}/trash/accounts`) Accounts
+          .sb-sidenav-menu-heading General settings
+          a.nav-link(href='charts.html')
+            .sb-nav-link-icon
+              i.fas.fa-chart-area
+            | Charts
+          a.nav-link(href='tables.html')
+            .sb-nav-link-icon
+              i.fas.fa-table
+            | Tables

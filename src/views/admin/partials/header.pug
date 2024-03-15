@@ -1,0 +1,22 @@
+
+nav.sb-topnav.navbar.navbar-expand.navbar-primary.bg-primary
+
+  a.navbar-brand.ps-3.fw-bold.fs-3.text-light(href=`${prefixAdmin}/`) ADMIN
+
+  button#sidebarToggle.btn.btn-link.btn-sm.order-1.order-lg-0.me-4.me-lg-0(href='#!')
+    i.fas.fa-bars.text-light
+
+  i(class="fa-regular fa-bell ms-auto text-light fs-5")
+  ul.navbar-nav.mx-2
+    li.nav-item.dropdown
+      a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false')
+        i.fas.fa-user.fa-fw.text-light
+      ul.dropdown-menu.dropdown-menu-end(aria-labelledby='navbarDropdown')
+        li
+          a.dropdown-item(href='#!') Settings
+        li
+          a.dropdown-item(href='#!') Activity Log
+        li
+          hr.dropdown-divider
+        li
+          a.dropdown-item(href='#!') Logout

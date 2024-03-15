@@ -1,3 +1,5 @@
-module.exports.index = async (req, res) => {
-  res.send("OK");
+module.exports.index = (req, res) => {
+  res.render("admin/pages/dashboard/index.pug", {
+    pageTitle: "Dashboard",
+  });
 };
