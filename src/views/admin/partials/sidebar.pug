@@ -8,6 +8,13 @@ sidebar#layoutSidenav
             .sb-nav-link-icon
               i.fas.fa-tachometer-alt
             | Dashboard
+          
+          .sb-sidenav-menu-heading Statistics
+          a.nav-link(href=`${prefixAdmin}/charts`)
+            .sb-nav-link-icon
+              i.fas.fa-chart-area
+            | Charts
+          .sb-sidenav-menu-heading System
           a.nav-link.collapsed(href='#' data-bs-toggle='collapse' data-bs-target='#collapseLayouts' aria-expanded='false' aria-controls='collapseLayouts')
             .sb-nav-link-icon
               i.fas.fa-columns
@@ -31,11 +38,8 @@ sidebar#layoutSidenav
               a.nav-link(href=`${prefixAdmin}/trash/categories`) Categories
               a.nav-link(href=`${prefixAdmin}/trash/accounts`) Accounts
           .sb-sidenav-menu-heading General settings
-          a.nav-link(href='charts.html')
+          
+          a.nav-link(href=`${prefixAdmin}/settings`)
             .sb-nav-link-icon
-              i.fas.fa-chart-area
-            | Charts
-          a.nav-link(href='tables.html')
-            .sb-nav-link-icon
-              i.fas.fa-table
-            | Tables
+              i(class="fa-solid fa-gear")
+            | Cài đặt
