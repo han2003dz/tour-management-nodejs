@@ -1,0 +1,49 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+include ../../mixins/status.pug
+block main
+  h1 Thêm danh mục mới
+  form(
+    action=`${prefixAdmin}/categories/create`
+    id="form-create-category"
+    method="POST"
+    enctype="multipart/form-data"
+    class="border border-1 p-4 me-3"
+  )
+    .row
+      .col-5
+        .row
+          .form-group.mb-2 
+            label(for="title" class="form-label") Tên danh mục *
+            input.form-control(
+              type="text"
+              id="title"
+              name="title"
+            )
+        .row
+          .form-group.mb-2(upload-image)
+            label(for="images" class="form-label") Ảnh
+            input.form-control(
+              type="file"
+              class="form-control-file"
+              id="images"
+              name="images"
+              accept="image/*"
+              multiple
+            )
+            div(id="image-preview-container" class="mt-2")
+      .col-7
+        +status()
+        .row
+          .form-group.mb-2
+            label(for="info" class="form-label") Mô tả
+            textarea.form-control.textarea-mce(
+              id="info"
+              name="description"
+              rows="6"
+            )
+        .row.w-25.m-1
+          button.btn.btn-primary(type="submit") Thêm mới
+
+    
+      

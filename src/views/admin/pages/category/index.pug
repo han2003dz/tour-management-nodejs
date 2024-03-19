@@ -16,70 +16,52 @@ block main
         .col-2.d-flex.justify-content-end.ms-auto
           a(href=`${prefixAdmin}/categories/create` class="ml-auto")
             button(class="btn btn-sm btn-outline-success") + Thêm mới
-      table#datatablesSimple
-        thead
-          tr
-            th STT
-            th Tên Tour
-            th Còn lại
-            th Thời gian tạo
-            th Giá
-            th Danh mục
-            th Hành động
-        tbody
-          tr
-            td 1
-            td Du lịch Hạ Long
-            td 61
-            td 2024/04/25
-            td 5.000.000đ
-            td Tuor Miền Bắc
-            td Xem/sửa/xóa
-          tr
-            td 2
-            td Du lịch chùa Hương
-            td 63
-            td 2024/07/25
-            td 3.000.000đ
-            td Tuor Miền Bắc
-            td Xem/sửa/xóa
-          tr
-            td 3
-            td Du lịch Sầm Sơn
-            td 66
-            td 2024/01/12
-            td 4.000.000đ
-            td Tuor Miền Trung
-            td Xem/sửa/xóa
-          tr
-            td 4
-            td Du lịch Sapa
-            td 22
-            td 2024/03/29
-            td 6.000.000đ
-            td Tuor Miền Bắc
-            td Xem/sửa/xóa
-          tr
-            td 5
-            td Du lịch Đồng Văn
-            td 33
-            td 2024/11/28
-            td 2.000.000đ
-            td Tuor Miền Bắc
-            td Xem/sửa/xóa
-          tr
-            td 6
-            td Du lịch Móng Cái
-            td 35
-            td 2024/11/28
-            td 2.000.000đ
-            td Tuor Miền Bắc
-            td Xem/sửa/xóa
-          tr
-            td 7
-            td Du lịch Mũi Né
-            td 40
-            td 2024/11/28
-            td 8.000.000đ
-            td Tuor Miền Nam
-            td Xem/sửa/xóa
+      if(categories.length > 0)
+        table#datatablesSimple
+          thead
+            tr
+              th 
+                input(class="form-check-input" type="checkbox" name="checkAll")
+              th STT
+              th Tên danh mục
+              th Trạng thái
+              th Hành động
+          tbody
+            each item, index in categories
+              tr
+                td 
+                  input(
+                    class="form-check-input"
+                    type="checkbox"
+                    name="check-item"
+                    value=item.id
+                  )
+                td #{index + 1}
+                td #{item.title}
+                td
+                  a(href="#" 
+                    class="badge" 
+                    data-status=item.status
+                    data-id=item.id
+                    link-change-status
+                  ) 
+                    if(item.status == "active")
+                      i(class="fa-solid fa-circle text-success")
+                    else
+                      i(class="fa-solid fa-circle text-secondary")
+                td
+                  a(class="btn btn-primary btn-sm" 
+                    href=`${prefixAdmin}/categories/detail/${item.id}`
+                  )
+                    i(class="fa-solid fa-eye")
+                  a(class="btn btn-warning btn-sm mx-1" 
+                    href=`${prefixAdmin}/categories/edit/${item.id}`
+                  )
+                    i(class="fa-solid fa-pen-to-square")
+                  button(class="btn btn-danger btn-sm" 
+                    data-id=item.id 
+                    button-delete
+                  )
+                    i(class="fa-solid fa-trash")
+      else
+        p.text-center Chưa có danh mục nào!      
