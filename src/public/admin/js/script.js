@@ -1,13 +1,30 @@
-window.addEventListener('DOMContentLoaded', event => {
-
+window.addEventListener("DOMContentLoaded", (event) => {
   // Toggle the side navigation
-  const sidebarToggle = document.body.querySelector('#sidebarToggle');
+  const sidebarToggle = document.body.querySelector("#sidebarToggle");
   if (sidebarToggle) {
-    sidebarToggle.addEventListener('click', event => {
+    sidebarToggle.addEventListener("click", (event) => {
       event.preventDefault();
-      document.body.classList.toggle('sb-sidenav-toggled');
-      localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
+      document.body.classList.toggle("sb-sidenav-toggled");
+      localStorage.setItem(
+        "sb|sidebar-toggle",
+        document.body.classList.contains("sb-sidenav-toggled")
+      );
     });
   }
 
+  // start show-alert
+  const showAlert = document.querySelector("[show-alert]");
+  if (showAlert) {
+    const time = parseInt(showAlert.getAttribute("data-time"));
+    const buttonClose = document.querySelector("[close-alert]");
+    setTimeout(() => {
+      showAlert.classList.add("alert-hidden");
+    }, time);
+
+    // sự kiện click mất
+    buttonClose.addEventListener("click", () => {
+      showAlert.classList.add("alert-hidden");
+    });
+  }
+  // end show-alert
 });

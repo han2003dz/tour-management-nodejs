@@ -1,0 +1,26 @@
+#image-preview-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#image-preview-container .img-container {
+  position: relative;
+  width: calc(33.33% - 10px); /* 33.33% để hiển thị 3 ảnh trên mỗi dòng */
+  margin: 5px; /* Khoảng cách giữa các hình ảnh */
+  box-sizing: border-box; /* Đảm bảo các margin không làm thay đổi kích thước của ảnh */
+}
+
+#image-preview-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.btn-delete {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.5); /* Để biểu tượng dễ nhìn hơn */
+  padding: 3px; /* Khoảng cách giữa biểu tượng và cạnh */
+  border-radius: 50%; /* Làm cho nó trở thành hình tròn */
+}

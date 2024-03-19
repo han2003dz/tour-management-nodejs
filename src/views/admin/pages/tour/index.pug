@@ -1,21 +1,23 @@
 extends ../../layouts/default.pug
 block main
-  .card.my-4
+  .link-router.my-3
+    a(href=`#` class="text-decoration-none ms-2 text-dark")
+      i.fas.fa-columns.me-2
+      span Management 
+    span /
+    a(href=`${prefixAdmin}/tours` class="text-decoration-none ms-2")
+      span Tours 
+  .card
     .card-header
       i.fas.fa-table.me-1
       | Danh sách tour du lịch
     .card-body
+      .row.mb-3.border-bottom.pb-2
+        .col-2.d-flex.justify-content-end.ms-auto
+          a(href=`${prefixAdmin}/tours/create` class="ml-auto")
+            button(class="btn btn-sm btn-outline-success") + Thêm mới
       table#datatablesSimple
         thead
-          tr
-            th STT
-            th Tên Tour
-            th Còn lại
-            th Thời gian tạo
-            th Giá
-            th Danh mục
-            th Hành động
-        tfoot
           tr
             th STT
             th Tên Tour
@@ -32,7 +34,7 @@ block main
             td 2024/04/25
             td 5.000.000đ
             td Tuor Miền Bắc
-            td Thêm/sửa/xóa
+            td Xem/sửa/xóa
           tr
             td 2
             td Du lịch chùa Hương
@@ -40,7 +42,7 @@ block main
             td 2024/07/25
             td 3.000.000đ
             td Tuor Miền Bắc
-            td Thêm/sửa/xóa
+            td Xem/sửa/xóa
           tr
             td 3
             td Du lịch Sầm Sơn
@@ -48,7 +50,7 @@ block main
             td 2024/01/12
             td 4.000.000đ
             td Tuor Miền Trung
-            td Thêm/sửa/xóa
+            td Xem/sửa/xóa
           tr
             td 4
             td Du lịch Sapa
@@ -56,7 +58,7 @@ block main
             td 2024/03/29
             td 6.000.000đ
             td Tuor Miền Bắc
-            td Thêm/sửa/xóa
+            td Xem/sửa/xóa
           tr
             td 5
             td Du lịch Đồng Văn
@@ -64,7 +66,7 @@ block main
             td 2024/11/28
             td 2.000.000đ
             td Tuor Miền Bắc
-            td Thêm/sửa/xóa
+            td Xem/sửa/xóa
           tr
             td 6
             td Du lịch Móng Cái
@@ -72,7 +74,7 @@ block main
             td 2024/11/28
             td 2.000.000đ
             td Tuor Miền Bắc
-            td Thêm/sửa/xóa
+            td Xem/sửa/xóa
           tr
             td 7
             td Du lịch Mũi Né
@@ -80,4 +82,4 @@ block main
             td 2024/11/28
             td 8.000.000đ
             td Tuor Miền Nam
-            td Thêm/sửa/xóa
+            td Xem/sửa/xóa
