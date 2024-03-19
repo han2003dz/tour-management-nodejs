@@ -20,7 +20,6 @@ const tourSchema = new mongoose.Schema(
       type: Date,
       default: Date.now,
     },
-    position: Number,
     slug: {
       type: String,
       slug: "title",
