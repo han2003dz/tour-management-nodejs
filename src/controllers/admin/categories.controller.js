@@ -1,17 +1,21 @@
 const Categories = require("../../models/categories.model");
 const systemConfig = require("../../config/system");
+const filterStatusHelper = require("../../helpers/filterStatus");
 module.exports.index = async (req, res) => {
   try {
+    const filterStatus = filterStatusHelper(req.query);
     const find = {
       deleted: false,
+      ...(req.query.status && { status: req.query.status }),
     };
     const categories = await Categories.find(find);
     res.render("admin/pages/category/index.pug", {
       pageTitle: "Danh mục tour",
       categories,
+      filterStatus,
     });
   } catch (error) {
-    console.log(error);
+    console.log("error index categories controller: ", error);
   }
 };
 

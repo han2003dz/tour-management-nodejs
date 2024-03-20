@@ -12,6 +12,24 @@ window.addEventListener("DOMContentLoaded", (event) => {
     });
   }
 
+  // buttonFilterStatus
+  const buttonFilterStatus = document.querySelectorAll("[button-status]");
+  if (buttonFilterStatus.length > 0) {
+    let url = new URL(window.location.href);
+    buttonFilterStatus.forEach((button) => {
+      button.addEventListener("click", () => {
+        const status = button.getAttribute("button-status");
+        if (status) {
+          url.searchParams.set("status", status);
+        } else {
+          url.searchParams.delete("status");
+        }
+        window.location.href = url.href;
+      });
+    });
+  }
+  // end buttonFilterStatus
+
   // start show-alert
   const showAlert = document.querySelector("[show-alert]");
   if (showAlert) {
