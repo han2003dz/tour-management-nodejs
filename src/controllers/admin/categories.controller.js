@@ -25,7 +25,7 @@ module.exports.create = async (req, res) => {
       pageTitle: "Thêm danh mục",
     });
   } catch (error) {
-    console.log(error);
+    console.log("error create categories controller: ", error);
   }
 };
 
@@ -35,8 +35,8 @@ module.exports.createPost = async (req, res) => {
     await categories.save();
     req.flash("success", "Thêm thành công danh mục mới!");
   } catch (error) {
-    res.flash("error", "Thêm mới danh mục thất bại!");
-    console.log("error create category: ", error);
+    req.flash("error", "Thêm mới danh mục thất bại!");
+    console.log("error createPost categories controller: ", error);
   } finally {
     res.redirect(`${systemConfig.prefixAdmin}/categories`);
   }

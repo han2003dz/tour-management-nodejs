@@ -35,14 +35,13 @@ window.addEventListener("DOMContentLoaded", (event) => {
   if (showAlert) {
     const time = parseInt(showAlert.getAttribute("data-time"));
     const buttonClose = document.querySelector("[close-alert]");
-    setTimeout(() => {
+    const hideAlert = () => {
       showAlert.classList.add("alert-hidden");
-    }, time);
-
-    // sự kiện click mất
-    buttonClose.addEventListener("click", () => {
-      showAlert.classList.add("alert-hidden");
-    });
+    };
+    setTimeout(hideAlert, time);
+    if (buttonClose) {
+      buttonClose.addEventListener("click", hideAlert);
+    }
   }
   // end show-alert
 });
