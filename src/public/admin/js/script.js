@@ -46,7 +46,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
   // end show-alert
   // deleteRecord
   const btnDelete = document.querySelectorAll("[button-delete]");
-  console.log(btnDelete);
   if (btnDelete.length > 0) {
     const formDeleteRecord = document.querySelector("#form-delete-record");
     const dataPath = formDeleteRecord.getAttribute("data-path");
@@ -63,4 +62,23 @@ window.addEventListener("DOMContentLoaded", (event) => {
     });
   }
   // deleteRecord
+
+  // Form Search
+  const formSearch = document.querySelector("#form-search");
+  if (formSearch) {
+    let url = new URL(window.location.href);
+    formSearch.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const keyword = e.target.elements.keyword.value;
+      if (keyword) {
+        url.searchParams.set("keyword", keyword);
+      } else {
+        url.searchParams.delete("keyword");
+      }
+      window.location.href = url.href;
+    });
+  }
+  // end form search
+
+
 });

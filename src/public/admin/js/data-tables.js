@@ -3,9 +3,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
   if (datatablesSimple) {
     new simpleDatatables.DataTable(datatablesSimple);
     function handleRemoveParentClass(childClasses) {
-      childClasses.forEach(childClass => {
+      childClasses.forEach((childClass) => {
         const elements = document.querySelectorAll(`.${childClass}`);
-        elements.forEach(element => {
+        elements.forEach((element) => {
           const parent = element.parentNode;
           parent.removeAttribute("class");
         });
@@ -13,6 +13,13 @@ window.addEventListener("DOMContentLoaded", (event) => {
     }
     const classesToRemove = ["checkAll", "statusAll", "actionAll", "imageAll"];
     handleRemoveParentClass(classesToRemove);
-    
+
+    const datatableInput = document.querySelector(".datatable-input");
+    if (datatableInput) {
+      const datatableSearch = datatableInput.parentNode;
+      if (datatableSearch) {
+        datatableSearch.removeChild(datatableInput);
+      }
+    }
   }
 });

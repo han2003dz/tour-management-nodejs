@@ -1,6 +1,7 @@
 extends ../../layouts/default.pug
 include ../../mixins/filterStatus.pug
 include ../../mixins/alert.pug
+include ../../mixins/search.pug
 block main
   .link-router.my-3
     a(href=`#` class="text-decoration-none ms-2 text-dark")
@@ -17,7 +18,9 @@ block main
       .row.mb-3.border-bottom.pb-2
         .col-5
           +filter(filterStatus)
-        .col-2.d-flex.justify-content-end.ms-auto
+        .col-4.ms-auto.d-flex.justify-content-end
+          +search(keyword)
+        .col-2.d-flex.justify-content-end
           a(href=`${prefixAdmin}/categories/create` class="ml-auto")
             button(class="btn btn-sm btn-outline-success") + Thêm mới
       if(categories.length > 0)
