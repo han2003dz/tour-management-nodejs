@@ -21,11 +21,15 @@ block main
           thead
             tr
               th 
-                input(class="form-check-input" type="checkbox" name="checkAll")
+                input(class="form-check-input checkAll" type="checkbox" name="checkAll")
               th STT
               th Tên danh mục
-              th Trạng thái
-              th Hành động
+              th
+                span(class="statusAll") Trạng thái
+              th 
+                span Người cập nhật gần nhất
+              th 
+                span(class="actionAll") Hành động
           tbody
             each item, index in categories
               tr
@@ -49,6 +53,7 @@ block main
                       i(class="fa-solid fa-circle text-success")
                     else
                       i(class="fa-solid fa-circle text-secondary")
+                td Nguyễn Hân
                 td
                   a(class="btn btn-primary btn-sm" 
                     href=`${prefixAdmin}/categories/detail/${item.id}`
@@ -63,5 +68,6 @@ block main
                     button-delete
                   )
                     i(class="fa-solid fa-trash")
+                
       else
         p.text-center Chưa có danh mục nào!      
