@@ -16,11 +16,9 @@ module.exports = (query) => {
       class: "",
     },
   ];
-  if (query.status) {
-    const index = filterStatus.findIndex((item) => item.status == query.status);
-    filterStatus[index].class = "active";
-  } else {
-    const index = filterStatus.findIndex((item) => item.status == "");
+  const status = query.status || "";
+  const index = filterStatus.findIndex((item) => item.status === status);
+  if (index !== -1) {
     filterStatus[index].class = "active";
   }
   return filterStatus;

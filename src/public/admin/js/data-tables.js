@@ -11,7 +11,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         });
       });
     }
-    const classesToRemove = ["checkAll", "statusAll", "actionAll"];
+    const classesToRemove = ["checkAll", "statusAll", "actionAll", "imageAll"];
     handleRemoveParentClass(classesToRemove);
     
   }

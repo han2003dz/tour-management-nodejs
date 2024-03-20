@@ -26,6 +26,8 @@ block main
               th 
                 input(class="form-check-input checkAll" type="checkbox" name="checkAll")
               th STT
+              th 
+                span(class="imageAll") Hình ảnh
               th Tên danh mục
               th
                 span(class="statusAll") Trạng thái
@@ -44,6 +46,14 @@ block main
                     value=item.id
                   )
                 td #{index + 1}
+                td 
+                  img(
+                    class="img-categories"
+                    src=item.images[0]
+                    alt=item.title
+                    width="90px"
+                    height="50px"
+                  )
                 td #{item.title}
                 td
                   a(href="#" 
