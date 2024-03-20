@@ -53,5 +53,62 @@ module.exports.detail = async (req, res) => {
       pageTitle: category.title,
       category,
     });
-  } catch (error) {}
+  } catch (error) {
+    console.log("error detail categories controller", error);
+  }
+};
+
+module.exports.edit = async (req, res) => {
+  try {
+    const find = {
+      deleted: false,
+      _id: req.params.id,
+    };
+    const category = await Categories.findOne(find);
+    res.render("admin/pages/category/edit.pug", {
+      pageTitle: category.title,
+      category,
+    });
+  } catch (error) {
+    console.log("error edit categories controller", error);
+    res.redirect(`${systemConfig.prefixAdmin}/categories`);
+  }
+};
+
+module.exports.editPatch = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const updatedBy = {
+      updatedAt: new Date(),
+    };
+    await Categories.updateOne(
+      {
+        _id: id,
+      },
+      { ...req.body, $push: { updatedBy: updatedBy } }
+    );
+    req.flash("success", "Cập nhật thành công!");
+  } catch (error) {
+    req.flash("error", "Cập nhật thất bại");
+    console.log("error edit category: ", error);
+  } finally {
+    res.redirect(`${systemConfig.prefixAdmin}/categories`);
+  }
+};
+
+module.exports.delete = async (req, res) => {
+  try {
+    const id = req.params.id;
+    await Categories.updateOne(
+      { _id: id },
+      { deleted: true },
+      { deletedAt: new Date() }
+    );
+    req.flash("success", "Xóa thành công 1 danh mục!");
+  } catch (error) {
+    req.flash("error", "Xóa thất bại!");
+    console.log("error delete category", error);
+  } finally {
+    res.redirect("back");
+  }
 };
