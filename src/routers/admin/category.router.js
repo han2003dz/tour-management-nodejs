@@ -12,4 +12,5 @@ router.post(
   uploadCloud.uploadFields,
   controller.createPost
 );
+router.get("/detail/:id", controller.detail);
 module.exports = router;

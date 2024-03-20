@@ -56,3 +56,8 @@
   cursor: pointer;
 }
 /* End Show Alert */
+
+.img-products,
+.img-categories {
+  object-fit: cover;
+}

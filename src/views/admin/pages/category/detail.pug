@@ -1,0 +1,59 @@
+extends ../../layouts/default
+block main
+  .link-router.my-3
+    a(href=`#` class="text-decoration-none ms-2 text-dark")
+      i.fas.fa-columns.me-2
+      span Management 
+    span /
+    a(href=`${prefixAdmin}/categories` class="text-decoration-none mx-2")
+      span Categories
+    span /
+    a(href=`#` class="text-decoration-none ms-2 text-dark")
+      span Detail
+  .row.bg-light.p-2.me-0
+    .col-6.p-0
+      .row
+        if (category.images[0])
+          img(
+            class="img-categories h-100"
+            src=category.images[0]
+            alt=category.title
+          )
+    .col-6.info-category
+      .row
+        if (category.title)
+          h1(class="mb-3") #{category.title}
+      .row
+        .col-md-6
+          if (category.status)
+            div(class="mb-3")
+              span Trạng thái:
+              if (category.status === "active")
+                span(class="text-success ms-1 fw-bolder") Hoạt động
+              else
+                span(class="text-danger ms-1 fw-bolder") Dừng hoạt động
+
+      .row
+        .col-md-12
+          if (category.description)
+            div(class="mb-3") 
+              textarea.form-control.textarea-mce(
+                id="desc"
+                name="description"
+                rows="6"
+                class="w-100"
+              ) #{category.description}
+          else
+            div(class="mb-3") 
+              textarea.form-control.textarea-mce(
+                id="desc"
+                name="description"
+                rows="6"
+                class="w-100"
+              )
+      .row
+        .col-md-4
+          a(
+            href=`${prefixAdmin}/categories/edit/${category.id}`
+            class="btn btn-warning mb-2"
+          ) Chỉnh sửa

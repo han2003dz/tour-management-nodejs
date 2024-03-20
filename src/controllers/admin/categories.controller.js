@@ -41,3 +41,17 @@ module.exports.createPost = async (req, res) => {
     res.redirect(`${systemConfig.prefixAdmin}/categories`);
   }
 };
+
+module.exports.detail = async (req, res) => {
+  try {
+    const find = {
+      deleted: false,
+      _id: req.params.id,
+    };
+    const category = await Categories.findOne(find);
+    res.render("admin/pages/category/detail.pug", {
+      pageTitle: category.title,
+      category,
+    });
+  } catch (error) {}
+};
