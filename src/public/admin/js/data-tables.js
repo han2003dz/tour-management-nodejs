@@ -21,5 +21,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         datatableSearch.removeChild(datatableInput);
       }
     }
+
+    const datatableTop = document.querySelector(".datatable-top");
   }
 });

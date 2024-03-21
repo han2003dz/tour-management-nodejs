@@ -79,6 +79,4 @@ window.addEventListener("DOMContentLoaded", (event) => {
     });
   }
   // end form search
-
-
 });

@@ -24,7 +24,7 @@ block main
           a(href=`${prefixAdmin}/categories/create` class="ml-auto")
             button(class="btn btn-sm btn-outline-success") + Thêm mới
       if(categories.length > 0)
-        table#datatablesSimple
+        table#datatablesSimple(checkbox-multi)
           thead
             tr
               th 
