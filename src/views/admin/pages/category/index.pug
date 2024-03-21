@@ -2,6 +2,7 @@ extends ../../layouts/default.pug
 include ../../mixins/filterStatus.pug
 include ../../mixins/alert.pug
 include ../../mixins/search.pug
+include ../../mixins/changeMulti.pug
 block main
   .link-router.my-3
     a(href=`#` class="text-decoration-none ms-2 text-dark")
@@ -15,7 +16,7 @@ block main
       i.fas.fa-table.me-1
       | Danh sách danh mục
     .card-body
-      .row.mb-3.border-bottom.pb-2
+      .row.border-bottom.pb-2
         .col-5
           +filter(filterStatus)
         .col-4.ms-auto.d-flex.justify-content-end
@@ -23,6 +24,8 @@ block main
         .col-2.d-flex.justify-content-end
           a(href=`${prefixAdmin}/categories/create` class="ml-auto")
             button(class="btn btn-sm btn-outline-success") + Thêm mới
+      .row.border-bottom.mb-2
+        +form-change-multi(`${prefixAdmin}/categories/change-multi?_method=PATCH`)
       if(categories.length > 0)
         table#datatablesSimple(checkbox-multi)
           thead
@@ -33,7 +36,7 @@ block main
               th 
                 span(class="imageAll") Hình ảnh
               th Tên danh mục
-              th
+              th(class="text-center")
                 span(class="statusAll") Trạng thái
               th 
                 span Người cập nhật gần nhất
@@ -59,17 +62,17 @@ block main
                     height="50px"
                   )
                 td #{item.title}
-                td
+                td(class="text-center")
                   a(href="#" 
                     class="badge" 
                     data-status=item.status
                     data-id=item.id
                     link-change-status
                   ) 
-                    if(item.status == "active")
-                      i(class="fa-solid fa-circle text-success")
-                    else
-                      i(class="fa-solid fa-circle text-secondary")
+                    i(
+                      class=item.status === "active" ? "fa-solid fa-circle text-success" : "fa-solid fa-circle text-secondary"
+                    )
+
                 td Nguyễn Hân
                 td
                   a(class="btn btn-primary btn-sm" 
