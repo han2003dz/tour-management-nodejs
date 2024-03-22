@@ -30,8 +30,10 @@ app.use(flash());
 // end flash
 
 // variable prefix
+const moment = require("moment");
 const systemConfig = require("./src/config/system");
 app.locals.prefixAdmin = systemConfig.prefixAdmin;
+app.locals.moment = moment;
 
 app.set("views", `${__dirname}/src/views`);
 app.set("view engine", "pug");

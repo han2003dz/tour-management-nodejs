@@ -12,11 +12,10 @@ const categorySchema = new mongoose.Schema(
       slug: "title",
       unique: true,
     },
-    deleted: {
-      type: Boolean,
-      default: false,
+    deletedBy: {
+      account_id: String,
+      deletedAt: Date,
     },
-    deletedAt: Date,
     createdBy: {
       account_id: String,
       createdAt: {
@@ -29,7 +28,7 @@ const categorySchema = new mongoose.Schema(
         account_id: String,
         updatedAt: {
           type: Date,
-          default: Date.now,
+          default: Date,
         },
       },
     ],

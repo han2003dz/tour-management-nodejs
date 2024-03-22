@@ -3,6 +3,7 @@ include ../../mixins/filterStatus.pug
 include ../../mixins/alert.pug
 include ../../mixins/search.pug
 include ../../mixins/changeMulti.pug
+include ../../mixins/moment.pug
 block main
   .link-router.my-3
     a(href=`#` class="text-decoration-none ms-2 text-dark")
@@ -73,7 +74,12 @@ block main
                       class=item.status === "active" ? "fa-solid fa-circle text-success" : "fa-solid fa-circle text-secondary"
                     )
 
-                td Nguyễn Hân
+                td 
+                  - const updatedBy = item.updatedBy.slice(-1)[0];
+                  span 
+                    | Nguyễn Hân
+                  span 
+                    +formatDateTime(updatedBy.updatedAt)
                 td
                   a(class="btn btn-primary btn-sm" 
                     href=`${prefixAdmin}/categories/detail/${item.id}`
