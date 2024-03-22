@@ -1,4 +1,5 @@
-const Tour = require("../../models/tours.model");
+const Tours = require("../../models/tours.model");
+const Categories = require("../../models/categories.model");
 const systemConfig = require("../../config/system");
 module.exports.index = (req, res) => {
   res.render("admin/pages/tour/index.pug", {
@@ -6,10 +7,16 @@ module.exports.index = (req, res) => {
   });
 };
 
-module.exports.create = (req, res) => {
+module.exports.create = async (req, res) => {
   try {
+    const findCategories = {
+      deleted: false,
+      status: "active",
+    };
+    const categories = await Categories.find(findCategories);
     res.render("admin/pages/tour/create.pug", {
       pageTitle: "Thêm mới tour",
+      categories,
     });
   } catch (error) {
     console.log(error);

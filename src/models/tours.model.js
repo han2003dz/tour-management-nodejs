@@ -15,6 +15,7 @@ const tourSchema = new mongoose.Schema(
     discountPercentage: Number,
     stock: Number,
     schedule: String,
+    featured: String,
     status: String,
     timeStart: {
       type: Date,
