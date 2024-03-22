@@ -14,7 +14,6 @@ module.exports.index = async (req, res) => {
     const categories = await Categories.find(find);
     for (const category of categories) {
       const updatedBy = category.updatedBy.slice(-1)[0];
-      console.log(updatedBy);
     }
     res.render("admin/pages/category/index.pug", {
       pageTitle: "Danh mục tour",

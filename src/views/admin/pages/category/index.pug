@@ -73,12 +73,11 @@ block main
                     i(
                       class=item.status === "active" ? "fa-solid fa-circle text-success" : "fa-solid fa-circle text-secondary"
                     )
-
                 td 
                   - const updatedBy = item.updatedBy.slice(-1)[0];
-                  span 
+                  p
                     | Nguyễn Hân
-                  span 
+                  p 
                     +formatDateTime(updatedBy.updatedAt)
                 td
                   a(class="btn btn-primary btn-sm" 
