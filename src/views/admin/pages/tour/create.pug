@@ -2,6 +2,7 @@ extends ../../layouts/default.pug
 include ../../mixins/alert.pug
 include ../../mixins/status.pug
 include ../../mixins/selectTree.pug
+include ../../mixins/featured.pug
 block main
   h1 Thêm tour mới
   form(
@@ -24,17 +25,17 @@ block main
         .row.mb-2
           if categories
             div(class="form-group my-2")
-              label(for="product_category_id" class="form-label") Danh mục
+              label(for="tour_category_id" class="form-label") Danh mục *
               select(
-                name="product_category_id"
-                id="product_category_id"
+                name="tour_category_id"
+                id="tour_category_id"
                 class="form-control form-select"
               )
-                option(value="") -- Chọn danh mục --
+                option(value="" disabled="disabled" selected="selected") -- Chọn danh mục --
                   +select-tree(categories)
         .row
           .form-group.mb-2(upload-image)
-            label(for="images" class="form-label") Ảnh
+            label(for="images" class="form-label") Ảnh * (tối đa 10 ảnh)
             input.form-control(
               type="file"
               class="form-control-file"
@@ -71,7 +72,7 @@ block main
         .row.mt-2
           .col-3
             div(class="form-group mb-2")
-              label(for="stock" class="form-label") Số lượng tour
+              label(for="stock" class="form-label") Số lượng tour *
               input(
                 type="number"
                 class="form-control"
@@ -80,33 +81,12 @@ block main
                 value="0"
                 min="0"
               )
+        .row.my-2
           +status()
-        //- .row
-        //-   .col-2
-        //-     span Nổi bật:
-        //-   .col-3
-        //-     div(class="form-group form-check form-check-inline")
-        //-       input(
-        //-         type="radio"
-        //-         class="form-check-input"
-        //-         id="featured1"
-        //-         name="featured"
-        //-         value="1"
-        //-       )
-        //-       label(for="featured1" class="form-check-label") Có
-        //-   .col-4
-        //-     div(class="form-group form-check form-check-inline")
-        //-       input(
-        //-         type="radio"
-        //-         class="form-check-input"
-        //-         id="featured0"
-        //-         name="featured"
-        //-         value="0"
-        //-         checked
-        //-       )
-        //-       label(for="featured0" class="form-check-label") Không
+        .row.mb-2
+          +featured()
         .row
-          .form-group.mb-2
+          .form-group
             label(for="info" class="form-label") Thông tin tour
             textarea.form-control.textarea-mce(
               id="info"

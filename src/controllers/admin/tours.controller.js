@@ -25,13 +25,12 @@ module.exports.create = async (req, res) => {
 
 module.exports.createPost = async (req, res) => {
   try {
-    // req.body.price = parseInt(req.body.price);
-    // req.body.discountPercentage = parseInt(req.body.discountPercentage);
-    // req.body.stock = parseInt(req.body.stock);
-    // const tour = new Tour(req.body);
-    // await tour.save();
-    // req.flash("success", "Thêm thành công tour mới!");
-    console.log(req.body);
+    req.body.price = parseInt(req.body.price);
+    req.body.discountPercentage = parseInt(req.body.discountPercentage);
+    req.body.stock = parseInt(req.body.stock);
+    const tour = new Tours(req.body);
+    await tour.save();
+    req.flash("success", "Thêm thành công tour mới!");
   } catch (error) {
     console.log("error: ", error);
     req.flash("error", "Không thêm được tour mới!");
