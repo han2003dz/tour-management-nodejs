@@ -2,7 +2,17 @@ extends ../../layouts/default.pug
 include ../../mixins/alert.pug
 
 block main
-  h1 Chỉnh sửa sản phẩm
+  .link-router.my-3
+    a(href=`#` class="text-decoration-none ms-2 text-dark")
+      i.fas.fa-columns.me-2
+      span Management 
+    span /
+    a(href=`${prefixAdmin}/categories` class="text-decoration-none mx-2")
+      span Categories
+    span /
+    a(href=`#` class="text-decoration-none ms-2 text-dark")
+      span Edit
+  h1 Chỉnh sửa danh mục
   form(
     action=`${prefixAdmin}/categories/edit/${category.id}?_method=PATCH`
     id="form-edit-categories"

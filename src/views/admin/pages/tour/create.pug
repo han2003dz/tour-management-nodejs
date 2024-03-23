@@ -81,6 +81,22 @@ block main
                 value="0"
                 min="0"
               )
+          .col-5
+            div(class="form-group")
+              label(for="numberOfDays" class="form-label") Thời lượng *
+              input(
+                class="form-control"
+                id="numberOfDays"
+                name="numberOfDays"
+              )
+          .col-4
+            div(class="form-group")
+              label(for="departureLocation" class="form-label") Nơi khởi hành *
+              input(
+                class="form-control"
+                id="departureLocation"
+                name="departureLocation"
+              )
         .row.my-2
           +status()
         .row.mb-2

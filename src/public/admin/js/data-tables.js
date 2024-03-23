@@ -14,6 +14,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     const classesToRemove = ["checkAll", "statusAll", "actionAll", "imageAll"];
     handleRemoveParentClass(classesToRemove);
 
+    // remove form search in table
     const datatableInput = document.querySelector(".datatable-input");
     if (datatableInput) {
       const datatableSearch = datatableInput.parentNode;
@@ -22,6 +23,18 @@ window.addEventListener("DOMContentLoaded", (event) => {
       }
     }
 
-    const datatableTop = document.querySelector(".datatable-top");
+    // format-price
+    const formatPrice = () => {
+      const VND = new Intl.NumberFormat("vi-VN", {
+        style: "currency",
+        currency: "VND",
+      });
+      const prices = document.querySelectorAll("[data-price]");
+      prices.forEach((price) => {
+        const priceToNumber = parseInt(price.innerHTML);
+        price.innerHTML = VND.format(priceToNumber);
+      });
+    };
+    formatPrice();
   }
 });
