@@ -79,4 +79,21 @@ window.addEventListener("DOMContentLoaded", (event) => {
     });
   }
   // end form search
+
+  const listStatus = document.querySelectorAll("[link-change-status]");
+  if (listStatus.length > 0) {
+    // lấy form, lấy data-path
+    const formChangeStatus = document.querySelector("#form-change-status");
+    const path = formChangeStatus.getAttribute("data-path");
+    listStatus.forEach((item) => {
+      item.addEventListener("click", () => {
+        const statusCurrent = item.getAttribute("data-status");
+        const id = item.getAttribute("data-id");
+        let statusChanges = statusCurrent == "active" ? "inactive" : "active";
+        const action = path + `/${statusChanges}/${id}?_method=PATCH`;
+        formChangeStatus.action = action;
+        formChangeStatus.submit();
+      });
+    });
+  }
 });

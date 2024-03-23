@@ -171,3 +171,16 @@ module.exports.changeMulti = async (req, res) => {
     res.redirect("back");
   }
 };
+
+module.exports.changeStatus = async (req, res) => {
+  try {
+    const { status, id } = req.params;
+    await Categories.updateOne({ _id: id }, { status: status });
+    req.flash("success", "Cập nhật trạng thái thành công!");
+  } catch (error) {
+    console.log(error);
+    req.flash("error", "Thay đổi trang thái cho danh mục thất bại!");
+  } finally {
+    res.redirect("back");
+  }
+};
