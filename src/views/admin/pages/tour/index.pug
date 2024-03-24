@@ -64,15 +64,15 @@ block main
                       if category.id === item.tour_category_id
                         p #{category.title}
                 td
-                  a(class="btn btn-primary btn-sm" 
+                  a(class="btn btn-primary btn-sm btn-action" 
                     href=`${prefixAdmin}/tours/detail/${item.id}`
                   )
                     i(class="fa-solid fa-eye")
-                  a(class="btn btn-warning btn-sm mx-1" 
+                  a(class="btn btn-warning btn-sm mx-1 btn-action" 
                     href=`${prefixAdmin}/tours/edit/${item.id}`
                   )
                     i(class="fa-solid fa-pen-to-square")
-                  button(class="btn btn-danger btn-sm" 
+                  button(class="btn btn-danger btn-sm btn-action" 
                     data-id=item.id 
                     button-delete
                   )

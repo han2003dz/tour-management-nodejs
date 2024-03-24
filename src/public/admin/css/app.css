@@ -61,3 +61,7 @@
 .img-categories {
   object-fit: cover;
 }
+
+.btn-action{
+  font-size: 0.5rem;
+}
