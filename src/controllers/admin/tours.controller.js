@@ -1,6 +1,7 @@
 const Tours = require("../../models/tours.model");
 const Categories = require("../../models/categories.model");
 const systemConfig = require("../../config/system");
+const priceNew = require("../../helpers/priceNew");
 module.exports.index = async (req, res) => {
   try {
     const find = {
@@ -90,5 +91,29 @@ module.exports.editPatch = async (req, res) => {
   } catch (error) {
     req.error("error", "Cập nhật thất bại");
     res.redirect("back");
+  }
+};
+
+module.exports.detail = async (req, res) => {
+  try {
+    const find = {
+      deleted: false,
+      _id: req.params.id,
+    };
+    const tour = await Tours.findOne(find);
+    tour.priceNew = priceNew.priceNewTour(tour);
+    const category = await Categories.findOne({
+      _id: tour.tour_category_id,
+      deleted: false,
+    });
+    const categoryName = category.title;
+    res.render("admin/pages/tour/detail.pug", {
+      pageTitle: tour.title,
+      tour,
+      categoryName,
+    });
+  } catch (error) {
+    console.log("error detail: ", error);
+    req.flash("error", "Không thể xem chi tiết tour này!");
   }
 };

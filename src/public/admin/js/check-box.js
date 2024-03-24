@@ -77,8 +77,23 @@ const changeMulti = () => {
   }
   // End form change multi
 };
+const formatPrice = () => {
+  const VND = new Intl.NumberFormat("vi-VN", {
+    style: "currency",
+    currency: "VND",
+  });
+  const prices = document.querySelectorAll("[data-price]");
+  console.log(prices);
+  if (prices) {
+    prices.forEach((price) => {
+      const priceToNumber = parseInt(price.value);
+      price.value = VND.format(priceToNumber);
+    });
+  }
+};
 
 window.onload = function () {
   checkAll();
   changeMulti();
+  formatPrice();
 };
