@@ -1,9 +1,7 @@
 extends ../../layouts/default.pug
 include ../../mixins/filterStatus.pug
-include ../../mixins/alert.pug
-include ../../mixins/search.pug
-include ../../mixins/changeMulti.pug
 include ../../mixins/moment.pug
+include ../../mixins/headerTable.pug
 block main
   .link-router.my-3
     a(href=`#` class="text-decoration-none ms-2 text-dark")
@@ -17,16 +15,8 @@ block main
       i.fas.fa-table.me-1
       | Danh sách danh mục
     .card-body
-      .row.border-bottom.pb-2
-        .col-5
-          +filter(filterStatus)
-        .col-4.ms-auto.d-flex.justify-content-end
-          +search(keyword)
-        .col-2.d-flex.justify-content-end
-          a(href=`${prefixAdmin}/categories/create` class="ml-auto")
-            button(class="btn btn-sm btn-outline-success") + Thêm mới
-      .row.border-bottom.mb-2
-        +form-change-multi(`${prefixAdmin}/categories/change-multi?_method=PATCH`)
+      - var link = "categories";
+      +header-table(link)
       if(categories.length > 0)
         table#datatablesSimple(checkbox-multi)
           thead

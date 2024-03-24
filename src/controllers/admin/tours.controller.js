@@ -1,11 +1,19 @@
 const Tours = require("../../models/tours.model");
 const Categories = require("../../models/categories.model");
 const systemConfig = require("../../config/system");
+
 const priceNew = require("../../helpers/priceNew");
+const filterStatusHelper = require("../../helpers/filterStatus");
+const searchHelper = require("../../helpers/search");
+
 module.exports.index = async (req, res) => {
   try {
+    const filterStatus = filterStatusHelper(req.query);
+    const objectSearch = searchHelper(req.query);
     const find = {
       deleted: false,
+      ...(req.query.status && { status: req.query.status }),
+      ...(objectSearch.regex && { title: objectSearch.regex }),
     };
     const tours = await Tours.find(find);
     const categories = await Categories.find({
@@ -16,6 +24,8 @@ module.exports.index = async (req, res) => {
       pageTitle: "Tours",
       tours,
       categories,
+      filterStatus,
+      keyword: objectSearch.keyword,
     });
   } catch (error) {
     console.log(error);
@@ -130,6 +140,70 @@ module.exports.delete = async (req, res) => {
   } catch (error) {
     req.flash("error", "Xóa thất bại!");
     console.log("error delete tour", error);
+  } finally {
+    res.redirect("back");
+  }
+};
+
+module.exports.changeStatus = async (req, res) => {
+  try {
+    const { status, id } = req.params;
+    await Tours.updateOne({ _id: id }, { status: status });
+    req.flash("success", "Cập nhật trạng thái thành công!");
+  } catch (error) {
+    console.log(error);
+    req.flash("error", "Thay đổi trang thái thất bại!");
+  } finally {
+    res.redirect("back");
+  }
+};
+
+module.exports.changeMulti = async (req, res) => {
+  try {
+    const type = req.body.type;
+    const ids = req.body.ids.split(",");
+    const updatedBy = {
+      updatedAt: new Date(),
+    };
+    switch (type) {
+      case "active":
+        await Tours.updateMany(
+          { _id: { $in: ids } },
+          { status: "active", $push: { updatedBy: updatedBy } }
+        );
+        req.flash(
+          "success",
+          `Cập nhật thành công trạng thái hoạt động của ${ids.length} tour`
+        );
+        break;
+      case "inactive":
+        await Tours.updateMany(
+          { _id: { $in: ids } },
+          { status: "inactive", $push: { updatedBy: updatedBy } }
+        );
+        req.flash(
+          "success",
+          `Cập nhật thành công trạng thái dừng hoạt động của ${ids.length} tour`
+        );
+        break;
+      case "deleted-all":
+        await Tours.updateMany(
+          { _id: { $in: ids } },
+          {
+            deleted: true,
+            deletedBy: {
+              deletedAt: new Date(),
+            },
+          }
+        );
+        req.flash("success", `Đã xóa thành công ${ids.length} tour`);
+        break;
+      default:
+        break;
+    }
+  } catch (error) {
+    req.flash("error", "Chưa thể thực hiện được nhiều thay đổi!");
+    console.log("error change multi: ", error);
   } finally {
     res.redirect("back");
   }

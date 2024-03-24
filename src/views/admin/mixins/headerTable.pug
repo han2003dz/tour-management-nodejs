@@ -1,0 +1,13 @@
+include ./search.pug
+include ./changeMulti.pug
+mixin header-table(link)
+  .row.border-bottom.pb-2
+    .col-5
+      +filter(filterStatus)
+    .col-4.ms-auto.d-flex.justify-content-end
+      +search(keyword)
+    .col-2.d-flex.justify-content-end
+      a(href=`${prefixAdmin}/${link}/create` class="ml-auto")
+        button(class="btn btn-sm btn-outline-success") + Thêm mới
+  .row.border-bottom.mb-2
+    +form-change-multi(`${prefixAdmin}/${link}/change-multi?_method=PATCH`)
