@@ -13,5 +13,12 @@ router.post(
   uploadCloud.uploadFields,
   controller.createPost
 );
+
 router.get("/edit/:id", controller.edit);
+router.patch(
+  "/edit/:id",
+  upload.fields([{ name: "images", maxCount: 10 }]),
+  uploadCloud.uploadFields,
+  controller.editPatch
+);
 module.exports = router;

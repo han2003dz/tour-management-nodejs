@@ -60,11 +60,35 @@ module.exports.edit = async (req, res) => {
       _id: req.params.id,
     };
     const tour = await Tours.findOne(find);
+    const categories = await Categories.find({ deleted: false });
     res.render("admin/pages/tour/edit.pug", {
       pageTitle: "Chỉnh sửa tour",
       tour,
+      categories,
     });
   } catch (error) {
     console.log(error);
+  }
+};
+
+module.exports.editPatch = async (req, res) => {
+  try {
+    req.body.price = parseInt(req.body.price);
+    req.body.discountPercentage = parseInt(req.body.discountPercentage);
+    req.body.stock = parseInt(req.body.stock);
+    const updatedBy = {
+      updatedAt: new Date(),
+    };
+    await Tours.updateOne(
+      {
+        _id: req.params.id,
+      },
+      { ...req.body, $push: { updatedBy: updatedBy } }
+    );
+    req.flash("success", "Cập nhật thành công!");
+    res.redirect(`${systemConfig.prefixAdmin}/tours`);
+  } catch (error) {
+    req.error("error", "Cập nhật thất bại");
+    res.redirect("back");
   }
 };

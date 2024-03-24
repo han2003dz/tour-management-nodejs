@@ -30,6 +30,21 @@ block main
               required
               value=tour.title
             )
+        .row.mb-2
+          if categories 
+            div(class="form-group my-2")
+              label(for="tour_category_id" class="form-label") Danh mục *
+              select(
+                name="tour_category_id"
+                id="tour_category_id"
+                class="form-control form-select"
+              )
+                option(value="" disabled="disabled") -- Chọn danh mục --
+                  each category in categories
+                    option(
+                      value=category.id
+                      selected=tour.tour_category_id === category.id ? 'selected' : undefined
+                    ) #{category.title}
         .row
           .form-group.mb-2(upload-image)
             label(for="images" class="form-label") Ảnh
