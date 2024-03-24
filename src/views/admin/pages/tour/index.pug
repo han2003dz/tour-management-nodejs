@@ -27,6 +27,7 @@ block main
               th Còn lại
               th Thời lượng
               th Giá
+              th Trạng thái
               th Danh mục
               th 
                 span(class="actionAll") Hành động
@@ -46,6 +47,16 @@ block main
                 td #{item.numberOfDays}
                 td 
                   span(data-price) #{item.price}
+                td
+                  a(href="#" 
+                    class="badge" 
+                    data-status=item.status
+                    data-id=item.id
+                    link-change-status
+                  ) 
+                    i(
+                      class=item.status === "active" ? "fa-solid fa-circle text-success" : "fa-solid fa-circle text-secondary"
+                    )
                 td 
                   if(categories)
                     each category in categories

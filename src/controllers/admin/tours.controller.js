@@ -14,9 +14,12 @@ module.exports.index = async (req, res) => {
     res.render("admin/pages/tour/index.pug", {
       pageTitle: "Tours",
       tours,
-      categories, 
+      categories,
     });
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+    res.redirect(`${systemConfig.prefixAdmin}`);
+  }
 };
 
 module.exports.create = async (req, res) => {
@@ -48,4 +51,20 @@ module.exports.createPost = async (req, res) => {
     req.flash("error", "Không thêm được tour mới!");
   }
   res.redirect(`${systemConfig.prefixAdmin}/tours/create`);
+};
+
+module.exports.edit = async (req, res) => {
+  try {
+    const find = {
+      deleted: false,
+      _id: req.params.id,
+    };
+    const tour = await Tours.findOne(find);
+    res.render("admin/pages/tour/edit.pug", {
+      pageTitle: "Chỉnh sửa tour",
+      tour,
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };

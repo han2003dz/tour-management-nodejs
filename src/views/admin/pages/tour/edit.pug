@@ -1,0 +1,163 @@
+extends ../../layouts/default.pug
+block main
+  .link-router.my-3
+    a(href=`#` class="text-decoration-none ms-2 text-dark")
+      i.fas.fa-columns.me-2
+      span Management 
+    span /
+    a(href=`${prefixAdmin}/tours` class="text-decoration-none mx-2")
+      span Tours
+    span /
+    a(href=`#` class="text-decoration-none ms-2 text-dark")
+      span Edit
+  h1 Chỉnh sửa tour
+  form(
+    action=`${prefixAdmin}/tours/edit/${tour.id}?_method=PATCH`
+    id="form-edit-tours"
+    method="POST"
+    enctype="multipart/form-data"
+    class="border border-1 p-4 me-3"
+  )
+    .row
+      .col-4
+        .row
+          .form-group.mb-2 
+            label(for="title" class="form-label") Tiêu đề
+            input.form-control(
+              type="text"
+              id="title"
+              name="title"
+              required
+              value=tour.title
+            )
+        .row
+          .form-group.mb-2(upload-image)
+            label(for="images" class="form-label") Ảnh
+            input.form-control(
+              type="file"
+              class="form-control-file"
+              id="images"
+              name="images"
+              accept="image/*"
+              upload-image-input
+            )
+            img(
+              src=tour.images[0]
+              upload-image-preview
+              class="img-thumbnail"
+            )
+      .col-8
+        .row
+          .col-6
+            div(class="form-group mb-2")
+              label(for="price" class="form-label") Giá gốc *
+              input(
+                type="number"
+                class="form-control"
+                id="price"
+                name="price"
+                value=tour.price
+                min="0"
+              )
+          .col-6
+            div(class="form-group mb-2")
+              label(for="discount" class="form-label") % Giảm giá
+              input(
+                type="number"
+                class="form-control"
+                id="discount"
+                name="discountPercentage"
+                value=tour.discountPercentage
+                min="0"
+              )
+        .row.mt-2
+          .col-3
+            div(class="form-group mb-2")
+              label(for="stock" class="form-label") Số lượng tour *
+              input(
+                type="number"
+                class="form-control"
+                id="stock"
+                name="stock"
+                value=tour.stock
+                min="0"
+              )
+          .col-5
+            div(class="form-group")
+              label(for="numberOfDays" class="form-label") Thời lượng *
+              input(
+                class="form-control"
+                id="numberOfDays"
+                name="numberOfDays"
+                value=tour.numberOfDays
+              )
+          .col-4
+            div(class="form-group")
+              label(for="departureLocation" class="form-label") Nơi khởi hành *
+              input(
+                class="form-control"
+                id="departureLocation"
+                name="departureLocation"
+                value=tour.departureLocation
+              )
+        .row
+          .col-3
+            span Trạng thái:
+          .col-3
+            .form-group.form-check.form-check-inline.mb-2
+              input(
+                type="radio"
+                class="form-check-input"
+                id="statusActive"
+                name="status"
+                value="active"
+                checked=(tour.status == "active" ? true : false)
+              )
+              label(for="statusActive" class="form-check-label") Hoạt động
+          .col-5
+            .form-group.form-check.form-check-inline.mb-2
+              input(
+                type="radio"
+                class="form-check-input"
+                id="statusInActive"
+                name="status"
+                value="inactive"
+                checked=(tour.status == "active" ? false : true)
+              )
+              label(for="statusInActive" class="form-check-label") Dừng hoạt động 
+        .row
+          .col-3
+            span Nổi bật:
+          .col-3
+            div(class="form-group form-check form-check-inline")
+              input(
+                type="radio"
+                class="form-check-input"
+                id="featured1"
+                name="featured"
+                value="1"
+                checked=(tour.featured == "1" ? true : false)
+              )
+              label(for="featured1" class="form-check-label") Có
+          .col-5
+            div(class="form-group form-check form-check-inline")
+              input(
+                type="radio"
+                class="form-check-input"
+                id="featured0"
+                name="featured"
+                value="0"
+                checked=(tour.featured == "0" ? true : false)
+              )
+              label(for="featured0" class="form-check-label") Không
+        .row
+          .form-group.mb-2
+            label(for="desc" class="form-label") Mô tả
+            textarea.form-control.textarea-mce(
+              id="desc"
+              name="information"
+              rows="6"
+              value=tour.information
+            ) #{tour.information}
+        .row.w-25.m-1
+          button.btn.btn-primary(type="submit") Cập nhật

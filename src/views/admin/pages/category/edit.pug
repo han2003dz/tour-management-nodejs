@@ -1,6 +1,4 @@
 extends ../../layouts/default.pug
-include ../../mixins/alert.pug
-
 block main
   .link-router.my-3
     a(href=`#` class="text-decoration-none ms-2 text-dark")
@@ -34,12 +32,12 @@ block main
             )
         .row
           .form-group.mb-2(upload-image)
-            label(for="images[0]" class="form-label") Ảnh
+            label(for="images" class="form-label") Ảnh
             input.form-control(
               type="file"
               class="form-control-file"
-              id="images[0]"
-              name="images[0]"
+              id="images"
+              name="images"
               accept="image/*"
               upload-image-input
             )
@@ -73,7 +71,7 @@ block main
                 value="inactive"
                 checked=(category.status == "active" ? false : true)
               )
-              label(for="statusInActive" class="form-check-label") Dừng hoạt động 
+              label(for="statusInActive" class="form-check-label") Dừng hoạt động
         .row
           .form-group.mb-2
             label(for="desc" class="form-label") Mô tả

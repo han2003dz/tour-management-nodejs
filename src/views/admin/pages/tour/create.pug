@@ -4,6 +4,16 @@ include ../../mixins/status.pug
 include ../../mixins/selectTree.pug
 include ../../mixins/featured.pug
 block main
+  .link-router.my-3
+    a(href=`#` class="text-decoration-none ms-2 text-dark")
+      i.fas.fa-columns.me-2
+      span Management 
+    span /
+    a(href=`${prefixAdmin}/tours` class="text-decoration-none mx-2")
+      span Tours
+    span /
+    a(href=`#` class="text-decoration-none ms-2 text-dark")
+      span Create
   h1 Thêm tour mới
   form(
     action=`${prefixAdmin}/tours/create`
@@ -49,14 +59,14 @@ block main
         .row
           .col-6
             div(class="form-group mb-2")
-              label(for="price" class="form-label") Giá gốc *
+              label(for="price" class="form-label") Giá gốc (VND) *
               input(
                 type="number"
                 class="form-control"
                 id="price"
                 name="price"
                 value="0"
-                min="0"
+                price-input
               )
           .col-6
             div(class="form-group mb-2")

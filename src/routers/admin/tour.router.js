@@ -13,4 +13,5 @@ router.post(
   uploadCloud.uploadFields,
   controller.createPost
 );
+router.get("/edit/:id", controller.edit);
 module.exports = router;
