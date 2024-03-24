@@ -117,3 +117,20 @@ module.exports.detail = async (req, res) => {
     req.flash("error", "Không thể xem chi tiết tour này!");
   }
 };
+
+module.exports.delete = async (req, res) => {
+  try {
+    const id = req.params.id;
+    await Tours.updateOne(
+      { _id: id },
+      { deleted: true },
+      { deletedAt: new Date() }
+    );
+    req.flash("success", "Xóa thành công 1 tour!");
+  } catch (error) {
+    req.flash("error", "Xóa thất bại!");
+    console.log("error delete tour", error);
+  } finally {
+    res.redirect("back");
+  }
+};
