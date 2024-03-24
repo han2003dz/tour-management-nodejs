@@ -180,3 +180,9 @@ block main
             rows="6"
             value=tour.information
           ) #{tour.information}
+      .row
+        .col-md-4
+          a(
+            href=`${prefixAdmin}/tours/edit/${tour.id}`
+            class="btn btn-warning mb-2"
+          ) Chỉnh sửa

@@ -2,7 +2,9 @@ extends ../../layouts/default.pug
 include ../../mixins/filterStatus.pug
 include ../../mixins/moment.pug
 include ../../mixins/headerTable.pug
+include ../../mixins/action.pug
 block main
+  - var link = "tours";
   .link-router.my-3
     a(href=`#` class="text-decoration-none ms-2 text-dark")
       i.fas.fa-columns.me-2
@@ -15,7 +17,6 @@ block main
       i.fas.fa-table.me-1
       | Danh sách tour du lịch
     .card-body
-      - var link = "tours";
       +header-table(link)
       if(tours.length > 0)
         table#datatablesSimple(checkbox-multi)
@@ -64,19 +65,7 @@ block main
                       if category.id === item.tour_category_id
                         p #{category.title}
                 td
-                  a(class="btn btn-primary btn-sm btn-action" 
-                    href=`${prefixAdmin}/tours/detail/${item.id}`
-                  )
-                    i(class="fa-solid fa-eye")
-                  a(class="btn btn-warning btn-sm mx-1 btn-action" 
-                    href=`${prefixAdmin}/tours/edit/${item.id}`
-                  )
-                    i(class="fa-solid fa-pen-to-square")
-                  button(class="btn btn-danger btn-sm btn-action" 
-                    data-id=item.id 
-                    button-delete
-                  )
-                    i(class="fa-solid fa-trash")
+                  +actions(link, item)
       else
         p.text-center Chưa có tour du lịch nào!  
   form(

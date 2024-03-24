@@ -1,0 +1,14 @@
+mixin actions(link, item)
+  a(class="btn btn-primary btn-sm btn-action" 
+    href=`${prefixAdmin}/${link}/detail/${item.id}`
+  )
+    i(class="fa-solid fa-eye")
+  a(class="btn btn-warning btn-sm mx-1 btn-action" 
+    href=`${prefixAdmin}/${link}/edit/${item.id}`
+  )
+    i(class="fa-solid fa-pen-to-square")
+  button(class="btn btn-danger btn-sm btn-action" 
+    data-id=item.id 
+    button-delete
+  )
+    i(class="fa-solid fa-trash")
