@@ -36,6 +36,7 @@ const create = async (req, res) => {
     console.log("error: ", error);
   }
 };
+
 const createPost = async (req, res) => {
   try {
     const role = new Roles(req.body);
@@ -66,9 +67,64 @@ const detail = async (req, res) => {
   }
 };
 
+const edit = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const find = {
+      _id: id,
+      deleted: false,
+    };
+    const role = await Roles.findOne(find);
+    res.render("admin/pages/role/edit.pug", {
+      pageTitle: "Chỉnh sửa quyền",
+      role,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const editPatch = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const updatedBy = {
+      updatedAt: new Date(),
+    };
+    await Roles.updateOne(
+      { _id: id },
+      { ...req.body, $push: { updatedBy: updatedBy } }
+    );
+    req.flash("success", "Cập nhật thành công!");
+  } catch (error) {
+    console.log(error);
+    req.flash("error", "Cập nhật thất bại!");
+  } finally {
+    res.redirect(`${systemConfig.prefixAdmin}/roles`);
+  }
+};
+
+const deleteRole = async (req, res) => {
+  try {
+    const id = req.params.id;
+    await Roles.updateOne(
+      { _id: id },
+      { deleted: true },
+      { deletedAt: new Date() }
+    );
+    req.flash("success", "Xóa thành công 1 quyền!");
+  } catch (error) {
+    req.flash("error", "Xóa thất bại!");
+    console.log("error delete role", error);
+  } finally {
+    res.redirect("back");
+  }
+};
 module.exports = {
   index,
   create,
   createPost,
   detail,
+  edit,
+  editPatch,
+  deleteRole,
 };
