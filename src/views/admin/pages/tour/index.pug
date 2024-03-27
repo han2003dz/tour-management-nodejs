@@ -4,6 +4,8 @@ include ../../mixins/moment
 include ../../mixins/headerTable
 include ../../mixins/action
 include ../../mixins/router
+include ../../mixins/formChangeStatus.pug
+include ../../mixins/formDelete.pug
 block main
   - var link = "tours";
   +router(link, "Management", "Tours")
@@ -63,15 +65,5 @@ block main
                   +actions(link, item)
       else
         p.text-center Chưa có tour du lịch nào!  
-  form(
-    action=""
-    method="POST"
-    id="form-change-status"
-    data-path=`${prefixAdmin}/tours/change-status`
-  ) 
-  form(
-    action=""
-    method="POST"
-    id="form-delete-record"
-    data-path=`${prefixAdmin}/tours/delete`
-  )        
+  +formChangeStatus(link) 
+  +formDelete(link)    

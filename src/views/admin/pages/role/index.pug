@@ -4,6 +4,9 @@ include ../../mixins/moment
 include ../../mixins/headerTable
 include ../../mixins/action
 include ../../mixins/router
+include ../../mixins/formChangeStatus
+include ../../mixins/formDelete
+
 block main
   - var link = "roles";
   +router(link, "Management", "Roles")
@@ -50,15 +53,5 @@ block main
                   +actions(link, item)
       else
         p.text-center Chưa có quyền nào!  
-  form(
-    action=""
-    method="POST"
-    id="form-change-status"
-    data-path=`${prefixAdmin}/${link}/change-status`
-  ) 
-  form(
-    action=""
-    method="POST"
-    id="form-delete-record"
-    data-path=`${prefixAdmin}/${link}/delete`
-  )        
+  +formChangeStatus(link)
+  +formDelete(link)  

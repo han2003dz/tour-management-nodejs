@@ -1,8 +1,10 @@
-extends ../../layouts/default.pug
-include ../../mixins/filterStatus.pug
-include ../../mixins/moment.pug
-include ../../mixins/headerTable.pug
-include ../../mixins/action.pug
+extends ../../layouts/default
+include ../../mixins/filterStatus
+include ../../mixins/moment
+include ../../mixins/headerTable
+include ../../mixins/action
+include ../../mixins/formChangeStatus
+include ../../mixins/formDelete
 block main
   - var link = "categories";
   .link-router.my-3
@@ -75,15 +77,5 @@ block main
                 
       else
         p.text-center Chưa có danh mục nào!      
-  form(
-    action=""
-    method="POST"
-    id="form-change-status"
-    data-path=`${prefixAdmin}/categories/change-status`
-  ) 
-  form(
-    action=""
-    method="POST"
-    id="form-delete-record"
-    data-path=`${prefixAdmin}/categories/delete`
-  )
+  +formChangeStatus(link) 
+  +formDelete(link)

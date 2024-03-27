@@ -1,0 +1,7 @@
+mixin formDelete(link)
+  form(
+    action=""
+    method="POST"
+    id="form-delete-record"
+    data-path=`${prefixAdmin}/${link}/delete`
+  )
