@@ -119,6 +119,71 @@ const deleteRole = async (req, res) => {
     res.redirect("back");
   }
 };
+
+const changeMulti = async (req, res) => {
+  try {
+    const type = req.body.type;
+    const ids = req.body.ids.split(",");
+    const updatedBy = {
+      updatedAt: new Date(),
+    };
+    switch (type) {
+      case "active":
+        await Roles.updateMany(
+          { _id: { $in: ids } },
+          { status: "active", $push: { updatedBy: updatedBy } }
+        );
+        req.flash(
+          "success",
+          `Cập nhật thành công trạng thái hoạt động của ${ids.length} quyền`
+        );
+        break;
+      case "inactive":
+        await Roles.updateMany(
+          { _id: { $in: ids } },
+          { status: "inactive", $push: { updatedBy: updatedBy } }
+        );
+        req.flash(
+          "success",
+          `Cập nhật thành công trạng thái dừng hoạt động của ${ids.length} quyền`
+        );
+        break;
+      case "deleted-all":
+        await Roles.updateMany(
+          { _id: { $in: ids } },
+          {
+            deleted: true,
+            deletedBy: {
+              deletedAt: new Date(),
+            },
+          }
+        );
+        req.flash("success", `Đã xóa thành công ${ids.length} quyền`);
+        break;
+      default:
+        break;
+    }
+  } catch (error) {
+    req.flash("error", "Chưa thể thực hiện được nhiều thay đổi!");
+    console.log("error change multi: ", error);
+  } finally {
+    res.redirect("back");
+  }
+};
+
+const changeStatus = async (req, res) => {
+  try {
+    const { status, id } = req.params;
+    await Roles.updateOne({ _id: id }, { status: status });
+    req.flash("success", "Cập nhật trạng thái thành công!");
+  } catch (error) {
+    console.log(error);
+    req.flash("error", "Thay đổi trang thái cho quyền thất bại!");
+  } finally {
+    res.redirect("back");
+  }
+};
+
 module.exports = {
   index,
   create,
@@ -127,4 +192,6 @@ module.exports = {
   edit,
   editPatch,
   deleteRole,
+  changeMulti,
+  changeStatus,
 };

@@ -8,5 +8,7 @@ router.get("/detail/:id", controller.detail);
 router.get("/edit/:id", controller.edit);
 router.patch("/edit/:id", controller.editPatch);
 router.delete("/delete/:id", controller.deleteRole);
+router.patch("/change-multi", controller.changeMulti);
+router.patch("/change-status/:status/:id", controller.changeStatus);
 
 module.exports = router;
