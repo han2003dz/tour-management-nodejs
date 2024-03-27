@@ -1,17 +1,12 @@
-extends ../../layouts/default.pug
-include ../../mixins/filterStatus.pug
-include ../../mixins/moment.pug
-include ../../mixins/headerTable.pug
-include ../../mixins/action.pug
+extends ../../layouts/default
+include ../../mixins/filterStatus
+include ../../mixins/moment
+include ../../mixins/headerTable
+include ../../mixins/action
+include ../../mixins/router
 block main
   - var link = "roles";
-  .link-router.my-3
-    a(href=`#` class="text-decoration-none ms-2 text-dark")
-      i.fas.fa-columns.me-2
-      span Management 
-    span /
-    a(href=`${prefixAdmin}/${link}` class="text-decoration-none ms-2")
-      span Roles 
+  +router(link, "Management", "Roles")
   .card
     .card-header
       i.fas.fa-table.me-1

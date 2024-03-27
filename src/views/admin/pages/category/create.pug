@@ -1,6 +1,8 @@
-extends ../../layouts/default.pug
-include ../../mixins/status.pug
-block main
+extends ../../layouts/default
+include ../../mixins/status
+include ../../mixins/router
+block main 
+  +router("categories", "Management", "Categories", "Create")
   h1 Thêm danh mục mới
   form(
     action=`${prefixAdmin}/categories/create`

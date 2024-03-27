@@ -1,0 +1,12 @@
+mixin router(link, lv1, lv2, lv3)
+  .link-router.my-3
+    a(href=`#` class="text-decoration-none ms-2 text-dark")
+      i.fas.fa-columns.me-2
+      span #{lv1} 
+    span /
+    a(href=`${prefixAdmin}/${link}` class="text-decoration-none mx-2")
+      span #{lv2}
+    if lv3
+      span /
+      a(href=`#` class="text-decoration-none ms-2 text-dark")
+        span #{lv3}

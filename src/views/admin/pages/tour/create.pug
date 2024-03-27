@@ -1,18 +1,10 @@
-extends ../../layouts/default.pug
-include ../../mixins/status.pug
-include ../../mixins/selectTree.pug
-include ../../mixins/featured.pug
+extends ../../layouts/default
+include ../../mixins/status
+include ../../mixins/selectTree
+include ../../mixins/featured
+include ../../mixins/router
 block main
-  .link-router.my-3
-    a(href=`#` class="text-decoration-none ms-2 text-dark")
-      i.fas.fa-columns.me-2
-      span Management 
-    span /
-    a(href=`${prefixAdmin}/tours` class="text-decoration-none mx-2")
-      span Tours
-    span /
-    a(href=`#` class="text-decoration-none ms-2 text-dark")
-      span Create
+  +router("tours", "Management", "Tours", "Create")
   h1 Thêm tour mới
   form(
     action=`${prefixAdmin}/tours/create`

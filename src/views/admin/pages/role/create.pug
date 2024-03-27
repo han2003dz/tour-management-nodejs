@@ -1,16 +1,8 @@
-extends ../../layouts/default.pug
-include ../../mixins/status.pug
+extends ../../layouts/default
+include ../../mixins/status
+include ../../mixins/router
 block main
-  .link-router.my-3
-    a(href=`#` class="text-decoration-none ms-2 text-dark")
-      i.fas.fa-columns.me-2
-      span Management 
-    span /
-    a(href=`${prefixAdmin}/roles` class="text-decoration-none mx-2")
-      span Roles
-    span /
-    a(href=`#` class="text-decoration-none ms-2 text-dark")
-      span Create
+  +router("roles", "Management", "Roles", "Create")
   h1 Thêm quyền mới
   form(
     action=`${prefixAdmin}/roles/create`

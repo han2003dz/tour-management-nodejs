@@ -1,15 +1,8 @@
 extends ../../layouts/default
+include ../../mixins/router
 block main
-  .link-router.my-3
-    a(href=`#` class="text-decoration-none ms-2 text-dark")
-      i.fas.fa-columns.me-2
-      span Management 
-    span /
-    a(href=`${prefixAdmin}/categories` class="text-decoration-none mx-2")
-      span Categories
-    span /
-    a(href=`#` class="text-decoration-none ms-2 text-dark")
-      span Detail
+  +router("categories", "Management", "Tours", "Detail")
+  h1 #{category.title}
   .row.bg-light.p-2.me-0
     .col-6.p-0
       .row

@@ -49,8 +49,26 @@ const createPost = async (req, res) => {
     res.redirect(`${systemConfig.prefixAdmin}/roles`);
   }
 };
+
+const detail = async (req, res) => {
+  try {
+    const find = {
+      deleted: false,
+      _id: req.params.id,
+    };
+    const role = await Roles.findOne(find);
+    res.render("admin/pages/role/detail.pug", {
+      pageTitle: role.title,
+      role,
+    });
+  } catch (error) {
+    console.log("error detail categories controller", error);
+  }
+};
+
 module.exports = {
   index,
   create,
   createPost,
+  detail,
 };

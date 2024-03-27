@@ -1,15 +1,7 @@
-extends ../../layouts/default.pug
+extends ../../layouts/default
+include ../../mixins/router
 block main
-  .link-router.my-3
-    a(href=`#` class="text-decoration-none ms-2 text-dark")
-      i.fas.fa-columns.me-2
-      span Management 
-    span /
-    a(href=`${prefixAdmin}/tours` class="text-decoration-none mx-2")
-      span Tours
-    span /
-    a(href=`#` class="text-decoration-none ms-2 text-dark")
-      span Edit
+  +router("tours", "Management", "Tours", "Edit")
   h1 Chỉnh sửa tour
   form(
     action=`${prefixAdmin}/tours/edit/${tour.id}?_method=PATCH`
