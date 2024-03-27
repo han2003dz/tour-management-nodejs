@@ -4,6 +4,10 @@ const accountSchema = new mongoose.Schema(
     fullName: String,
     email: String,
     password: String,
+    admin: {
+      type: Boolean,
+      default: false,
+    },
     gender: String,
     phone: String,
     avatar: String,

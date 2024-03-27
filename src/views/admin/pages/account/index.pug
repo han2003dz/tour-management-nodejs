@@ -1,21 +1,20 @@
 extends ../../layouts/default
 include ../../mixins/filterStatus
-include ../../mixins/moment
 include ../../mixins/headerTable
 include ../../mixins/action
 include ../../mixins/formChangeStatus
 include ../../mixins/formDelete
 include ../../mixins/router
 block main
-  - var link = "categories";
-  +router(link, "Management", "Categories")
+  - var link = "accounts";
+  +router(link, "Management", "Accounts")
   .card
     .card-header
       i.fas.fa-table.me-1
       | Danh sách danh mục
     .card-body
       +header-table(link)
-      if(categories.length > 0)
+      if(users.length > 0)
         table#datatablesSimple(checkbox-multi)
           thead
             tr
@@ -23,16 +22,14 @@ block main
                 input(class="form-check-input checkAll" type="checkbox" name="checkAll")
               th STT
               th 
-                span(class="imageAll") Hình ảnh
-              th Tên danh mục
+                span(class="avatarAll") Hình ảnh
+              th Tên tài khoản
               th(class="text-center")
                 span(class="statusAll") Trạng thái
               th 
-                span Người cập nhật gần nhất
-              th 
                 span(class="actionAll") Hành động
           tbody
-            each item, index in categories
+            each item, index in users
               tr
                 td 
                   input(
@@ -45,12 +42,12 @@ block main
                 td 
                   img(
                     class="img-categories"
-                    src=item.images[0]
-                    alt=item.title
+                    src=item.avatar
+                    alt=item.fullName
                     width="90px"
                     height="50px"
                   )
-                td #{item.title}
+                td #{item.fullName}
                 td(class="text-center")
                   a(href="#" 
                     class="badge" 
@@ -61,15 +58,9 @@ block main
                     i(
                       class=item.status === "active" ? "fa-solid fa-circle text-success" : "fa-solid fa-circle text-secondary"
                     )
-                td 
-                  - const updatedBy = item.updatedBy.slice(-1)[0];
-                  p
-                    | Nguyễn Hân
-                  p 
-                    +formatDateTime(updatedBy.updatedAt)
                 td
                   +actions(link, item)
       else
-        p.text-center Chưa có danh mục nào!      
+        p.text-center Chưa có tài khoản nào được tạo!      
   +formChangeStatus(link) 
   +formDelete(link)

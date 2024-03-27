@@ -11,7 +11,13 @@ window.addEventListener("DOMContentLoaded", (event) => {
         });
       });
     }
-    const classesToRemove = ["checkAll", "statusAll", "actionAll", "imageAll"];
+    const classesToRemove = [
+      "checkAll",
+      "statusAll",
+      "actionAll",
+      "imageAll",
+      "avatarAll",
+    ];
     handleRemoveParentClass(classesToRemove);
 
     // remove form search in table
