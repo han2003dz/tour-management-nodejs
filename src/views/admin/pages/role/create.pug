@@ -1,0 +1,45 @@
+extends ../../layouts/default.pug
+include ../../mixins/status.pug
+block main
+  .link-router.my-3
+    a(href=`#` class="text-decoration-none ms-2 text-dark")
+      i.fas.fa-columns.me-2
+      span Management 
+    span /
+    a(href=`${prefixAdmin}/roles` class="text-decoration-none mx-2")
+      span Roles
+    span /
+    a(href=`#` class="text-decoration-none ms-2 text-dark")
+      span Create
+  h1 Thêm quyền mới
+  form(
+    action=`${prefixAdmin}/roles/create`
+    id="form-create-role"
+    method="POST"
+    enctype="application/x-www-form-urlencoded"
+    class="border border-1 p-4 me-3"
+  )
+    .row
+      .col-3
+        .form-group.mb-2 
+          label(for="title" class="form-label") Tên quyền *
+          input.form-control(
+            type="text"
+            id="title"
+            name="title"
+          )
+    .row
+      +status()
+    .row
+      .form-group.mb-2
+        label(for="info" class="form-label") Mô tả
+        textarea.form-control.textarea-mce(
+          id="info"
+          name="description"
+          rows="6"
+        )
+    .row.w-25.m-1
+      button.btn.btn-primary(type="submit") Thêm mới
+
+    
+      

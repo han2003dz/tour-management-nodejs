@@ -6,7 +6,7 @@ const priceNew = require("../../helpers/priceNew");
 const filterStatusHelper = require("../../helpers/filterStatus");
 const searchHelper = require("../../helpers/search");
 
-module.exports.index = async (req, res) => {
+module.exports.index = async (req, res) => { 
   try {
     const filterStatus = filterStatusHelper(req.query);
     const objectSearch = searchHelper(req.query);
@@ -208,3 +208,4 @@ module.exports.changeMulti = async (req, res) => {
     res.redirect("back");
   }
 };
+

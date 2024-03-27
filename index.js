@@ -11,7 +11,7 @@ database.connect();
 const routerAdmin = require("./src/routers/admin/index.router");
 
 // variable env
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 const parser = process.env.PARSER;
 
 // library
@@ -46,7 +46,7 @@ app.use(
 );
 
 app.use(bodyParser.urlencoded({ extended: false }));
-
+app.use(bodyParser.json());
 // router
 routerAdmin(app);
 
