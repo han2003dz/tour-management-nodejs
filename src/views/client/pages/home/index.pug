@@ -1,1 +1,32 @@
-h1 OK
+extends ../../layouts/default
+block main 
+  section#portfolio.portfolio
+    .container
+      .section-title(data-aos='fade-in' data-aos-delay='100')
+        h2 Tour nổi bật
+      .row(data-aos='fade-in')
+        .col-lg-12.d-flex.justify-content-center
+          ul#portfolio-flters
+            li.filter-active(data-filter='*') Tất cả
+            li(data-filter='.filter-app') Miền Bắc
+            li(data-filter='.filter-card') Miền Trung
+            li(data-filter='.filter-web') Miền Nam
+      .row.portfolio-container(data-aos='fade-up')
+        .col-lg-4.col-md-6.portfolio-item.filter-app
+          .portfolio-wrap.tour-item.border.rounded
+            a
+              img.img-fluid(src='/client/img/hero-bg.jpg' alt='')
+              .info-tour
+                span.title Du lịch Cao Bằng - 
+                span.numberOfDay 2 Ngày 1 Đêm
+              .info-tour Khởi hành: Hà Nội
+              .tour-category.info-tour Danh mục : Du lịch Miền Bắc
+              .stock Số lượng tour còn: 10
+              .d-flex
+                span.price-new 4.000.000 vnđ
+                span.price-old.text-decoration-line-through 7.000.000 vnđ
+            <div class="text-center py-2">
+              <button type="button" class="btn btn-success align-items-center"> + Đặt Tour Ngay</button>
+            </div>
+            
+        

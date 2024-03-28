@@ -1,0 +1,43 @@
+header#header.fixed-top.header-transparent
+  .container.d-flex.align-items-center.justify-content-between.position-relative
+    .logo
+      h1.text-light
+        a(href='/')
+          span Vietnam tourism
+    nav#navbar.navbar
+      ul
+        li
+          a.nav-link.scrollto.active(href='/') Trang chủ
+        li
+          a.nav-link.scrollto(href='#about') About Us
+        li
+          a.nav-link.scrollto(href='#services') Services
+        li.dropdown
+          a(href='#')
+            span Drop Down
+            i(class="bi bi-chevron-compact-down")
+          ul
+            li
+              a(href='#') Drop Down 1
+            li.dropdown
+              a(href='#')
+                span Deep Drop Down
+                i.bi.bi-chevron-right
+              ul
+                li
+                  a(href='#') Deep Drop Down 1
+            li
+              a(href='#') Drop Down 4
+        li.dropdown.megamenu
+          a(href='#')
+            span Mega Menu
+            i.bi.bi-chevron-down
+          ul
+            li
+              strong Column 5
+              a(href='#') Column 5 link 1
+              a(href='#') Column 5 link 2
+              a(href='#') Column 5 link 3
+        li
+          a.nav-link.scrollto(href='#contact') Contact
+      i.bi.bi-list.mobile-nav-toggle
