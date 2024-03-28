@@ -1,0 +1,5 @@
+mixin tree-category(items, path)
+  ul#portfolio-flters
+    each item in items
+      li
+        a(href=`${path}/${item.slug}`) #{item.title}

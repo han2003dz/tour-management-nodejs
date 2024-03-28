@@ -1,6 +1,6 @@
 const Tours = require("../../models/tours.model");
 const priceNewHelper = require("../../helpers/priceNew");
-
+const Categories = require("../../models/categories.model");
 module.exports.home = async (req, res) => {
   try {
     const [toursFeatured, toursNew] = await Promise.all([
@@ -11,7 +11,6 @@ module.exports.home = async (req, res) => {
       priceNewHelper.priceNewTours(toursFeatured),
       priceNewHelper.priceNewTours(toursNew),
     ]);
-
     res.render("client/pages/home/index", {
       pageTitle: "Trang chủ",
       newToursFeatured,
