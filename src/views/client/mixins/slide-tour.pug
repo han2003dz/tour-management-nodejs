@@ -1,0 +1,42 @@
+include ./tour-layout
+include ./stars
+mixin slide-tour()
+  section#testimonials.testimonials.section-bg
+    .container
+      .section-title(data-aos='fade-in' data-aos-delay='100')
+        h2 Các tour được yêu thích nhất
+      .testimonials-slider.swiper(data-aos='fade-up' data-aos-delay='100')
+        .swiper-wrapper
+          .swiper-slide
+            .testimonial-item
+              img.testimonial-img(src='/client/img/hero-bg.jpg' alt='')
+              h3 Tour Cao Bằng
+              .heart.d-flex.justify-content-center
+                i(class="bi bi-heart-fill mx-1")
+                h4 100 lượt thích
+              +stars()
+          .swiper-slide
+            .testimonial-item
+              img.testimonial-img(src='/client/img/hero-bg.jpg' alt='')
+              h3 Tour Cao Bằng
+              .heart.d-flex.justify-content-center
+                i(class="bi bi-heart-fill mx-1")
+                h4 100 lượt thích
+              +stars()
+          .swiper-slide
+            .testimonial-item
+              img.testimonial-img(src='/client/img/hero-bg.jpg' alt='')
+              h3 Tour Cao Bằng
+              .heart.d-flex.justify-content-center
+                i(class="bi bi-heart-fill mx-1")
+                h4 100 lượt thích
+              +stars()
+          .swiper-slide
+            .testimonial-item
+              img.testimonial-img(src='/client/img/hero-bg.jpg' alt='')
+              h3 Tour Cao Bằng
+              .heart.d-flex.justify-content-center
+                i(class="bi bi-heart-fill mx-1")
+                h4 100 lượt thích
+              +stars()
+        .swiper-pagination

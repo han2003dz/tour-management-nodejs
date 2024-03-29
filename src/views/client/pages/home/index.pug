@@ -1,22 +1,14 @@
 extends ../../layouts/default
 include ../../mixins/tour-layout
-//- include ../../tree-category
+include ../../mixins/slide-tour
 block main 
-  .container
-    .section-title(data-aos='fade-in' data-aos-delay='100')
-      h2 Tour nổi bật
-    //- .row(data-aos='fade-in')
-    //-   .col-lg-12.d-flex.justify-content-center
-    //-   -const pathTour = "/tours";
-    //-     ul#portfolio-flters
-    //-       li(data-filter='' class="filter-active") Tất cả
-    //-       li(data-filter='') 
-    //-         a(href="/tour-mien-bac") Miền Bắc
-    //-       li(data-filter='') Miền Trung
-    //-       li(data-filter='') Miền Nam
-    //-       li(data-filter='') Tây Nam Bộ
-    .row.portfolio-container(data-aos='fade-up')
-      +tour-grid(newToursFeatured)
+  section#portfolio.portfolio
+    .container
+      .section-title(data-aos='fade-in' data-aos-delay='100')
+        h2 Tour nổi bật
+      .row.portfolio-container(data-aos='fade-up')
+        +tour-grid(newToursFeatured)
+  +slide-tour()
             
             
         
