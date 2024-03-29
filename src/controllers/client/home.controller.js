@@ -5,7 +5,7 @@ module.exports.home = async (req, res) => {
   try {
     const [toursFeatured, toursNew] = await Promise.all([
       Tours.find({ featured: "1", deleted: false, status: "active" }).limit(6),
-      Tours.find({ deleted: false, status: "active" }).limit(6),
+      Tours.find({ deleted: false, status: "active" }),
     ]);
     const [newToursFeatured, tours] = await Promise.all([
       priceNewHelper.priceNewTours(toursFeatured),

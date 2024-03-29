@@ -7,18 +7,14 @@ header#header.fixed-top.header-transparent
     nav#navbar.navbar
       ul
         li
-          a.nav-link.scrollto.active(href='/') Trang chủ
-        li
-          a.nav-link.scrollto(href='#about') About Us
-        li
-          a.nav-link.scrollto(href='#services') Services
+          a.nav-link.scrollto(href='/') Trang chủ
         li.dropdown
-          a(href='#')
-            span Drop Down
+          a(href='/tours')
+            span Danh Mục
             i(class="bi bi-chevron-compact-down")
           ul
             li
-              a(href='#') Drop Down 1
+              a(href='#') Tour Miền Bắc
             li.dropdown
               a(href='#')
                 span Deep Drop Down
@@ -28,16 +24,10 @@ header#header.fixed-top.header-transparent
                   a(href='#') Deep Drop Down 1
             li
               a(href='#') Drop Down 4
-        li.dropdown.megamenu
-          a(href='#')
-            span Mega Menu
-            i.bi.bi-chevron-down
-          ul
-            li
-              strong Column 5
-              a(href='#') Column 5 link 1
-              a(href='#') Column 5 link 2
-              a(href='#') Column 5 link 3
+        li
+          a.nav-link.scrollto(href='#about') About Us
+        li
+          a.nav-link.scrollto(href='#services') Services
         li
           a.nav-link.scrollto(href='#contact') Contact
       i.bi.bi-list.mobile-nav-toggle

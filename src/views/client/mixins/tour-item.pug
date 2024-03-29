@@ -1,7 +1,7 @@
 mixin tour-item(item)
   .col-lg-4.col-md-6.portfolio-item.filter-app
-    .portfolio-wrap.tour-item.border.rounded
-      a(href=`tours/detail/${item.slug}`)
+    a(href=`tours/detail/${item.slug}`)
+      .portfolio-wrap.tour-item.border.rounded
         img.img-fluid.img-tour(
           src=item.images[0] alt=item.title
         )
@@ -17,5 +17,5 @@ mixin tour-item(item)
         .d-flex
           span.price-new(data-price) #{item.priceNew} vnđ
           span.price-old.text-decoration-line-through(data-price) #{item.price} vnđ
-      div(class="text-center py-2")
-        button(type="button" class="btn btn-success align-items-center") + Đặt Tour Ngay
+        div(class="text-center py-2")
+          button(type="button" class="btn btn-primary align-items-center") Xem chi tiết
