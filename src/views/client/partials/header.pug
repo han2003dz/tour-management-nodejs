@@ -8,7 +8,7 @@ header#header.fixed-top.header-transparent
     nav#navbar.navbar
       ul
         li
-          a.nav-link.scrollto(href='/') Trang chủ
+          a.nav-link(href='/') Trang chủ
         li.dropdown
           -const pathTours = "/tours";
           a(href=pathTours)
@@ -17,9 +17,9 @@ header#header.fixed-top.header-transparent
 
           +sub-menu(layoutToursCategory, pathTours)
         li
-          a.nav-link.scrollto(href='/tours/price-table') Bảng giá
+          a.nav-link(href='/price-table') Bảng giá
         li
-          a.nav-link.scrollto(href='/blog') Tin tức
+          a.nav-link(href='/blog') Tin tức
         li
-          a.nav-link.scrollto(href='/contact') Liên Hệ
+          a.nav-link(href='/contact') Liên Hệ
       i.bi.bi-list.mobile-nav-toggle

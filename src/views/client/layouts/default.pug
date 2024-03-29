@@ -22,6 +22,10 @@ html(lang="en")
     include ../partials/header.pug
     main#main
       block main
+    include ../partials/footer.pug
+    a(href="#" class="back-to-top d-flex align-items-center justify-content-center")
+      i(class="bi bi-arrow-up-short")
+
     script(src="/client/js/aos.js")
     script(src="/client/js/purecounter_vanilla.js")
     script(src="/client/js/bootstrap.bundle.min.js")
