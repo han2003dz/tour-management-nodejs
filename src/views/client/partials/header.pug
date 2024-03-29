@@ -14,20 +14,17 @@ header#header.fixed-top.header-transparent
             i(class="bi bi-chevron-compact-down")
           ul
             li
-              a(href='#') Tour Miền Bắc
+              a(href='/tours/:slugCategory') Tour Miền Bắc
             li.dropdown
-              a(href='#')
-                span Deep Drop Down
-                i.bi.bi-chevron-right
-              ul
-                li
-                  a(href='#') Deep Drop Down 1
+              a(href='/tours/:slugCategory') Tour Miền Trung
             li
-              a(href='#') Drop Down 4
+              a(href='/tours/:slugCategory') Tour Miền Nam
+            li
+              a(href='/tours/:slugCategory') Tour Miền Tây Nam Bộ
         li
-          a.nav-link.scrollto(href='#about') About Us
+          a.nav-link.scrollto(href='/tours/price-table') Bảng giá
         li
-          a.nav-link.scrollto(href='#services') Services
+          a.nav-link.scrollto(href='/blog') Tin tức
         li
-          a.nav-link.scrollto(href='#contact') Contact
+          a.nav-link.scrollto(href='/contact') Liên Hệ
       i.bi.bi-list.mobile-nav-toggle
