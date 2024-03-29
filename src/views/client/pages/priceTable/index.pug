@@ -1,0 +1,29 @@
+extends ../../layouts/default
+block main
+  .price-table.p-5
+    h1.text-center.text-primary.f-bold Bảng giá
+    table.table.table-hover.mb-5.table-bordered.table-narrow.text-center
+      thead.table-primary
+        tr
+          th STT
+          th Tên Tour
+          th Thời lượng tour
+          th Xuất phát
+          th Phương tiện
+          th Giá tour
+          th Hành động
+      tbody
+        each item, index in tours
+          tr
+            td #{index + 1}
+            td #{item.title}
+            td #{item.numberOfDays}
+            td #{item.departureLocation}
+            td Ô tô
+            td 
+              span(data-price) #{item.priceNew}
+            td
+              a(class="btn btn-outline-info btn-sm rounded-pill" 
+                href=`/tours/detail/${item.slug}`
+              ) XEM TOUR
+                
