@@ -44,8 +44,29 @@ const detail = async (req, res) => {
     console.log(error);
   }
 };
-
+const category = async (req, res) => {
+  try {
+    const category = await Categories.findOne({
+      slug: req.params.slugCategory,
+      status: "active",
+      deleted: false,
+    });
+    const tours = await Tours.find({
+      tour_category_id: category.id,
+      deleted: false,
+    });
+    const newTours = priceNewHelper.priceNewTours(tours);
+    res.render("client/pages/tours/index", {
+      pageTitle: category.title,
+      tours: newTours,
+    });
+  } catch (error) {
+    console.log(error);
+    res.redirect("back");
+  }
+};
 module.exports = {
   index,
   detail,
+  category,
 };

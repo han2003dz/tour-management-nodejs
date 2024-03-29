@@ -1,3 +1,4 @@
+include ../mixins/sub-menu.pug
 header#header.fixed-top.header-transparent
   .container.d-flex.align-items-center.justify-content-between.position-relative
     .logo
@@ -9,18 +10,12 @@ header#header.fixed-top.header-transparent
         li
           a.nav-link.scrollto(href='/') Trang chủ
         li.dropdown
-          a(href='/tours')
+          -const pathTours = "/tours";
+          a(href=pathTours)
             span Danh Mục
             i(class="bi bi-chevron-compact-down")
-          ul
-            li
-              a(href='/tours/:slugCategory') Tour Miền Bắc
-            li.dropdown
-              a(href='/tours/:slugCategory') Tour Miền Trung
-            li
-              a(href='/tours/:slugCategory') Tour Miền Nam
-            li
-              a(href='/tours/:slugCategory') Tour Miền Tây Nam Bộ
+
+          +sub-menu(layoutToursCategory, pathTours)
         li
           a.nav-link.scrollto(href='/tours/price-table') Bảng giá
         li
