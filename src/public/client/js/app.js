@@ -40,6 +40,8 @@ const sortOption = () => {
   // End Button sort
 };
 
+sortOption();
+
 // Search Suggest
 const boxSearch = document.querySelector(".box-search");
 if (boxSearch) {
@@ -83,5 +85,3 @@ if (boxSearch) {
   });
 }
 // End Search Suggests
-
-window.onload = { sortOption };
