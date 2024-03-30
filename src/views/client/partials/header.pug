@@ -1,10 +1,12 @@
 include ../mixins/sub-menu.pug
+include ../mixins/search-box
 header#header.fixed-top.header-transparent
   .container.d-flex.align-items-center.justify-content-between.position-relative
     .logo
       h1.text-light
         a(href='/')
           span Vietnam tourism
+    +search-box()
     nav#navbar.navbar
       ul
         li

@@ -95,7 +95,30 @@ h6 {
   margin: 0;
   max-height: 40px;
 }
-
+#search-box {
+  background: #fff;
+  border-radius: 30px;
+  padding: 0;
+}
+#search-text {
+  background: none;
+  outline: none;
+  width: 0;
+  border: none;
+  padding: 0;
+}
+#search-box:hover #search-text, #search-box #search-text:valid {
+  width: 250px;
+  padding: 5px 0px 5px 15px;
+  transition: all 0.5s ease-in-out;
+}
+#search-btn {
+  background: #fff;
+  border: none;
+  padding: 5px 15px;
+  cursor: pointer;
+  border-radius: 30px;
+}
 @media (max-width: 768px) {
   #header.header-scrolled {
     padding: 15px 0;
