@@ -1,0 +1,17 @@
+extends ../../layouts/default.pug
+block main
+  .container.my-3
+    .row
+      .col-12
+        h3 Kết quả tìm kiếm
+    .row
+      each tour in tours
+        .col-6.mb-3
+          div(class="tour-item")
+            div(class="inner-image")
+              a(href=`/tours/detail/${tour.slug}`)
+                img(src=tour.image)
+            div(class="inner-content")
+              div(class="inner-title")
+                a(href=`/tours/detail/${tour.slug}`) #{tour.title}
+              div(class="inner-category") <i class="fa-solid fa-microphone-lines"></i> #{tour.infoCategory.title}

@@ -40,4 +40,48 @@ const sortOption = () => {
   // End Button sort
 };
 
-window.onload = sortOption;
+// Search Suggest
+const boxSearch = document.querySelector(".box-search");
+if (boxSearch) {
+  const input = boxSearch.querySelector("input[name='keyword']");
+  const innerSuggest = boxSearch.querySelector(".inner-suggest");
+
+  input.addEventListener("keyup", () => {
+    const keyword = input.value;
+    const link = `/search/suggest?keyword=${keyword}`;
+    console.log(input);
+    fetch(link)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && data.code == 200) {
+          const tours = data.tours;
+          if (tours.length > 0) {
+            const htmls = tours.map((item) => {
+              return `
+                  <a class="inner-item" href="/tours/detail/${item.slug}">
+                    <div class="inner-image">
+                      <img src="${item.image}" />
+                    </div>
+                    <div class="inner-info">
+                        <div class="inner-title">${item.title}</div>
+                        <div class="inner-category">
+                          <i class="fa-solid fa-microphone-lines"></i> ${item.infoCategory.title}
+                        </div>
+                    </div>
+                  </a>
+                `;
+            });
+            const innerList = boxSearch.querySelector(".inner-list");
+            innerList.innerHTML = htmls.join("");
+            innerSuggest.classList.add("show");
+            console.log(innerSuggest);
+          } else {
+            innerSuggest.classList.remove("show");
+          }
+        }
+      });
+  });
+}
+// End Search Suggests
+
+window.onload = { sortOption };
