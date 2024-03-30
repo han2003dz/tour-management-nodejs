@@ -1,6 +1,7 @@
 const { convertToSlug } = require("../../helpers/convertToSlug");
 const Tours = require("../../models/tours.model");
 const Categories = require("../../models/categories.model");
+const { priceNewTours } = require("../../helpers/priceNew");
 const result = async (req, res) => {
   const keyword = `${req.query.keyword}`;
   const type = req.params.type;
@@ -12,8 +13,9 @@ const result = async (req, res) => {
     const tours = await Tours.find({
       $or: [{ title: keywordRegex }, { slug: slugRegex }],
     });
-    if (tours.length > 0) {
-      for (const tour of tours) {
+    const toursNews = priceNewTours(tours);
+    if (toursNews.length > 0) {
+      for (const tour of toursNews) {
         const infoCategory = await Categories.findOne({
           _id: tour.tour_category_id,
         });
@@ -21,7 +23,13 @@ const result = async (req, res) => {
           id: tour.id,
           title: tour.title,
           image: tour.images[0],
+          numberOfDays: tour.numberOfDays,
+          departureLocation: tour.departureLocation,
+          stock: tour.stock,
           slug: tour.slug,
+          price: tour.price,
+          priceNew: tour.priceNew,
+          featured: tour.featured,
           infoCategory: {
             title: infoCategory.title,
           },

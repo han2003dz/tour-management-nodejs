@@ -1,17 +1,32 @@
 extends ../../layouts/default.pug
+include ../../mixins/tour-layout
 block main
-  .container.my-3
-    .row
-      .col-12
-        h3 Kết quả tìm kiếm
-    .row
-      each tour in tours
-        .col-6.mb-3
-          div(class="tour-item")
-            div(class="inner-image")
-              a(href=`/tours/detail/${tour.slug}`)
-                img(src=tour.image)
-            div(class="inner-content")
-              div(class="inner-title")
-                a(href=`/tours/detail/${tour.slug}`) #{tour.title}
-              div(class="inner-category") <i class="fa-solid fa-microphone-lines"></i> #{tour.infoCategory.title}
+  section#portfolio.portfolio
+    .container.mb-3
+      .row
+        .col-12
+          h3 Kết quả tìm kiếm
+      .row.portfolio-container(data-aos='fade-up')
+        each item in tours
+          .col-lg-4.col-md-6.portfolio-item.filter-app
+            a(href=`tours/detail/${item.slug}`)
+              .portfolio-wrap.tour-item.border.rounded
+                img.img-fluid.img-tour(
+                  src=item.image alt=item.title
+                )
+                if item.featured == "1"
+                  .inner-featured.rounded Nổi bật
+                .info-tour
+                  span.title #{item.title} 
+                .info-tour
+                  i(class="bi bi-alarm me-1")          
+                  span.numberOfDays #{item.numberOfDays}
+                .info-tour Khởi hành: #{item.departureLocation}
+                .stock Số lượng tour còn: #{item.stock}
+                .d-flex
+                  span.price-new(data-price) #{item.priceNew} vnđ
+                  span.price-old.text-decoration-line-through(data-price) #{item.price} vnđ
+                .text-center.py-2
+                  a(class="btn btn-outline-info rounded-pill" 
+                    href=`/tours/detail/${item.slug}`
+                  ) XEM TOUR
