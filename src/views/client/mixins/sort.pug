@@ -1,0 +1,33 @@
+mixin sort()
+  .row
+    .col-3
+      .select-sort.d-flex(sort)
+        select(
+          class="form-control form-select form-select-sm"
+          name="sort"
+          sort-select
+        )
+          option(value="" selected disabled) Lựa chọn sắp xếp
+          option(value="price-desc") Giá giảm dần
+          option(value="price-asc") Giá tăng dần
+          option(value="title-asc") Tiêu đề từ A-Z
+          option(value="title-desc") Tiêu đề từ Z-A 
+          option(value="numberOfDays-desc") Thời lượng giảm dần 
+          option(value="numberOfDays-asc") Thời lượng tăng
+        button(
+            class="btn btn-danger"
+            sort-clear
+          ) Clear
+mixin sort-category()
+  .select-sort(sort)
+    select(
+      class="form-control form-select"
+      name="sort"
+      sort-select
+    )
+      option(value="title-asc") Tiêu đề từ A-Z
+      option(value="title-desc") Tiêu đề từ Z-A  
+    button(
+        class="btn btn-danger mt-2"
+        sort-clear
+      ) Clear

@@ -1,7 +1,9 @@
 extends ../../layouts/default
+include ../../mixins/sort
 block main
   .price-table.p-5
     h1.text-center.text-primary.f-bold Bảng giá
+    +sort()
     table.table.table-hover.mb-5.table-bordered.table-narrow.text-center
       thead.table-primary
         tr
@@ -11,6 +13,7 @@ block main
           th Xuất phát
           th Phương tiện
           th Giá tour
+          th Giá mới
           th Hành động
       tbody
         each item, index in tours
@@ -21,7 +24,10 @@ block main
             td #{item.departureLocation}
             td Ô tô
             td 
-              span(data-price) #{item.priceNew}
+              span(data-price) #{item.price}
+            td
+              span(data-price) #{item.priceNew} 
+              | (-#{item.discountPercentage}%)
             td
               a(class="btn btn-outline-info btn-sm rounded-pill" 
                 href=`/tours/detail/${item.slug}`
