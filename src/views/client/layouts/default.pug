@@ -1,4 +1,4 @@
-
+include ../mixins/alert
 doctype html
 html(lang="en")
   head
@@ -20,6 +20,8 @@ html(lang="en")
     link(href="/client/css/style.css" rel="stylesheet") 
 
   body 
+    +alert-success(3000)
+    +alert-error(3000)
     include ../partials/header.pug
     main#main
       block main
