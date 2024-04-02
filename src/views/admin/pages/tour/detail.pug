@@ -164,6 +164,31 @@ block main
             )
             label(for="featured0" class="form-check-label") Không
       .row
+        .col-3
+          span Phương tiện:
+        .col-3
+          div(class="form-group form-check form-check-inline")
+            input(
+              type="radio"
+              class="form-check-input"
+              id="transport1"
+              name="transport"
+              value="1"
+              checked=(tour.transport == "1" ? true : false)
+            )
+            label(for="transport1" class="form-check-label") Ô tô
+        .col-5
+          div(class="form-group form-check form-check-inline")
+            input(
+              type="radio"
+              class="form-check-input"
+              id="transport0"
+              name="transport"
+              value="0"
+              checked=(tour.transport == "0" ? true : false)
+            )
+            label(for="transport0" class="form-check-label") Máy bay
+      .row
         .form-group.mb-2
           label(for="desc" class="form-label") Mô tả
           textarea.form-control.textarea-mce(

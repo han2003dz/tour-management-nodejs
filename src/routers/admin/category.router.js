@@ -20,7 +20,7 @@ router.patch(
   uploadCloud.uploadFields,
   controller.editPatch
 );
-router.delete("/delete/:id", controller.delete);
+router.delete("/delete/:id", controller.deleteRecord);
 
 router.patch("/change-multi", controller.changeMulti);
 router.patch("/change-status/:status/:id", controller.changeStatus);

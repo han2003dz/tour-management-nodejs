@@ -17,6 +17,7 @@ const tourSchema = new mongoose.Schema(
     schedule: String,
     featured: String,
     status: String,
+    transport: String,
     numberOfDays: String,
     departureLocation: String,
     timeStart: {

@@ -2,7 +2,7 @@ const Categories = require("../../models/categories.model");
 const systemConfig = require("../../config/system");
 const filterStatusHelper = require("../../helpers/filterStatus");
 const searchHelper = require("../../helpers/search");
-module.exports.index = async (req, res) => {
+const index = async (req, res) => {
   try {
     const filterStatus = filterStatusHelper(req.query);
     const objectSearch = searchHelper(req.query);
@@ -27,7 +27,7 @@ module.exports.index = async (req, res) => {
   }
 };
 
-module.exports.create = async (req, res) => {
+const create = async (req, res) => {
   try {
     res.render("admin/pages/category/create.pug", {
       pageTitle: "Thêm danh mục",
@@ -37,7 +37,7 @@ module.exports.create = async (req, res) => {
   }
 };
 
-module.exports.createPost = async (req, res) => {
+const createPost = async (req, res) => {
   try {
     const categories = new Categories(req.body);
     await categories.save();
@@ -50,7 +50,7 @@ module.exports.createPost = async (req, res) => {
   }
 };
 
-module.exports.detail = async (req, res) => {
+const detail = async (req, res) => {
   try {
     const find = {
       deleted: false,
@@ -66,7 +66,7 @@ module.exports.detail = async (req, res) => {
   }
 };
 
-module.exports.edit = async (req, res) => {
+const edit = async (req, res) => {
   try {
     const find = {
       deleted: false,
@@ -83,7 +83,7 @@ module.exports.edit = async (req, res) => {
   }
 };
 
-module.exports.editPatch = async (req, res) => {
+const editPatch = async (req, res) => {
   try {
     const id = req.params.id;
     const updatedBy = {
@@ -104,7 +104,7 @@ module.exports.editPatch = async (req, res) => {
   }
 };
 
-module.exports.delete = async (req, res) => {
+const deleteRecord = async (req, res) => {
   try {
     const id = req.params.id;
     await Categories.updateOne(
@@ -121,7 +121,7 @@ module.exports.delete = async (req, res) => {
   }
 };
 
-module.exports.changeMulti = async (req, res) => {
+const changeMulti = async (req, res) => {
   try {
     const type = req.body.type;
     const ids = req.body.ids.split(",");
@@ -172,7 +172,7 @@ module.exports.changeMulti = async (req, res) => {
   }
 };
 
-module.exports.changeStatus = async (req, res) => {
+const changeStatus = async (req, res) => {
   try {
     const { status, id } = req.params;
     await Categories.updateOne({ _id: id }, { status: status });
@@ -183,4 +183,16 @@ module.exports.changeStatus = async (req, res) => {
   } finally {
     res.redirect("back");
   }
+};
+
+module.exports = {
+  index,
+  create,
+  createPost,
+  edit,
+  editPatch,
+  detail,
+  deleteRecord,
+  changeStatus,
+  changeMulti,
 };

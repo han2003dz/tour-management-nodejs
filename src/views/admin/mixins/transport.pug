@@ -1,0 +1,24 @@
+mixin transport()
+  .col-3
+    span Phương tiện:
+  .col-3
+    div(class="form-group form-check form-check-inline")
+      input(
+        type="radio"
+        class="form-check-input"
+        id="transport1"
+        name="transport"
+        value="1"
+      )
+      label(for="transport1" class="form-check-label") Ô tô
+  .col-4
+    div(class="form-group form-check form-check-inline")
+      input(
+        type="radio"
+        class="form-check-input"
+        id="transport0"
+        name="transport"
+        value="0"
+        checked
+      )
+      label(for="transport0" class="form-check-label") Máy bay

@@ -6,7 +6,7 @@ const priceNew = require("../../helpers/priceNew");
 const filterStatusHelper = require("../../helpers/filterStatus");
 const searchHelper = require("../../helpers/search");
 
-module.exports.index = async (req, res) => {
+const index = async (req, res) => {
   try {
     const filterStatus = filterStatusHelper(req.query);
     const objectSearch = searchHelper(req.query);
@@ -33,7 +33,7 @@ module.exports.index = async (req, res) => {
   }
 };
 
-module.exports.create = async (req, res) => {
+const create = async (req, res) => {
   try {
     const findCategories = {
       deleted: false,
@@ -49,7 +49,7 @@ module.exports.create = async (req, res) => {
   }
 };
 
-module.exports.createPost = async (req, res) => {
+const createPost = async (req, res) => {
   try {
     req.body.price = parseInt(req.body.price);
     req.body.discountPercentage = parseInt(req.body.discountPercentage);
@@ -64,7 +64,7 @@ module.exports.createPost = async (req, res) => {
   res.redirect(`${systemConfig.prefixAdmin}/tours/create`);
 };
 
-module.exports.edit = async (req, res) => {
+const edit = async (req, res) => {
   try {
     const find = {
       deleted: false,
@@ -82,7 +82,7 @@ module.exports.edit = async (req, res) => {
   }
 };
 
-module.exports.editPatch = async (req, res) => {
+const editPatch = async (req, res) => {
   try {
     req.body.price = parseInt(req.body.price);
     req.body.discountPercentage = parseInt(req.body.discountPercentage);
@@ -104,7 +104,7 @@ module.exports.editPatch = async (req, res) => {
   }
 };
 
-module.exports.detail = async (req, res) => {
+const detail = async (req, res) => {
   try {
     const find = {
       deleted: false,
@@ -112,6 +112,7 @@ module.exports.detail = async (req, res) => {
     };
     const tour = await Tours.findOne(find);
     tour.priceNew = priceNew.priceNewTour(tour);
+    console.log(tour);
     const category = await Categories.findOne({
       _id: tour.tour_category_id,
       deleted: false,
@@ -128,7 +129,7 @@ module.exports.detail = async (req, res) => {
   }
 };
 
-module.exports.delete = async (req, res) => {
+const deleteRecord = async (req, res) => {
   try {
     const id = req.params.id;
     await Tours.updateOne(
@@ -145,7 +146,7 @@ module.exports.delete = async (req, res) => {
   }
 };
 
-module.exports.changeStatus = async (req, res) => {
+const changeStatus = async (req, res) => {
   try {
     const { status, id } = req.params;
     await Tours.updateOne({ _id: id }, { status: status });
@@ -158,7 +159,7 @@ module.exports.changeStatus = async (req, res) => {
   }
 };
 
-module.exports.changeMulti = async (req, res) => {
+const changeMulti = async (req, res) => {
   try {
     const type = req.body.type;
     const ids = req.body.ids.split(",");
@@ -207,4 +208,16 @@ module.exports.changeMulti = async (req, res) => {
   } finally {
     res.redirect("back");
   }
+};
+
+module.exports = {
+  index,
+  create,
+  createPost,
+  edit,
+  editPatch,
+  detail,
+  deleteRecord,
+  changeStatus,
+  changeMulti,
 };
