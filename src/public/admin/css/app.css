@@ -20,9 +20,10 @@
   position: absolute;
   top: 0;
   right: 0;
-  background-color: rgba(255, 255, 255, 0.5); /* Để biểu tượng dễ nhìn hơn */
-  padding: 3px; /* Khoảng cách giữa biểu tượng và cạnh */
-  border-radius: 50%; /* Làm cho nó trở thành hình tròn */
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 3px;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 /* Show-alert */

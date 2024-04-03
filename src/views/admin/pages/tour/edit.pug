@@ -48,11 +48,14 @@ block main
               accept="image/*"
               upload-image-input
             )
-            img(
-              src=tour.images[0]
-              upload-image-preview
-              class="img-thumbnail"
-            )
+            div(id="image-preview-container" class="mt-2")
+              each image, index in tour.images
+                div(class="img-container")
+                  img(
+                    src=tour.images[index]
+                    class="img-thumbnail"
+                  )
+                  i(class="fa-regular fa-circle-xmark btn-delete" onclick=`deleteImage(event, ${index})`)
       .col-8
         .row
           .col-6
