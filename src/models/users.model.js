@@ -6,10 +6,10 @@ const userSchema = new mongoose.Schema(
     userName: String,
     email: String,
     password: String,
-    tokenUser: {
-      type: String,
-      default: generate.generateRandomString(20),
-    },
+    // tokenUser: {
+    //   type: String,
+    //   default: generate.generateRandomString(20),
+    // },
     phone: String,
     avatar: String,
     role_id: String,
@@ -18,6 +18,11 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "active",
     },
+    admin: {
+      type: Boolean,
+      default: false,
+    },
+    statusOnline: String,
     deleted: {
       type: Boolean,
       default: false,

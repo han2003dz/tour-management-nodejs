@@ -26,7 +26,11 @@ const session = require("express-session");
 app.use(methodOverride("_method"));
 // flash
 app.use(cookieParser(`${parser}`));
-app.use(session({ cookie: { maxAge: 60000 } }));
+app.use(
+  session({
+    cookie: { maxAge: 6000000 },
+  })
+);
 app.use(flash());
 // end flash
 

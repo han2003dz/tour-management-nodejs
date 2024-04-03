@@ -3,7 +3,10 @@ block main
   .card-body
     h4.title.text-center.mt-4
       | Đăng nhập
-    form.form-box.px-3
+    form.form-box.px-3(
+      action="/auth/login"
+      method="POST"
+    )
       .form-input
         span
           i(class="bi bi-envelope")
