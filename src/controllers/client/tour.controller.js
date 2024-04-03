@@ -1,17 +1,31 @@
 const Tours = require("../../models/tours.model");
 const Categories = require("../../models/categories.model");
 const priceNewHelper = require("../../helpers/priceNew");
-
+const paginationHelper = require("../../helpers/pagination");
 const index = async (req, res) => {
   try {
-    const tours = await Tours.find({
+    const find = {
       status: "active",
       deleted: false,
-    });
+    };
+    const total = await Tours.countDocuments(find);
+    let objectPagination = paginationHelper(
+      {
+        currentPage: 1,
+        limitItem: 6,
+      },
+      req.query,
+      total,
+    );
+    const tours = await Tours.find(find)
+      .limit(objectPagination.limitItem)
+      .skip(objectPagination.skip);
+
     const newTours = priceNewHelper.priceNewTours(tours);
     res.render("client/pages/tours/index", {
       pageTitle: "Danh sách tours",
       tours: newTours,
+      pagination: objectPagination,
     });
   } catch (error) {
     console.log(error);

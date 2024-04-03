@@ -1,5 +1,7 @@
-extends ../../layouts/default.pug
-include ../../mixins/tour-layout.pug
+extends ../../layouts/default
+include ../../mixins/tour-layout
+include ../../mixins/pagination
+
 block main
   section#portfolio.portfolio
     .container
@@ -7,3 +9,6 @@ block main
         h1 #{pageTitle}
       .row.portfolio-container(data-aos='fade-up')
         +tour-grid(tours)
+      
+      +pagination(pagination)
+  
