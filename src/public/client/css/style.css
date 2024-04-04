@@ -23,7 +23,7 @@ h6 {
 }
 
 #main {
-  margin-top: 90px;
+  margin-top: 93px;
 }
 
 .back-to-top {
@@ -65,7 +65,7 @@ h6 {
 #header {
   transition: all 0.5s;
   z-index: 997;
-  padding: 25px 0;
+  padding: 10px;
   background: rgba(55, 142, 181, 0.9);
 }
 
@@ -120,7 +120,11 @@ h6 {
   cursor: pointer;
   border-radius: 30px;
 }
-
+#header .container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
 /* box-search */
 .box-search {
   position: relative;
@@ -522,7 +526,7 @@ h6 {
     url("../img/hero-bg4.jpg") top center;
   background-size: cover;
   position: relative;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 #hero .hero-container {

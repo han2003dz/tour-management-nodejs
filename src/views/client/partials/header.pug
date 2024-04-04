@@ -1,12 +1,11 @@
 include ../mixins/sub-menu.pug
 include ../mixins/search-box
 header#header.fixed-top.header-transparent
-  .container.d-flex.align-items-center.justify-content-between.position-relative
+  .container.justify-content-between
     .logo
       h1.text-light
         a(href='/')
           span VN tourism
-    +search-box()
     nav#navbar.navbar
       ul
         li
@@ -23,6 +22,8 @@ header#header.fixed-top.header-transparent
           a.nav-link(href='/blog') Tin tức
         li
           a.nav-link(href='/contact') Liên Hệ
+        li
+          a.nav-link(href='/contact') Chính sách
         li.dropdown
           a(href="/user/info")
             i(class="bi bi-person-circle fs-5")
@@ -39,3 +40,5 @@ header#header.fixed-top.header-transparent
               li
                 a(href="/auth/register") Đăng ký
       i.bi.bi-list.mobile-nav-toggle
+  .container
+    +search-box()
