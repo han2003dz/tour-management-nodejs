@@ -9,36 +9,36 @@ sidebar#layoutSidenav
               i.fas.fa-tachometer-alt
             | Dashboard
           
-          .sb-sidenav-menu-heading Statistics
+          .sb-sidenav-menu-heading Thống kê
           a.nav-link(href=`${prefixAdmin}/charts`)
             .sb-nav-link-icon
               i.fas.fa-chart-area
             | Charts
-          .sb-sidenav-menu-heading System
+          .sb-sidenav-menu-heading Quản trị hệ thống
           a.nav-link.collapsed(href='#' data-bs-toggle='collapse' data-bs-target='#collapseLayouts' aria-expanded='false' aria-controls='collapseLayouts')
             .sb-nav-link-icon
               i.fas.fa-columns
-            | Management
+            | Quản lý dữ liệu
             .sb-sidenav-collapse-arrow
               i.fas.fa-angle-down
           #collapseLayouts.collapse(aria-labelledby='headingOne' data-bs-parent='#sidenavAccordion')
             nav.sb-sidenav-menu-nested.nav
-              a.nav-link(href=`${prefixAdmin}/tours`) Tours
-              a.nav-link(href=`${prefixAdmin}/categories`) Categories
-              a.nav-link(href=`${prefixAdmin}/accounts`) Accounts
-              a.nav-link(href=`${prefixAdmin}/roles`) Roles
+              a.nav-link(href=`${prefixAdmin}/tours`) Chuyến du lịch
+              a.nav-link(href=`${prefixAdmin}/categories`) Danh mục 
+              a.nav-link(href=`${prefixAdmin}/accounts`) Tài khoản
+              a.nav-link(href=`${prefixAdmin}/roles`) Quyền
           a.nav-link.collapsed(href='#' data-bs-toggle='collapse' data-bs-target='#collapsePages' aria-expanded='false' aria-controls='collapsePages')
             .sb-nav-link-icon
               i(class="fa-solid fa-trash")
-            | Trash
+            | Thùng rác
             .sb-sidenav-collapse-arrow
               i.fas.fa-angle-down
           #collapsePages.collapse(aria-labelledby='headingTwo' data-bs-parent='#sidenavAccordion')
             nav#sidenavAccordionPages.sb-sidenav-menu-nested.nav.accordion
-              a.nav-link(href=`${prefixAdmin}/trash/tours`) Tours
-              a.nav-link(href=`${prefixAdmin}/trash/categories`) Categories
-              a.nav-link(href=`${prefixAdmin}/trash/accounts`) Accounts
-              a.nav-link(href=`${prefixAdmin}/trash/roles`) Roles
+              a.nav-link(href=`${prefixAdmin}/trash/tours`) Chuyến du lịch
+              a.nav-link(href=`${prefixAdmin}/trash/categories`) Danh mục
+              a.nav-link(href=`${prefixAdmin}/trash/accounts`) Tài khoản
+              a.nav-link(href=`${prefixAdmin}/trash/roles`) Quyền
 
           .sb-sidenav-menu-heading General settings
           a.nav-link(href=`${prefixAdmin}/settings`)

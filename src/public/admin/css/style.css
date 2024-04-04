@@ -99,7 +99,7 @@ body {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-a{
+a {
   text-decoration: none;
 }
 
@@ -11410,7 +11410,7 @@ body {
   flex-wrap: nowrap;
 }
 .sb-sidenav .sb-sidenav-menu .nav .sb-sidenav-menu-heading {
-  padding: 1.75rem 1rem 0.75rem;
+  padding: 1rem 1rem 1rem;
   font-size: 0.75rem;
   font-weight: bold;
   text-transform: uppercase;
@@ -11421,6 +11421,11 @@ body {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
   position: relative;
+}
+.sb-sidenav .sb-sidenav-menu .nav .nav-link:hover {
+  background-color: #ddd;
+  border: 1px solid #ddd;
+  border-radius: 10px;
 }
 .sb-sidenav .sb-sidenav-menu .nav .nav-link .sb-nav-link-icon {
   font-size: 0.9rem;
@@ -11599,7 +11604,7 @@ body {
   text-align: center;
   border-bottom: none;
 }
-.datatable-table > tbody > tr > td{
+.datatable-table > tbody > tr > td {
   text-align: center;
 }
 
