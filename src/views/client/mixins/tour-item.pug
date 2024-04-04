@@ -15,8 +15,5 @@ mixin tour-item(item)
           span.numberOfDays #{item.numberOfDays}
         .info-tour Khởi hành: #{item.departureLocation}
         .stock Số lượng tour còn: #{item.stock}
-        .d-flex
-          span.price-new(data-price) #{item.priceNew} vnđ
-          span.price-old.text-decoration-line-through(data-price) #{item.price} vnđ
         .text-center.py-2
           button(class="btn btn-outline-info rounded-pill") XEM TOUR

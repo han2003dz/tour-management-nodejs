@@ -1,7 +1,7 @@
 module.exports.priceNewTours = (tours) => {
   const price = tours.map((item) => {
     item.priceNew = (
-      (item.price * (100 - item.discountPercentage)) /
+      ((item.priceAdult + item.priceChild) * (100 - item.discountPercentage)) /
       100
     ).toFixed(0);
     return item;
@@ -11,7 +11,7 @@ module.exports.priceNewTours = (tours) => {
 
 module.exports.priceNewTour = (tour) => {
   const priceNew = (
-    (tour.price * (100 - tour.discountPercentage)) /
+    ((tour.priceAdult + tour.priceChild) * (100 - tour.discountPercentage)) /
     100
   ).toFixed(0);
   return parseInt(priceNew);

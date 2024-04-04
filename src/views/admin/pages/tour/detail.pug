@@ -27,34 +27,37 @@ block main
               disabled
             )
       .row
-        .form-group.mb-2(upload-image)
-          label(for="images" class="form-label") Ảnh
-          input.form-control(
-            type="file"
-            class="form-control-file"
-            id="images"
-            name="images"
-            accept="image/*"
-            upload-image-input
-          )
-          div(id="image-preview-container" class="mt-2")
-            each image,index in tour.images
-              div(class="img-container")
-                img(
-                  src=tour.images[index]
-                  class="img-thumbnail"
-                )
+        span Danh sách hình ảnh
+        div(id="image-preview-container" class="mt-2")
+          each image,index in tour.images
+            div(class="img-container")
+              img(
+                src=tour.images[index]
+                class="img-thumbnail"
+              )
     .col-8
       .row
         .col-5
           div(class="form-group mb-2")
-            label(for="price" class="form-label") Giá gốc
+            label(for="price" class="form-label") Giá người lớn/Người
+            input(
+              type="text"
+              class="form-control"
+              id="price"
+              name="priceAdult"
+              value=tour.priceAdult
+              data-price
+              disabled
+            )
+        .col-5
+          div(class="form-group mb-2")
+            label(for="priceChild" class="form-label") Giá trẻ em/Người - dưới 18 tuổi
             input(
               type="text"
               class="form-control"
               id="price"
               name="price"
-              value=tour.price
+              value=tour.priceChild
               data-price
               disabled
             )
@@ -67,18 +70,6 @@ block main
               id="discount"
               name="discountPercentage"
               value=tour.discountPercentage
-              disabled
-            )
-        .col-5
-          div(class="form-group mb-2")
-            label(for="price" class="form-label") Giá mới
-            input(
-              type="text"
-              class="form-control"
-              id="price"
-              name="price"
-              value=tour.priceNew
-              data-price
               disabled
             )
       .row.mt-2
@@ -117,7 +108,7 @@ block main
         .col-3
           span Trạng thái:
         .col-3
-          .form-group.form-check.form-check-inline.mb-2
+          .form-group.form-check.form-check-inline
             input(
               type="radio"
               class="form-check-input"
@@ -128,7 +119,7 @@ block main
             )
             label(for="statusActive" class="form-check-label") Hoạt động
         .col-5
-          .form-group.form-check.form-check-inline.mb-2
+          .form-group.form-check.form-check-inline
             input(
               type="radio"
               class="form-check-input"

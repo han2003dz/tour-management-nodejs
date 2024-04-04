@@ -84,7 +84,8 @@ const edit = async (req, res) => {
 
 const editPatch = async (req, res) => {
   try {
-    req.body.price = parseInt(req.body.price);
+    req.body.priceAdult = parseInt(req.body.priceAdult);
+    req.body.priceChild = parseInt(req.body.priceChild);
     req.body.discountPercentage = parseInt(req.body.discountPercentage);
     req.body.stock = parseInt(req.body.stock);
     const updatedBy = {
@@ -112,7 +113,6 @@ const detail = async (req, res) => {
     };
     const tour = await Tours.findOne(find);
     tour.priceNew = priceNew.priceNewTour(tour);
-    console.log(tour);
     const category = await Categories.findOne({
       _id: tour.tour_category_id,
       deleted: false,

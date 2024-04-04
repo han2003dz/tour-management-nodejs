@@ -58,18 +58,29 @@ block main
                   i(class="fa-regular fa-circle-xmark btn-delete" onclick=`deleteImage(event, ${index})`)
       .col-8
         .row
-          .col-6
+          .col-5
             div(class="form-group mb-2")
-              label(for="price" class="form-label") Giá gốc *
+              label(for="priceAdult" class="form-label") Giá người lớn/người
               input(
                 type="number"
                 class="form-control"
                 id="price"
-                name="price"
-                value=tour.price
+                name="priceAdult"
+                value=tour.priceAdult
                 min="0"
               )
-          .col-6
+          .col-5
+            div(class="form-group mb-2")
+              label(for="priceChild" class="form-label") Giá trẻ em/người- dưới 16 tuổi
+              input(
+                type="number"
+                class="form-control"
+                id="price"
+                name="priceChild"
+                value=tour.priceChild
+                min="0"
+              )
+          .col-2
             div(class="form-group mb-2")
               label(for="discount" class="form-label") % Giảm giá
               input(

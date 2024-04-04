@@ -1,6 +1,5 @@
 extends ../../layouts/default
 block main
-  // ======= Breadcrumbs Section =======
   section.breadcrumbs
     .container
       .d-flex.justify-content-between.align-items-center
@@ -11,7 +10,6 @@ block main
           li
             a(href='/tours') Danh mục
           li Chi tiết
-  // ======= Portfolio Details Section =======
   section#portfolio-details.portfolio-details
     .container
       .row
@@ -38,9 +36,11 @@ block main
               i(class="bi bi-calendar-check me-2")
               span Ngày hoạt động: Hàng ngày
             .d-flex.gap-3
-              p.fs-4 Giá:
-              span.text-danger.fs-4(data-price) #{tour.priceNew} vnđ
-              span.text-decoration-line-through(data-price) #{tour.price} vnđ
+              p Giá người lớn:
+              span.text-danger(data-price) #{tour.priceAdult} vnđ / người
+            .d-flex.gap-3
+              p Giá trẻ em - dưới 18 tuổi:
+              span.text-danger(data-price) #{tour.priceChild} vnđ / người
             .text-center.py-2
               a(href='' class="btn btn-outline-info rounded-pill") Đặt ngay
 

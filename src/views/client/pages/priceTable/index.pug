@@ -12,8 +12,8 @@ block main
           th Thời lượng tour
           th Xuất phát
           th Phương tiện
-          th Giá tour
-          th Giá mới
+          th Giá người lớn
+          th Giá trẻ em
           th Hành động
       tbody
         each item, index in tours
@@ -24,10 +24,9 @@ block main
             td #{item.departureLocation}
             td Ô tô
             td 
-              span(data-price) #{item.price}
+              span(data-price) #{item.priceAdult}
             td
-              span(data-price) #{item.priceNew} 
-              | (-#{item.discountPercentage}%)
+              span(data-price) #{item.priceChild} 
             td
               a(class="btn btn-outline-info btn-sm rounded-pill" 
                 href=`/tours/detail/${item.slug}`
