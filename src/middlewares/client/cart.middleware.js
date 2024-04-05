@@ -10,6 +10,12 @@ module.exports.cartTourId = async (req, res, next) => {
       res.cookie("cartTourId", cart.id, {
         expires: expirationDate,
       });
+    } else {
+      const cart = await Cart.findOne({
+        _id: req.cookies.cartTourId,
+      });
+      cart.quantity = cart.tours.length;
+      res.locals.miniCart = cart;
     }
   } catch (error) {
     console.error("Error in cartTourId middleware:", error);

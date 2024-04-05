@@ -27,7 +27,7 @@ header#header.fixed-top.header-transparent
         li 
           a(href="/cart")
             i(class="bi bi-cart4 fs-5")
-            sup (#{miniCart ? miniCart.totalQuantity : 0})
+            sup.fs-6 (#{miniCart ? miniCart.quantity : 0})
         li.dropdown
           a(href="/user/info")
             i(class="bi bi-person-circle fs-5")
