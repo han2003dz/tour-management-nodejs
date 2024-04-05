@@ -41,8 +41,30 @@ block main
             .d-flex.gap-3
               p Giá trẻ em - dưới 18 tuổi:
               span.text-danger(data-price) #{tour.priceChild} vnđ / người
-            .text-center.py-2
-              a(href="" class="btn btn-outline-info rounded-pill") Đặt ngay
+            form(
+              action=`/cart/add/${tour.id}`
+              method="POST"
+            )
+              .quantityAdult
+                span Số người lớn
+                input(
+                  class="form-control mb-2"
+                  type="number"
+                  name="quantityAdult"
+                  value="1"
+                  min="1"
+                )
+              .quantityChild
+                span Số trẻ em
+                input(
+                  class="form-control mb-2"
+                  type="number"
+                  name="quantityChild"
+                  value="0"
+                  min="0"
+                )
+              .text-center.py-2
+                button(type="submit" class="btn btn-outline-info rounded-pill") Thêm tour vào giỏ hàng
       .row
         h3 Mô tả và lịch trình
         .information

@@ -5,8 +5,9 @@ const cartSchema = new mongoose.Schema(
     tours: [
       {
         tour_id: String,
-        
-      }
+        quantityAdult: Number,
+        quantityChild: Number,
+      },
     ],
     deleted: {
       type: Boolean,

@@ -1,0 +1,64 @@
+extends ../../layouts/default
+block main
+  section
+    .container.my-3
+      .row
+        .col-12
+          h2 Các tour đã đặt
+      .row
+        .col-12
+          table(class="table table-bordered")
+            thead
+              tr
+                th STT
+                th Ảnh
+                th Tên
+                th Giá tiền/ 1 người lớn
+                th Giá tiền/ 1 trẻ em
+                th Số người lớn
+                th Số trẻ em
+                th Tổng tiền
+                th Hành động
+            tbody
+              if cart.tours.length > 0
+                each item, index in cart.tours
+                  tr
+                    td #{index+1}
+                    td
+                      img(src=item.tour.images[0], alt=item.tour.title width="80px")
+                    td
+                      a.text-dark(href=`/tours/detail/${item.tour.slug}`) #{item.tour.title}
+                    td(data-price) #{item.tour.priceAdult} vnđ
+                    td(data-price) #{item.tour.priceChild} vnđ
+                    td
+                      input(
+                        type="number"
+                        name="quantityAdult"
+                        value=item.quantityAdult
+                        min="1"
+                        tour-id=item.tour_id
+                        style="width: 60px"
+                      )
+                    td
+                      input(
+                        type="number"
+                        name="quantityChild"
+                        value=item.quantityChild
+                        min="0"
+                        tour-id=item.tour_id
+                        style="width: 60px"
+                      )
+                    td(data-price) #{item.totalPrice} đ
+                    td
+                      a(
+                        href=`/cart/delete/${item.tour_id}`
+                        class="btn btn-danger"
+                      ) Xóa
+              else
+                p Chưa có tour nào trong giỏ hàng
+          .d-flex
+            p(class="text-right") Tổng đơn hàng: 
+            span(data-price) #{cart.totalPrice}
+
+          div(class="text-right mt-3")
+            a(href="/checkout" class="btn btn-success") THANH TOÁN
