@@ -80,7 +80,30 @@ const addPost = async (req, res) => {
   res.redirect("back");
 };
 
+const deleteItem = async (req, res) => {
+  try {
+    const cartId = req.cookies.cartTourId;
+    const tourId = req.params.tourId;
+    await Cart.updateOne(
+      {
+        _id: cartId,
+      },
+      {
+        $pull: {
+          tours: {
+            tour_id: tourId,
+          },
+        },
+      }
+    );
+    req.flash("success", "Xóa tour trong giỏ hàng thành công!");
+  } catch (error) {
+    req.flash("error", "Xóa tour trong giỏ hàng thất bại!");
+  }
+  res.redirect("back");
+};
 module.exports = {
   addPost,
   index,
+  deleteItem,
 };
