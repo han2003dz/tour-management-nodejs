@@ -102,8 +102,38 @@ const deleteItem = async (req, res) => {
   }
   res.redirect("back");
 };
+
+const update = async (req, res) => {
+  try {
+    const cartId = req.cookies.cartTourId;
+    const tourId = req.params.tourId;
+    const { quantityAdult, quantityChild } = req.params;
+    const updateFields = {};
+    if (quantityAdult) {
+      updateFields["tours.$.quantityAdult"] = quantityAdult;
+    }
+    if (quantityChild) {
+      updateFields["tours.$.quantityChild"] = quantityChild;
+    }
+    await Cart.updateOne(
+      {
+        _id: cartId,
+        "tours.tour_id": tourId,
+      },
+      {
+        $set: updateFields,
+      }
+    );
+  } catch (error) {
+    req.flash("error", "Cập nhật thất bại!");
+  }
+
+  res.redirect("back");
+};
+
 module.exports = {
   addPost,
   index,
   deleteItem,
+  update,
 };
