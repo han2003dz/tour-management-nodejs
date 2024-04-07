@@ -1,6 +1,8 @@
 extends ../../layouts/default
 include ../../mixins/sort
+include ../../mixins/breadcrumb
 block main
+  +breadcrumbs(pageTitle, 'Bảng giá')
   .price-table.p-5
     h1.text-center.text-primary.f-bold Bảng giá
     +sort()

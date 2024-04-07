@@ -1,0 +1,9 @@
+mixin breadcrumbs(title, currentPage)
+  section.breadcrumbs
+    .container
+      .d-flex.justify-content-between.align-items-center
+        h2.fw-bold #{title}
+        ol
+          li
+            a(href='/') Trang chủ
+          li #{currentPage}

@@ -1,5 +1,7 @@
 extends ../../layouts/default
+include ../../mixins/breadcrumb
 block main
+  +breadcrumbs('Giỏ hàng', '', 'Giỏ hàng')
   section
     .container.my-3
       .row

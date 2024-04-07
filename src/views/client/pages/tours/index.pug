@@ -1,14 +1,13 @@
 extends ../../layouts/default
 include ../../mixins/tour-layout
 include ../../mixins/pagination
-
+include ../../mixins/breadcrumb
 block main
+
+  +breadcrumbs(pageTitle, 'Danh mục')
   section#portfolio.portfolio
     .container
-      .section-title(data-aos='fade-in' data-aos-delay='100')
-        h1 #{pageTitle}
       .row.portfolio-container(data-aos='fade-up')
         +tour-grid(tours)
-      
-      +pagination(pagination)
-  
+      if(pagination)
+        +pagination(pagination)
