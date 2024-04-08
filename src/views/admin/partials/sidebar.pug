@@ -23,10 +23,10 @@ sidebar#layoutSidenav
               i.fas.fa-angle-down
           #collapseLayouts.collapse(aria-labelledby='headingOne' data-bs-parent='#sidenavAccordion')
             nav.sb-sidenav-menu-nested.nav
-              a.nav-link(href=`${prefixAdmin}/tours`) Chuyến du lịch
-              a.nav-link(href=`${prefixAdmin}/categories`) Danh mục 
-              a.nav-link(href=`${prefixAdmin}/accounts`) Tài khoản
-              a.nav-link(href=`${prefixAdmin}/roles`) Quyền
+              a.nav-link(href=`${prefixAdmin}/tours`) Quản lý tour
+              a.nav-link(href=`${prefixAdmin}/categories`) Quản lý danh mục
+              a.nav-link(href=`${prefixAdmin}/accounts`) Quản lý tài khoản
+              a.nav-link(href=`${prefixAdmin}/roles`) Quản lý quyền
           a.nav-link.collapsed(href='#' data-bs-toggle='collapse' data-bs-target='#collapsePages' aria-expanded='false' aria-controls='collapsePages')
             .sb-nav-link-icon
               i(class="fa-solid fa-trash")
@@ -35,10 +35,10 @@ sidebar#layoutSidenav
               i.fas.fa-angle-down
           #collapsePages.collapse(aria-labelledby='headingTwo' data-bs-parent='#sidenavAccordion')
             nav#sidenavAccordionPages.sb-sidenav-menu-nested.nav.accordion
-              a.nav-link(href=`${prefixAdmin}/trash/tours`) Chuyến du lịch
-              a.nav-link(href=`${prefixAdmin}/trash/categories`) Danh mục
-              a.nav-link(href=`${prefixAdmin}/trash/accounts`) Tài khoản
-              a.nav-link(href=`${prefixAdmin}/trash/roles`) Quyền
+              a.nav-link(href=`${prefixAdmin}/trash/tours`) Tour đã xóa
+              a.nav-link(href=`${prefixAdmin}/trash/categories`) Danh mục đã xóa
+              a.nav-link(href=`${prefixAdmin}/trash/accounts`) Tài khoản đã xóa
+              a.nav-link(href=`${prefixAdmin}/trash/roles`) Quyền đã xóa
 
           .sb-sidenav-menu-heading General settings
           a.nav-link(href=`${prefixAdmin}/settings`)
