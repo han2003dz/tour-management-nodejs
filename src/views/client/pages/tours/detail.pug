@@ -1,4 +1,5 @@
 extends ../../layouts/default
+include ../../mixins/time-start
 block main
   section.breadcrumbs
     .container
@@ -35,10 +36,10 @@ block main
             .info-tour
               i(class="bi bi-calendar-check me-2")
               span Ngày hoạt động: Hàng ngày
-            .d-flex.gap-3
+            .d-flex
               p Giá người lớn:
               span.text-danger(data-price) #{tour.priceAdult} vnđ / người
-            .d-flex.gap-3
+            .d-flex.mt-0
               p Giá trẻ em - dưới 18 tuổi:
               span.text-danger(data-price) #{tour.priceChild} vnđ / người
             form(
@@ -63,9 +64,13 @@ block main
                   value="0"
                   min="0"
                 )
+              .time
+                p Chọn ngày dự kiến
+                +time-start()
               .text-center.py-2
                 button(type="submit" class="btn btn-outline-info rounded-pill") Thêm tour vào giỏ hàng
       .row
         h3 Mô tả và lịch trình
         .information
           #{tour.information}
+  script(src="/client/js/time.js")

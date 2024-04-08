@@ -7,6 +7,7 @@ const cartSchema = new mongoose.Schema(
         tour_id: String,
         quantityAdult: Number,
         quantityChild: Number,
+        expectedDate: Date,
       },
     ],
     deleted: {
