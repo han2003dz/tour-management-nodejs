@@ -33,7 +33,7 @@ block main
           tbody
             each item, index in tours
               tr
-                td 
+                td
                   input(
                     class="form-check-input"
                     type="checkbox"
@@ -41,11 +41,14 @@ block main
                     value=item.id
                   )
                 td #{index + 1}
-                td #{item.title}
-                td #{item.stock}
-                td #{item.numberOfDays}
                 td 
-                  span(data-price) #{item.priceAdult}
+                  span.float-start  #{item.title}
+                td
+                  span.float-end #{item.stock}
+                td 
+                  span.float-start #{item.numberOfDays}
+                td
+                  span.float-end(data-price) #{item.priceAdult} đ
                 td
                   a(href="#" 
                     class="badge" 
@@ -53,14 +56,17 @@ block main
                     data-id=item.id
                     link-change-status
                   ) 
-                    i(
-                      class=item.status === "active" ? "fa-solid fa-circle text-success" : "fa-solid fa-circle text-secondary"
-                    )
+                    div.form-check.form-switch
+                      input.form-check-input.fs-5.text-success(
+                        type='checkbox'
+                        id='flexSwitchCheckDefault'
+                        checked=item.status === "active"
+                      )
                 td 
                   if(categories)
                     each category in categories
                       if category.id === item.tour_category_id
-                        p #{category.title}
+                        span.float-start #{category.title}
                 td
                   +actions(link, item)
       else

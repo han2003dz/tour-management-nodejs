@@ -46,9 +46,12 @@ block main
                     data-id=item.id
                     link-change-status
                   ) 
-                    i(
-                      class=item.status === "active" ? "fa-solid fa-circle text-success" : "fa-solid fa-circle text-secondary"
-                    )
+                    div.form-check.form-switch
+                      input.form-check-input.fs-5.text-success(
+                        type='checkbox'
+                        id='flexSwitchCheckDefault'
+                        checked=item.status === "active"
+                      )
                 td
                   +actions(link, item)
       else

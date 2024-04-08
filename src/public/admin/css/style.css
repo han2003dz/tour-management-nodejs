@@ -11598,14 +11598,13 @@ body {
   vertical-align: top;
   padding: 0.5rem 0.5rem;
 }
-
+.datatable-table > tbody > tr > td{
+  text-align: center;
+}
 .datatable-table > thead > tr > th {
   vertical-align: bottom;
   text-align: center;
   border-bottom: none;
-}
-.datatable-table > tbody > tr > td {
-  text-align: center;
 }
 
 .datatable-table > tfoot > tr > th {
