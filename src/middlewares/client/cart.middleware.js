@@ -14,7 +14,9 @@ module.exports.cartTourId = async (req, res, next) => {
       const cart = await Cart.findOne({
         _id: req.cookies.cartTourId,
       });
-      cart.quantity = cart.tours.length;
+      if (cart.tours.length >= 0) {
+        cart.quantity = cart.tours.length;
+      }
       res.locals.miniCart = cart;
     }
   } catch (error) {

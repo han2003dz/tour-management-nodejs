@@ -3,14 +3,11 @@ block main
   .card-body
     h4.title.text-center.mt-4
       | Đăng nhập
-    form.form-box.px-3(
-      action="/auth/login"
-      method="POST"
-    )
+    form.form-box.px-3(id="loginForm")
       .form-input
         span
           i(class="bi bi-envelope")
-        input(type='email' name='' placeholder='Nhập email...' tabindex='10' required='')
+        input(type='email' name='' placeholder='Nhập email...' tabindex='10' required='' id="email")
       .form-input
         span
           i(class="bi bi-key")
@@ -19,7 +16,8 @@ block main
           i(class="bi bi-eye-fill text-dark eye-pass")
       .mb-3.d-flex.justify-content-between
         .custom-control.custom-checkbox
-          input#cb1.custom-control-input(type='checkbox' name='')
+          input#cb1.custom-control-input(
+            type='checkbox' name='' class='basic_checkbox_1' checked)
           label.custom-control-label(for='cb1') Remember me
         .forget
           a.forget-link(href='#')
@@ -42,6 +40,6 @@ block main
       hr.my-4
       .text-center.mb-2
         | Bạn chưa có tài khoản?
-        a.register-link(href='/auth/register')
+        a.register-link(href='/api/v1/auth/register')
           | Đăng ký
 

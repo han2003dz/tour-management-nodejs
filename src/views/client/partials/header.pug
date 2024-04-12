@@ -35,14 +35,14 @@ header#header.fixed-top.header-transparent
           ul
             if user
               li
-                a(href="/user/info") #{user.userName}
+                a(href="/user/info") #{user.username}
               li
-                a(href="/user/logout") Đăng xuất
+                a(href="/api/v1/auth/logout") Đăng xuất
             else
               li
-                a(href="/auth/login") Đăng nhập
+                a(href="/api/v1/auth/login") Đăng nhập
               li
-                a(href="/auth/register") Đăng ký
+                a(href="/api/v1/auth/register") Đăng ký
       i.bi.bi-list.mobile-nav-toggle
   .container
     +search-box()

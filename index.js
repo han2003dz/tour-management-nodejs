@@ -12,7 +12,7 @@ const routerAdmin = require("./src/routers/admin/index.router");
 const routerClient = require("./src/routers/client/index.router");
 
 // variable env
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 const parser = process.env.PARSER;
 
 // library
@@ -55,6 +55,12 @@ app.use(bodyParser.json());
 // router
 routerAdmin(app);
 routerClient(app);
+// API v1
+const router = require("./src/routers/v1");
+const { errorMiddleware } = require("./src/middlewares");
+app.use("/api/v1/", router);
+
+app.use(errorMiddleware);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
