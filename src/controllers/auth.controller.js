@@ -81,7 +81,8 @@ const logout = catchAsync(async (req, res, next) => {
   }
 
   res.clearCookie("tokens");
-  res.status(200).json(response(200, "Thành công"));
+  res.clearCookie("cartTourId");
+  res.redirect("/api/v1/auth/login");
 });
 
 const getLogin = catchAsync(async (req, res) => {

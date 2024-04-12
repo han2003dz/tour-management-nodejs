@@ -11,12 +11,10 @@ module.exports.home = async (req, res) => {
       priceNewHelper.priceNewTours(toursFeatured),
       priceNewHelper.priceNewTours(toursNew),
     ]);
-    console.log(req.user)
     res.render("client/pages/home/index", {
       pageTitle: "Trang chủ",
       newToursFeatured,
       tours,
-      user: req.user
     });
   } catch (error) {
     console.error(error);

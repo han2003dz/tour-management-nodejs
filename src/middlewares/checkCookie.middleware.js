@@ -17,7 +17,9 @@ module.exports.checkCookieMiddleware = async (req, res, next) => {
     await user.save();
     const roles = user.roles.map((u) => u.roleIndex);
     req.user = user;
+    console.log(req.user);
     req.roles = roles;
+    res.locals.user = user;
     next();
   } catch (err) {
     console.log("err", err);
