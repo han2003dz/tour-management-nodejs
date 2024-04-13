@@ -27,7 +27,7 @@ header#header.fixed-top.header-transparent
         li 
           a(href="/cart")
             i(class="bi bi-cart4 fs-5")
-            sup.fs-6 (#{miniCart ? miniCart.quantity : 0})
+            sup.fs-6 (#{miniCart && miniCart.quantity > 0 ? miniCart.quantity : 0})
         li.dropdown
           a(href="/user/info")
             i(class="bi bi-person-circle fs-5")
@@ -37,12 +37,12 @@ header#header.fixed-top.header-transparent
               li
                 a(href="/user/info") #{user.username}
               li
-                a(href="/api/v1/auth/logout") Đăng xuất
+                a(href="/auth/logout") Đăng xuất
             else
               li
-                a(href="/api/v1/auth/login") Đăng nhập
+                a(href="/auth/login") Đăng nhập
               li
-                a(href="/api/v1/auth/register") Đăng ký
+                a(href="/auth/register") Đăng ký
       i.bi.bi-list.mobile-nav-toggle
   .container
     +search-box()

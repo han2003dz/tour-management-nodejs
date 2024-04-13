@@ -6,13 +6,13 @@ const { User } = require("../models");
 const authMiddleware = catchAsync(async (req, res, next) => {
   let accessToken = req.signedCookies?.tokens;
   if (!accessToken) {
-    return res.redirect("/api/v1/auth/login");
+    return res.redirect("auth/login");
   }
   const payload = jwt.verify(accessToken, process.env.JWT_SECRET_KEY);
   const { userId } = payload;
   const user = await User.findById(userId).populate("roles");
   if (!user) {
-    return res.redirect("/api/v1/auth/login");
+    return res.redirect("auth/login");
   }
   if (user.isLocked === true) {
     next(new ApiError(401, "Tài khoản đã bị khoá"));

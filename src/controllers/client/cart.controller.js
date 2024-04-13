@@ -36,7 +36,6 @@ const addPost = async (req, res) => {
     const quantityChild = Number(req.body.quantityChild);
     const quantityAdult = Number(req.body.quantityAdult);
     const expectedDate = req.body.expectedDate;
-    console.log(expectedDate);
     const cartTourId = req.cookies.cartTourId;
     const tourId = req.params.tourId;
     const cart = await Cart.findOne({

@@ -1,4 +1,4 @@
-const Roles = require("../../models/roles.model");
+const Roles = require("../../models/role.model");
 const filterStatusHelper = require("../../helpers/filterStatus");
 const searchHelper = require("../../helpers/search");
 const systemConfig = require("../../config/system");
@@ -184,6 +184,38 @@ const changeStatus = async (req, res) => {
   }
 };
 
+const permissions = async (req, res) => {
+  try {
+    let find = {
+      deleted: false,
+    };
+    const roles = await Roles.find(find);
+    res.render("admin/pages/role/permissions", {
+      pageTitle: "Trang phân quyền",
+      roles,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const permissionsPatch = async (req, res) => {
+  try {
+    const permissions = JSON.parse(req.body.permissions);
+    for (const item of permissions) {
+      await Roles.updateOne(
+        { _id: item.id },
+        { permissions: item.permissions }
+      );
+    }
+    req.flash("success", "Cập nhật phân quyền thành công!");
+  } catch (error) {
+    console.log(error);
+    req.flash("error", "Cập nhật thất bại");
+  }
+  res.redirect("back");
+};
+
 module.exports = {
   index,
   create,
@@ -194,4 +226,6 @@ module.exports = {
   deleteRole,
   changeMulti,
   changeStatus,
+  permissions,
+  permissionsPatch,
 };

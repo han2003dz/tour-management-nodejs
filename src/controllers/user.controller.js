@@ -34,7 +34,7 @@ const updateUserById = catchAsync(async (req, res) => {
 
   const user = await User.findById(userId);
   Object.assign(user, dataUpdate);
-
+                  
   await user.save();
 
   res.status(200).json(response(200, "Thành công", user));

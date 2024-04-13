@@ -10,5 +10,7 @@ router.patch("/edit/:id", controller.editPatch);
 router.delete("/delete/:id", controller.deleteRole);
 router.patch("/change-multi", controller.changeMulti);
 router.patch("/change-status/:status/:id", controller.changeStatus);
+router.get("/permissions", controller.permissions);
+router.patch("/permissions", controller.permissionsPatch);
 
 module.exports = router;

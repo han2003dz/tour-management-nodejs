@@ -82,7 +82,7 @@ const logout = catchAsync(async (req, res, next) => {
 
   res.clearCookie("tokens");
   res.clearCookie("cartTourId");
-  res.redirect("/api/v1/auth/login");
+  res.redirect("/auth/login");
 });
 
 const getLogin = catchAsync(async (req, res) => {
