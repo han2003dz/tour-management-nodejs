@@ -7,9 +7,7 @@ const checkCookieMiddleware = async (req, res, next) => {
     if (!accessToken) {
       return next();
     }
-    console.log("accessToken", accessToken);
     let payload = jwt.verify(accessToken, process.env.JWT_SECRET_KEY);
-    console.log("payload", payload);
     const { userId } = payload;
     const user = await User.findOne({ _id: userId });
     if (!user || user.deleted === true) {

@@ -20,12 +20,7 @@ const userSchema = new mongoose.Schema(
     avatar: String,
     status: String,
     role_id: String,
-    // roles: [
-    //   {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: "Role",
-    //   },
-    // ],
+    gender: String,
     isLocked: {
       type: Boolean,
       default: false,

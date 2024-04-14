@@ -56,4 +56,10 @@ viewClientRouter.get(
   viewClientController.categoryTourClient
 );
 
+viewClientRouter.get(
+  "/info/:id",
+  checkCookieMiddleware,
+  viewClientController.infoUserClient
+);
+
 module.exports = viewClientRouter;

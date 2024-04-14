@@ -1,0 +1,90 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+block main
+  .container
+    .row
+      .col-3.d-flex.flex-column.nav-info-user
+        include ../../partials/navbar.pug
+      .col-9
+        .m-2
+          form(
+            action=`/api/v1/users/edit/${user.id}?_method=PATCH`
+            method='POST'
+            enctype="multipart/form-data"
+          )
+            .form-group.mb-2(upload-image)
+              label(for="avatar") Ảnh đại diện
+              input.form-control(
+                type="file"
+                class="form-control-file"
+                id="avatar"
+                name="avatar"
+                accept="image/*"
+                upload-image-input
+              )
+              img(
+                src=user.avatar
+                upload-image-preview
+                class="image-preview"
+                width="150px"
+                height="150px"
+              )
+            div(class="form-group")
+              label(for="username") Họ tên *
+              input(
+                type="text"
+                class="form-control"
+                id="username"
+                name="username"
+                required
+                value=user.username
+              )
+            div(class="form-group")
+              label(for="email") Email *
+              input(
+                type="email"
+                class="form-control"
+                id="email"
+                name="email"
+                required
+                value=user.email
+              )
+            div(class="form-group mb-2")
+              label(for="phone") Số điện thoại
+              input(
+                type="text"
+                class="form-control"
+                id="phone"
+                name="phone"
+                value=user.phone
+              )
+            .row
+              .col-3
+                span Giới tính:
+              .col-3
+                .form-group.form-check.form-check-inline
+                  input(
+                    type="radio"
+                    class="form-check-input"
+                    id="male"
+                    name="gender"
+                    value="male"
+                    checked=(user.gender == "male" ? true : false)
+                  )
+                  label(for="male" class="form-check-label") Nam
+              .col-5
+                .form-group.form-check.form-check-inline
+                  input(
+                    type="radio"
+                    class="form-check-input"
+                    id="female"
+                    name="gender"
+                    value="female"
+                    checked=(user.gender == "female" ? true : false)
+                  )
+                  label(for="female" class="form-check-label") Nữ
+            div(class="form-group")
+              button(
+                type="submit"
+                class="btn btn-primary"
+              ) Cập nhật

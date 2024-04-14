@@ -14,4 +14,7 @@ const formatPrices = () => {
     });
   }
 };
-formatPrices();
+
+window.onload = () => {
+  formatPrices();
+};

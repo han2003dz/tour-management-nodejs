@@ -29,6 +29,33 @@ const createPost = async (req, res) => {
   }
 };
 
+const editPatch = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const emailExist = await Users.findOne({
+      _id: { $ne: id },
+      email: req.body.email,
+      isLocked: false,
+    });
+    if (emailExist) {
+      req.flash("error", "Email đã tồn tại!");
+    } else {
+      if (req.body.password) {
+        req.body.password = md5(req.body.password);
+      } else {
+        delete req.body.password;
+      }
+    }
+    await Users.updateOne({ _id: id }, req.body);
+    req.flash("success", "Cập nhât thông tin cá nhân thành công!");
+  } catch (error) {
+    console.log(error);
+    req.flash("error", "Cập nhât thông tin cá nhân thất bại!");
+  } finally {
+    res.redirect("back");
+  }
+};
 module.exports = {
   createPost,
+  editPatch,
 };

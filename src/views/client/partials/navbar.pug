@@ -1,0 +1,26 @@
+.profile
+  .avatar
+    img(class="img-fluid rounded-circle" src=user.avatar)
+  h1 #{user.username}
+nav.nav-menu
+  ul
+    li
+      a.nav-link.scrollto.active(href='/user/info')
+        i(class="fa-solid fa-user")
+        span Thông tin tài khoản
+    li
+      a.nav-link.scrollto(href='/user/shopping-history')
+        i(class="fa-solid fa-clock-rotate-left")
+        span Lịch sử mua hàng
+    li
+      a.nav-link.scrollto(href='/')
+        i(class="fa-solid fa-magnifying-glass-dollar")
+        span Tra cứu hóa đơn
+    li
+      a.nav-link.scrollto(href='#portfolio')
+        i(class="fa-solid fa-pen-to-square")
+        span Chỉnh sửa thông tin
+    li
+      a.nav-link.scrollto(href="/user/logout")
+        i(class="fa-solid fa-right-from-bracket")
+        span Đăng xuất

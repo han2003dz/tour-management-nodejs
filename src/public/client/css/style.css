@@ -125,6 +125,104 @@ h6 {
   align-items: center;
   position: relative;
 }
+
+/* detail */
+.nav-info-user {
+  background: #f7f7f7;
+}
+.profile .avatar {
+  height: 120px;
+}
+.profile img {
+  margin: 10px auto;
+  display: block;
+  width: 120px;
+  height: 100%;
+  border: 8px solid #ddd;
+  object-fit: cover;
+}
+
+.profile h1 {
+  font-size: 24px;
+  margin: 0;
+  padding: 0;
+  font-weight: 600;
+  -moz-text-align-last: center;
+  text-align-last: center;
+  font-family: "Poppins", sans-serif;
+}
+/* nav-menu */
+/* Desktop Navigation */
+.nav-info-user .nav-menu {
+  padding: 30px 0 0 0;
+}
+
+.nav-info-user .nav-menu * {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-info-user .nav-menu > ul > li {
+  position: relative;
+  white-space: nowrap;
+}
+
+.nav-info-user .nav-menu a,
+.nav-info-user .nav-menu a:focus {
+  display: flex;
+  align-items: center;
+  color: #888;
+  padding: 12px 15px;
+  margin-bottom: 8px;
+  transition: 0.3s;
+  font-size: 15px;
+}
+
+.nav-info-user .nav-menu a i,
+.nav-info-user .nav-menu a:focus i {
+  font-size: 16px;
+  padding-right: 8px;
+  color: #6f7180;
+}
+
+.nav-info-user .nav-menu a:hover,
+.nav-info-user .nav-menu .active,
+.nav-info-user .nav-menu .active:focus,
+.nav-info-user .nav-menu li:hover > a {
+  text-decoration: none;
+  color: #000;
+}
+
+.nav-info-user .nav-menu a:hover i,
+.nav-info-user .nav-menu .active i,
+.nav-info-user .nav-menu .active:focus i,
+.nav-info-user .nav-menu li:hover > a i {
+  color: #149ddd;
+}
+/* end nav-menu */
+
+/* Image Preview */
+.image-preview {
+  width: 150px;
+  height: auto;
+  margin-top: 15px;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.image-preview[src=""] {
+  display: none;
+}
+/* End Image Preview */
+/* info */
+.avatar-user {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+}
+
 /* box-search */
 .box-search {
   position: relative;
@@ -1470,7 +1568,7 @@ section {
 }
 
 #footer .footer-top .footer-info {
-  margin-top: -90px;
+  margin-top: -30px;
   margin-bottom: 15px;
   background: white;
   color: #2f4d5a;

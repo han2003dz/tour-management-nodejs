@@ -1,7 +1,7 @@
 const Tours = require("../models/tours.model");
 const Categories = require("../models/categories.model");
 const Cart = require("../models/cart.model");
-
+const User = require("../models/user.model");
 const priceNewHelper = require("../helpers/priceNew");
 const sortHelper = require("../helpers/sort");
 const { convertToSlug } = require("../helpers/convertToSlug");
@@ -270,6 +270,22 @@ const detailTourClient = async (req, res) => {
   }
 };
 
+const infoUserClient = async (req, res) => {
+  try {
+    const user = await User.findOne({
+      _id: req.params.id,
+      isLocked: false,
+    }).select("username phone avatar email gender");
+    res.render("client/pages/user/info", {
+      pageTitle: "Trang cá nhân",
+      user,
+    });
+  } catch (error) {
+    req.flash("Bạn chưa đăng nhập");
+    res.redirect("back");
+  }
+};
+
 module.exports = {
   register,
   login,
@@ -281,4 +297,5 @@ module.exports = {
   categoryTourClient,
   detailTourClient,
   updateCart,
+  infoUserClient,
 };
