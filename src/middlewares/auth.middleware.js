@@ -3,7 +3,7 @@ const ApiError = require("../utils/ApiError");
 const catchAsync = require("../utils/catchAsync");
 const { User } = require("../models");
 
-const authMiddleware = catchAsync(async (req, res, next) => {
+module.exports.authMiddleware = catchAsync(async (req, res, next) => {
   let accessToken = req.signedCookies?.tokens;
   if (!accessToken) {
     return res.redirect("auth/login");
@@ -23,4 +23,4 @@ const authMiddleware = catchAsync(async (req, res, next) => {
   next();
 });
 
-module.exports = authMiddleware;
+

@@ -23,7 +23,7 @@ block main
               th Tổng tiền
               th Hành động
           tbody
-            if cart.tours.length > 0
+            if cart && cart.tours.length > 0
               each item, index in cart.tours
                 tr
                   td.text-center #{index+1}

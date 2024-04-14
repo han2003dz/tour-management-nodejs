@@ -57,7 +57,7 @@ app.use("/admin", routerAdmin);
 app.use("/", routerClient);
 // API v1
 const router = require("./src/routers/v1");
-const { errorMiddleware } = require("./src/middlewares");
+const { errorMiddleware } = require("./src/middlewares/error.middleware");
 app.use("/api/v1/", router);
 
 app.use(errorMiddleware);

@@ -63,31 +63,37 @@ const priceTable = async (req, res) => {
 const cart = async (req, res) => {
   try {
     const cartTourId = req.cookies.cartTourId;
-    const cart = await Cart.findOne({
-      _id: cartTourId,
-    });
-    if (cart.tours.length > 0) {
-      for (const item of cart.tours) {
-        const tourId = item.tour_id;
-        const tour = await Tours.findOne({
-          _id: tourId,
-        });
-        item.tour = tour;
-        item.totalPrice =
-          item.quantityAdult * tour.priceAdult +
-          item.quantityChild * tour.priceChild;
+    if (cartTourId) {
+      const cart = await Cart.findOne({
+        _id: cartTourId,
+      });
+      if (cart.tours.length > 0) {
+        for (const item of cart.tours) {
+          const tourId = item.tour_id;
+          const tour = await Tours.findOne({
+            _id: tourId,
+          });
+          item.tour = tour;
+          item.totalPrice =
+            item.quantityAdult * tour.priceAdult +
+            item.quantityChild * tour.priceChild;
+        }
       }
+      cart.totalPrice = cart.tours.reduce(
+        (sum, item) => sum + item.totalPrice,
+        0
+      );
+      res.render("client/pages/cart/index", {
+        pageTitle: "Giỏ hàng",
+        cart,
+      });
+    } else {
+      req.flash("error", "Bạn cần đăng nhập trước khi xem giỏ hàng của mình");
+      res.redirect("back");
     }
-    cart.totalPrice = cart.tours.reduce(
-      (sum, item) => sum + item.totalPrice,
-      0
-    );
-    res.render("client/pages/cart/index", {
-      pageTitle: "Giỏ hàng",
-      cart,
-    });
   } catch (error) {
     console.log(error);
+    res.redirect("back");
   }
 };
 const updateCart = async (req, res) => {
@@ -221,6 +227,7 @@ const categoryTourClient = async (req, res) => {
       status: "active",
       deleted: false,
     });
+    console.log("OK");
     const tours = await Tours.find({
       tour_category_id: category.id,
       deleted: false,
