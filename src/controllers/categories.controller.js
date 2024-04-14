@@ -1,41 +1,5 @@
-const Categories = require("../../models/categories.model");
-const systemConfig = require("../../config/system");
-const filterStatusHelper = require("../../helpers/filterStatus");
-const searchHelper = require("../../helpers/search");
-const index = async (req, res) => {
-  try {
-    const filterStatus = filterStatusHelper(req.query);
-    const objectSearch = searchHelper(req.query);
-    const find = {
-      deleted: false,
-      ...(req.query.status && { status: req.query.status }),
-      ...(objectSearch.regex && { title: objectSearch.regex }),
-    };
-    const categories = await Categories.find(find);
-    for (const category of categories) {
-      const updatedBy = category.updatedBy.slice(-1)[0];
-    }
-    res.render("admin/pages/category/index.pug", {
-      pageTitle: "Danh mục tour",
-      categories,
-      filterStatus,
-      keyword: objectSearch.keyword,
-    });
-  } catch (error) {
-    console.log("error index categories controller: ", error);
-    res.redirect(`${systemConfig.prefixAdmin}/dashboard`);
-  }
-};
-
-const create = async (req, res) => {
-  try {
-    res.render("admin/pages/category/create.pug", {
-      pageTitle: "Thêm danh mục",
-    });
-  } catch (error) {
-    console.log("error create categories controller: ", error);
-  }
-};
+const Categories = require("../models/categories.model");
+const systemConfig = require("../config/system");
 
 const createPost = async (req, res) => {
   try {
@@ -46,39 +10,6 @@ const createPost = async (req, res) => {
     req.flash("error", "Thêm mới danh mục thất bại!");
     console.log("error createPost categories controller: ", error);
   } finally {
-    res.redirect(`${systemConfig.prefixAdmin}/categories`);
-  }
-};
-
-const detail = async (req, res) => {
-  try {
-    const find = {
-      deleted: false,
-      _id: req.params.id,
-    };
-    const category = await Categories.findOne(find);
-    res.render("admin/pages/category/detail.pug", {
-      pageTitle: category.title,
-      category,
-    });
-  } catch (error) {
-    console.log("error detail categories controller", error);
-  }
-};
-
-const edit = async (req, res) => {
-  try {
-    const find = {
-      deleted: false,
-      _id: req.params.id,
-    };
-    const category = await Categories.findOne(find);
-    res.render("admin/pages/category/edit.pug", {
-      pageTitle: category.title,
-      category,
-    });
-  } catch (error) {
-    console.log("error edit categories controller", error);
     res.redirect(`${systemConfig.prefixAdmin}/categories`);
   }
 };
@@ -186,12 +117,8 @@ const changeStatus = async (req, res) => {
 };
 
 module.exports = {
-  index,
-  create,
   createPost,
-  edit,
   editPatch,
-  detail,
   deleteRecord,
   changeStatus,
   changeMulti,

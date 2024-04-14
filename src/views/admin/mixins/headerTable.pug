@@ -10,4 +10,4 @@ mixin header-table(link)
       a(href=`${prefixAdmin}/${link}/create` class="ml-auto")
         button(class="btn btn-sm btn-outline-success") + Thêm mới
   .row.border-bottom.mb-2
-    +form-change-multi(`${prefixAdmin}/${link}/change-multi?_method=PATCH`)
+    +form-change-multi(`/api/v1/${link}/change-multi?_method=PATCH`)

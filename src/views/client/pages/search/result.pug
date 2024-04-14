@@ -9,7 +9,7 @@ block main
       .row.portfolio-container(data-aos='fade-up')
         each item in tours
           .col-lg-4.col-md-6.portfolio-item.filter-app
-            a(href=`tours/detail/${item.slug}`)
+            a(href=`/detail/${item.slug}`)
               .portfolio-wrap.tour-item.border.rounded
                 img.img-fluid.img-tour(
                   src=item.image alt=item.title

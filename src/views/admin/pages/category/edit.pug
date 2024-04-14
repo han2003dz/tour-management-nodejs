@@ -4,7 +4,7 @@ block main
   +router("categories", "Management", "Categories", "Edit")
   h1 Chỉnh sửa danh mục
   form(
-    action=`${prefixAdmin}/categories/edit/${category.id}?_method=PATCH`
+    action=`/api/v1/categories/edit/${category.id}?_method=PATCH`
     id="form-edit-categories"
     method="POST"
     enctype="multipart/form-data"

@@ -59,7 +59,7 @@ if (boxSearch) {
           if (tours.length > 0) {
             const htmls = tours.map((item) => {
               return `
-                  <a class="inner-item" href="/tours/detail/${item.slug}">
+                  <a class="inner-item" href="/detail/${item.slug}">
                     <div class="inner-image">
                       <img src="${item.image}" />
                     </div>

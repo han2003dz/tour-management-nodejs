@@ -5,7 +5,7 @@ block main
   +router("categories", "Management", "Categories", "Create")
   h1 Thêm danh mục mới
   form(
-    action=`${prefixAdmin}/categories/create`
+    action=`/api/v1/categories/create`
     id="form-create-category"
     method="POST"
     enctype="multipart/form-data"

@@ -8,8 +8,8 @@ const database = require("./src/config/database");
 database.connect();
 
 // router
-const routerAdmin = require("./src/routers/admin/index.router");
-const routerClient = require("./src/routers/client/index.router");
+const routerAdmin = require("./src/routers/viewAdmin.router");
+const routerClient = require("./src/routers/viewClient.router");
 
 // variable env
 const port = process.env.PORT || 8080;
@@ -53,8 +53,8 @@ app.use(
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 // router
-routerAdmin(app);
-routerClient(app);
+app.use("/admin", routerAdmin);
+app.use("/", routerClient);
 // API v1
 const router = require("./src/routers/v1");
 const { errorMiddleware } = require("./src/middlewares");

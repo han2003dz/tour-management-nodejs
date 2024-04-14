@@ -82,23 +82,10 @@ const logout = catchAsync(async (req, res, next) => {
 
   res.clearCookie("tokens");
   res.clearCookie("cartTourId");
-  res.redirect("/auth/login");
-});
-
-const getLogin = catchAsync(async (req, res) => {
-  res.render("client/pages/auth/login", {
-    pageTitle: "Đăng nhập",
-  });
-});
-const getRegister = catchAsync(async (req, res) => {
-  res.render("client/pages/auth/register", {
-    pageTitle: "Đăng ký",
-  });
+  res.redirect("/login");
 });
 module.exports = {
   register,
   login,
   logout,
-  getLogin,
-  getRegister,
 };

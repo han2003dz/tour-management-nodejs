@@ -4,7 +4,7 @@ block main
   +router("tours", "Management", "Tours", "Edit")
   h1 Chỉnh sửa tour
   form(
-    action=`${prefixAdmin}/tours/edit/${tour.id}?_method=PATCH`
+    action=`/api/v1/tours/edit/${tour.id}?_method=PATCH`
     id="form-edit-tours"
     method="POST"
     enctype="multipart/form-data"

@@ -7,7 +7,7 @@ block main
   +router("tours", "Management", "Tours", "Create")
   h1 Thêm tour mới
   form(
-    action=`${prefixAdmin}/tours/create`
+    action=`/api/v1/tours/create`
     id="form-create-tour"
     method="POST"
     enctype="multipart/form-data"

@@ -30,7 +30,7 @@ block main
                   td
                     img(src=item.tour.images[0], alt=item.tour.title width="80px")
                   td
-                    a.text-dark(href=`/tours/detail/${item.tour.slug}`) #{item.tour.title}
+                    a.text-dark(href=`/detail/${item.tour.slug}`) #{item.tour.title}
                   td 
                     +formatDate(item.expectedDate)
                   td.text-end(data-price) #{item.tour.priceAdult} vnđ
@@ -56,7 +56,7 @@ block main
                   td.text-end(data-price) #{item.totalPrice} đ
                   td.text-center
                     a(
-                      href=`/cart/delete/${item.tour_id}`
+                      href=`/api/v1/cart/delete/${item.tour_id}`
                       class="btn btn-danger"
                     ) Hủy
             else

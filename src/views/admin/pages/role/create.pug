@@ -5,7 +5,7 @@ block main
   +router("roles", "Management", "Roles", "Create")
   h1 Thêm quyền mới
   form(
-    action=`${prefixAdmin}/roles/create`
+    action=`/api/v1/roles/create`
     id="form-create-role"
     method="POST"
     enctype="application/x-www-form-urlencoded"

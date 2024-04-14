@@ -43,7 +43,7 @@ block main
               p Giá trẻ em - dưới 18 tuổi:
               span.text-danger(data-price) #{tour.priceChild} vnđ / người
             form(
-              action=`/cart/add/${tour.id}`
+              action=`/api/v1/cart/add/${tour.id}`
               method="POST"
             )
               .quantityAdult

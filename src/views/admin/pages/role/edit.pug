@@ -4,7 +4,7 @@ block main
   +router("roles", "Management", "Roles", "Edit")
   h1 Chỉnh sửa danh mục
   form(
-    action=`${prefixAdmin}/roles/edit/${role.id}?_method=PATCH`
+    action=`/api/v1/roles/edit/${role.id}?_method=PATCH`
     id="form-edit-roles"
     method="POST"
     enctype="multipart/form-data"

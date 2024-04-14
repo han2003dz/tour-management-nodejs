@@ -11,11 +11,10 @@ header#header.fixed-top.header-transparent
         li
           a.nav-link(href='/') Trang chủ
         li.dropdown
-          -const pathTours = "/tours";
-          a(href=pathTours)
+          a(href='/tours')
             span Danh Mục
             i(class="bi bi-chevron-compact-down")
-          +sub-menu(layoutToursCategory, pathTours)
+          +sub-menu(layoutToursCategory)
         li
           a.nav-link(href='/price-table') Bảng giá
         li
@@ -23,7 +22,7 @@ header#header.fixed-top.header-transparent
         li
           a.nav-link(href='/contact') Liên Hệ
         li
-          a.nav-link(href='/contact') Chính sách
+          a.nav-link(href='/policy') Chính sách
         li 
           a(href="/cart")
             i(class="bi bi-cart4 fs-5")
@@ -37,12 +36,12 @@ header#header.fixed-top.header-transparent
               li
                 a(href="/user/info") #{user.username}
               li
-                a(href="/auth/logout") Đăng xuất
+                a(href="/api/v1/auth/logout") Đăng xuất
             else
               li
-                a(href="/auth/login") Đăng nhập
+                a(href="/login") Đăng nhập
               li
-                a(href="/auth/register") Đăng ký
+                a(href="/register") Đăng ký
       i.bi.bi-list.mobile-nav-toggle
   .container
     +search-box()

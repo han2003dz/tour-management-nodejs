@@ -1,20 +1,10 @@
-// const express = require('express');
-// const { roleController } = require('../../controllers');
-// const { authMiddleware, roleMiddleware } = require('../../middlewares');
+const router = require("express").Router();
+const controller = require("../../controllers/roles.controller");
+router.post("/create", controller.createPost);
+router.patch("/edit/:id", controller.editPatch);
+router.delete("/delete/:id", controller.deleteRole);
+router.patch("/change-multi", controller.changeMulti);
+router.patch("/change-status/:status/:id", controller.changeStatus);
+router.patch("/permissions", controller.permissionsPatch);
 
-// const roleRouter = express.Router();
-
-// roleRouter.use(authMiddleware);
-// roleRouter.use(roleMiddleware(['admin']));
-
-// roleRouter
-//   .route('/')
-//   .get(roleController.getRoles)
-//   .post(roleController.createRole);
-
-// roleRouter
-//   .route('/:roleId')
-//   .patch(roleController.updateRoleById)
-//   .delete(roleController.deleteRoleById);
-
-// module.exports = roleRouter;
+module.exports = router;
