@@ -1,13 +1,21 @@
 const Tours = require("../models/tours.model");
 const Categories = require("../models/categories.model");
 const systemConfig = require("../config/system");
+const { generateTourCode } = require("../helpers/generateCode");
 
 const createPost = async (req, res) => {
   try {
-    req.body.price = parseInt(req.body.price);
-    req.body.discountPercentage = parseInt(req.body.discountPercentage);
-    req.body.stock = parseInt(req.body.stock);
-    const tour = new Tours(req.body);
+    const countTour = await Tours.countDocuments();
+    const code = generateTourCode(countTour + 1);
+    const { price, discountPercentage, stock } = req.body;
+    const tourData = {
+      ...req.body,
+      code,
+      price: parseInt(price),
+      discountPercentage: parseInt(discountPercentage),
+      stock: parseInt(stock),
+    };
+    const tour = new Tours(tourData);
     await tour.save();
     req.flash("success", "Thêm thành công tour mới!");
   } catch (error) {
@@ -120,8 +128,6 @@ const changeMulti = async (req, res) => {
     res.redirect("back");
   }
 };
-
-
 
 module.exports = {
   createPost,
