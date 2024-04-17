@@ -1,5 +1,4 @@
 const Tours = require("../models/tours.model");
-const Categories = require("../models/categories.model");
 const systemConfig = require("../config/system");
 const { generateTourCode } = require("../helpers/generateCode");
 
