@@ -19,7 +19,10 @@ const userSchema = new mongoose.Schema(
     phone: String,
     avatar: String,
     status: String,
-    role_id: String,
+    role_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Role",
+    },
     gender: String,
     isLocked: {
       type: Boolean,
