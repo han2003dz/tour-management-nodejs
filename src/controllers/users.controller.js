@@ -14,9 +14,6 @@ const createPost = async (req, res) => {
       req.flash("error", `Email ${req.body.email} đã tồn tại`);
       res.redirect("back");
     } else {
-      const salt = await bcrypt.genSalt(10);
-      const hashed = await bcrypt.hash(req.body.password, salt);
-      req.body.password = hashed;
       const user = new Users(req.body);
       await user.save();
       req.flash("success", "Thêm tài khoản thành công");

@@ -78,18 +78,21 @@ const login = catchAsync(async (req, res, next) => {
 const loginAdmin = async (req, res, next) => {
   try {
     const { email, password } = req.body;
+    console.log(email);
+    console.log(password);
 
     const user = await User.findOne({ email }).select("+password");
     if (user.role_id !== null) {
       if (!user) {
-        throw new ApiError(400, "Email hoặc mật khẩu nhập sai");
+        throw new ApiError(400, "Email chưa được đăng ký!");
       }
       if (user.isLocked === true) {
         next(new ApiError(401, "Tài khoản đã bị khoá"));
       }
       const isPassword = await bcrypt.compare(password, user.password);
+
       if (!isPassword) {
-        throw new ApiError(400, "Email hoặc mật khẩu nhập sai");
+        throw new ApiError(400, "Sai mật khẩu!");
       }
       const accessToken = jwt.sign(
         {
@@ -102,13 +105,18 @@ const loginAdmin = async (req, res, next) => {
       );
       res.cookie("tokens", accessToken, { signed: true, httpOnly: true });
       res.redirect("/admin");
+      req.flash("success", "Đăng nhập thành công!");
     } else {
-      req.flash("error", "Bạn không có quyền truy cập hệ thống!");
+      req.flash(
+        "error",
+        "Tài khoản này chưa được cấp quyền truy cập hệ thống!"
+      );
       res.redirect("back");
     }
   } catch (error) {
     req.flash("error", "Bạn không có quyền truy cập hệ thống!");
     res.redirect("back");
+    console.log(error);
   }
 };
 
