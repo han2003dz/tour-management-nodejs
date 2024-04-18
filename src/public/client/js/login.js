@@ -56,7 +56,7 @@ const handleRegister = () => {
         ).json();
         if (result.code === 201) {
           setTimeout(() => {
-            window.location.href = "/auth/login";
+            window.location.href = "/login";
           }, 2000);
           showSuccess("Đăng ký thành công!");
         } else {

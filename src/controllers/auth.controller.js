@@ -75,6 +75,43 @@ const login = catchAsync(async (req, res, next) => {
   res.status(200).json(response(200, "Thành công", accessToken));
 });
 
+const loginAdmin = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+
+    const user = await User.findOne({ email }).select("+password");
+    if (user.role_id !== null) {
+      if (!user) {
+        throw new ApiError(400, "Email hoặc mật khẩu nhập sai");
+      }
+      if (user.isLocked === true) {
+        next(new ApiError(401, "Tài khoản đã bị khoá"));
+      }
+      const isPassword = await bcrypt.compare(password, user.password);
+      if (!isPassword) {
+        throw new ApiError(400, "Email hoặc mật khẩu nhập sai");
+      }
+      const accessToken = jwt.sign(
+        {
+          userId: user.id,
+        },
+        process.env.JWT_SECRET_KEY,
+        {
+          expiresIn: process.env.JWT_EXPIRES_IN,
+        }
+      );
+      res.cookie("tokens", accessToken, { signed: true, httpOnly: true });
+      res.redirect("/admin");
+    } else {
+      req.flash("error", "Bạn không có quyền truy cập hệ thống!");
+      res.redirect("back");
+    }
+  } catch (error) {
+    req.flash("error", "Bạn không có quyền truy cập hệ thống!");
+    res.redirect("back");
+  }
+};
+
 const logout = catchAsync(async (req, res, next) => {
   if (!req.signedCookies["tokens"]) {
     return res.status(400).json(response(400, "Thất bại"));
@@ -88,4 +125,5 @@ module.exports = {
   register,
   login,
   logout,
+  loginAdmin,
 };

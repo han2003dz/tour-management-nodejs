@@ -7,6 +7,7 @@ const Categories = require("../models/categories.model");
 
 const filterStatusHelper = require("../helpers/filterStatus");
 const searchHelper = require("../helpers/search");
+const catchAsync = require("../utils/catchAsync");
 
 const dashboard = async (req, res) => {
   res.render("admin/pages/dashboard/index.pug", {
@@ -270,6 +271,12 @@ const permissions = async (req, res) => {
   }
 };
 
+const login = catchAsync(async (req, res) => {
+  res.render("admin/pages/auth/login", {
+    pageTitle: "Đăng nhập",
+  });
+});
+
 module.exports = {
   dashboard,
   users,
@@ -287,4 +294,5 @@ module.exports = {
   pageDetailRole,
   pageEditRole,
   permissions,
+  login,
 };

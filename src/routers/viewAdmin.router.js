@@ -8,9 +8,18 @@ viewAdminRouter.get("/tours/create", viewAdminController.pageCreateTour);
 viewAdminRouter.get("/tours/detail/:id", viewAdminController.pageDetailTour);
 
 viewAdminRouter.get("/categories", viewAdminController.categories);
-viewAdminRouter.get("/categories/edit/:id", viewAdminController.pageEditCategory);
-viewAdminRouter.get("/categories/create", viewAdminController.pageCreateCategory);
-viewAdminRouter.get("/categories/detail/:id", viewAdminController.pageDetailCategory);
+viewAdminRouter.get(
+  "/categories/edit/:id",
+  viewAdminController.pageEditCategory
+);
+viewAdminRouter.get(
+  "/categories/create",
+  viewAdminController.pageCreateCategory
+);
+viewAdminRouter.get(
+  "/categories/detail/:id",
+  viewAdminController.pageDetailCategory
+);
 
 viewAdminRouter.get("/users", viewAdminController.users);
 // viewAdminRouter.get("/users/edit/:id", viewAdminController.pageEditAccount);
@@ -22,5 +31,7 @@ viewAdminRouter.get("/roles/edit/:id", viewAdminController.pageEditRole);
 viewAdminRouter.get("/roles/create", viewAdminController.pageCreateRole);
 viewAdminRouter.get("/roles/detail/:id", viewAdminController.pageDetailRole);
 viewAdminRouter.get("/roles/permissions", viewAdminController.permissions);
+
+viewAdminRouter.get("/login", viewAdminController.login);
 
 module.exports = viewAdminRouter;
