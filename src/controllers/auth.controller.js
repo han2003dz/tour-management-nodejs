@@ -129,9 +129,18 @@ const logout = catchAsync(async (req, res, next) => {
   res.clearCookie("cartTourId");
   res.redirect("/login");
 });
+
+const logoutAdmin = catchAsync(async (req, res, next) => {
+  if (!req.signedCookies["tokens"]) {
+    return res.status(400).json(response(400, "Thất bại"));
+  }
+  res.clearCookie("tokens");
+  res.status(200).json(response(200, "Thành công"));
+});
 module.exports = {
   register,
   login,
   logout,
   loginAdmin,
+  logoutAdmin,
 };

@@ -12,7 +12,7 @@ const createPost = async (req, res) => {
 
     if (emailExist) {
       req.flash("error", `Email ${req.body.email} đã tồn tại`);
-      res.redirect("back");
+      res.redirect("back");  
     } else {
       const user = new Users(req.body);
       await user.save();
