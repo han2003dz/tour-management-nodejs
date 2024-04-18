@@ -18,7 +18,13 @@ const showError = (message) => {
   alert("Error: " + message);
 };
 const showSuccess = (message) => {
-  alert("Success: " + message);
+  Swal.fire({
+    position: "top",
+    icon: "success",
+    title: message,
+    showConfirmButton: false,
+    timer: 1500,
+  });
 };
 const handleRegister = () => {
   const registerForm = document.querySelector("#registerForm");
@@ -91,10 +97,11 @@ const handleLogin = () => {
         ).json();
 
         if (result.code === 200) {
-          showSuccess("Đăng nhập thành công!");
           handleSaveSession(email);
-          setTimeout(() => (window.location.href = "/"), 1000);
-          console.log(result);
+          setTimeout(() => {
+            window.location.href = "/";
+            showSuccess("Đăng nhập thành công!");
+          }, 500);
         } else {
           showError(result.message);
         }
