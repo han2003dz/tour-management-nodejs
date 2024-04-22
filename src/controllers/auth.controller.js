@@ -78,9 +78,6 @@ const login = catchAsync(async (req, res, next) => {
 const loginAdmin = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-    console.log(email);
-    console.log(password);
-
     const user = await User.findOne({ email }).select("+password");
     if (user.role_id !== null) {
       if (!user) {

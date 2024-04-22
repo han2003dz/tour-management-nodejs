@@ -1,6 +1,8 @@
 extends ../../layouts/default
 include ../../mixins/breadcrumb
 include ../../mixins/moment
+include ../../mixins/form-order
+
 block main
   +breadcrumbs('Giỏ hàng', 'Giỏ hàng')
   section.mt-0.pt-0
@@ -55,26 +57,21 @@ block main
                     )
                   td.text-end(data-price) #{item.totalPrice} đ
                   td.text-center
-                    a(
+                    a.me-2(
                       href=`/api/v1/cart/delete/${item.tour_id}`
-                      class="btn btn-danger"
+                      class="btn btn-outline-danger"
                     ) Hủy
+                    a(
+                      href=`/booking/${item.tour_id}`
+                      class="btn btn-success"
+                    ) Đặt ngay
             else
               p Chưa có tour nào trong giỏ hàng
       .row
         .col-5.rounded-3.border-warning.border
-          form.was-validated(action='/')
-            .mb-3.mt-3
-              label.form-label(for='uname') Tên người đặt tour:
-              input#uname.form-control(type='text' placeholder='Họ và tên...' name='uname' required='')
-              .invalid-feedback Không được để trống!
-            .mb-3
-              label.form-label(for='phone') Số điện thoại:
-              input#phone.form-control(type='text' name='phone' required='')
-              .invalid-feedback Không được để trống!
-            button.btn.btn-success.py-2.align-items-center(type='submit') Đặt tour
+          +form-booking()
         .col-5.d-flex
-          p(class="text-right") Tổng đơn hàng:&nbsp;
+          p(class="text-right") Tổng tiền:&nbsp;
           span
           span(data-price) #{cart.totalPrice}
   script(src="/client/js/cart.js")
