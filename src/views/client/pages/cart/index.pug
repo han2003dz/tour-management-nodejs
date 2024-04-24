@@ -1,8 +1,6 @@
 extends ../../layouts/default
 include ../../mixins/breadcrumb
 include ../../mixins/moment
-include ../../mixins/form-order
-
 block main
   +breadcrumbs('Giỏ hàng', 'Giỏ hàng')
   section.mt-0.pt-0
@@ -68,8 +66,6 @@ block main
             else
               p Chưa có tour nào trong giỏ hàng
       .row
-        .col-5.rounded-3.border-warning.border
-          +form-booking()
         .col-5.d-flex
           p(class="text-right") Tổng tiền:&nbsp;
           span

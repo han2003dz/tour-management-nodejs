@@ -286,6 +286,48 @@ const infoUserClient = async (req, res) => {
   }
 };
 
+const booking = async (req, res) => {
+  try {
+    const tourId = req.params.tourId;
+    const cartTourId = req.cookies.cartTourId;
+    if (cartTourId) {
+      const cart = await Cart.findOne({
+        _id: cartTourId,
+      });
+      let dataOrder = {};
+      for (const item of cart.tours) {
+        if (item.tour_id === tourId) {
+          const tour = await Tours.findOne({
+            _id: tourId,
+          }).select(
+            "title images slug price discountPercentage priceAdult priceChild"
+          );
+          const quantityAdult = item.quantityAdult;
+          const quantityChild = item.quantityChild;
+          const expectedDate = item.expectedDate;
+          const totalPrice =
+            item.quantityAdult * tour.priceAdult +
+            item.quantityChild * tour.priceChild;
+
+          dataOrder = {
+            tour,
+            totalPrice,
+            quantityAdult,
+            quantityChild,
+            expectedDate,
+          };
+        }
+      }
+      res.render("client/pages/booking/pay.pug", {
+        pageTitle: "Thanh toán",
+        dataOrder,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.redirect("back");
+  }
+};
 module.exports = {
   register,
   login,
@@ -298,4 +340,5 @@ module.exports = {
   detailTourClient,
   updateCart,
   infoUserClient,
+  booking,
 };

@@ -1,0 +1,67 @@
+extends ../../layouts/default
+include ../../mixins/moment
+
+block main
+  .container.booking
+    .row.m-0
+      .col-lg-7.pb-5.pe-lg-5
+        .row
+          .col-12.mt-4.p-0
+            h3 #{dataOrder.tour.title}
+        .row
+          .col-12.p-0
+            img(src=dataOrder.tour.images[0] alt=dataOrder.tour.title)
+        .row.mt-2.bg-light
+          .form-floating.w-100.col-12.p-0
+            textarea#floatingTextarea2.form-control.w-100(placeholder='Leave a comment here' style='height: 100px')
+            label(for='floatingTextarea2') Ghi chú
+      .col-lg-5.p-0.ps-lg-4
+        .row.m-0
+          .col-12.px-4
+            .d-flex.align-items-end.mt-4.mb-2
+              p.h4.m-0 Chi tiết
+            .d-flex.justify-content-between.mb-2
+              p.textmuted Mã tour
+              p.fs-14.fw-bold TOUR00001
+            .d-flex.justify-content-between.mb-2
+              p.textmuted Số người lớn ( > 18 tuổi)
+              p.fs-14.fw-bold
+                span.fas.fa-dollar-sign.pe-1 #{dataOrder.quantityAdult}
+            .d-flex.justify-content-between.mb-2
+              p.textmuted Số trẻ em ( < 18 tuổi)
+              p.fs-14.fw-bold
+                span.fas.fa-dollar-sign.pe-1 #{dataOrder.quantityChild}
+            .d-flex.justify-content-between.mb-2
+              p.textmuted Ngày khởi hành (dự kiến)
+              p.fs-14.fw-bold 
+                +formatDate(dataOrder.expectedDate)
+            .d-flex.justify-content-between.mb-2
+              p.textmuted Giảm giá
+              p.fs-14.fw-bold
+                | -
+                span.fas.fa-dollar-sign.px-1
+                | 30%
+            .d-flex.justify-content-between.mb-3
+              p.textmuted.fw-bold Giá tour
+              .d-flex.align-text-top
+                span.fas.fa-dollar-sign.mt-1.pe-1.fs-14
+                span.h4(data-price) #{dataOrder.totalPrice}
+          .col-12.px-0
+            .row.bg-light.m-0.w-100
+              .col-12.px-4.mt-4
+                p.fw-bold.fs-4 Thông tin người đặt tour
+              .col-12.px-4.w-100
+                .m-0
+                  label.form-label(for='uname') Tên người đặt tour:
+                  input#uname.form-control(type='text' placeholder='Họ và tên...' name='username' required='')
+                  .invalid-feedback Không được để trống!
+                .my-3
+                  label.form-label(for='phone') Số điện thoại:
+                  input#phone.form-control(type='text' name='phone' required='')
+                  .invalid-feedback Không được để trống!
+            .row.m-0
+              .col-12.mb-4.p-0.w-100
+                .btn.btn-dark.w-100
+                  | Thanh toán
+                  i(class="bi bi-arrow-right mx-2")
+  script(src="/client/js/cart.js")
