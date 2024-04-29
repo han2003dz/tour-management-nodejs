@@ -318,7 +318,7 @@ const booking = async (req, res) => {
           };
         }
       }
-      res.render("client/pages/booking/pay.pug", {
+      res.render("client/pages/booking/order.pug", {
         pageTitle: "Thanh toán",
         dataOrder,
       });
@@ -328,6 +328,7 @@ const booking = async (req, res) => {
     res.redirect("back");
   }
 };
+
 module.exports = {
   register,
   login,

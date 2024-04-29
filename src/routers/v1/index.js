@@ -5,6 +5,8 @@ const tourRouter = require("./tour.router");
 const categoryRouter = require("./category.router");
 const roleRouter = require("./role.router");
 const cartRouter = require("./cart.router");
+const bookingRouter = require("./booking.router");
+
 
 const router = require("express").Router();
 
@@ -32,6 +34,10 @@ const routes = [
   {
     path: "/cart",
     route: cartRouter,
+  },
+  {
+    path: "/booking",
+    route: bookingRouter,
   },
 ];
 

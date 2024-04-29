@@ -128,11 +128,3 @@ if (uploadImg) {
 }
 
 //end upload image
-
-// window.onload = () => {
-//   handleUpload;
-//   pagination;
-//   sortOption;
-//   search;
-//   alert;
-// };
