@@ -1,0 +1,19 @@
+mixin checkout-online()
+  div.form-group.my-2 
+    span.fw-bold Chọn phương thức thanh toán:
+    label.control-label
+      .form-check
+        input.form-check-input(type="radio" name="bankCode" id="defaultPaymentMethod" value="" checked="true")
+        label.form-check-label(for="defaultPaymentMethod") Cổng thanh toán VNPAYQR
+      .form-check
+        input.form-check-input(type="radio" name="bankCode" id="vnpayqrPaymentMethod" value="VNPAYQR")
+        label.form-check-label(for="vnpayqrPaymentMethod") Thanh toán qua ứng dụng hỗ trợ VNPAYQR
+      .form-check
+        input.form-check-input(type="radio" name="bankCode" id="vnbankPaymentMethod" value="VNBANK")
+        label.form-check-label(for="vnbankPaymentMethod") Thanh toán qua ATM-Tài khoản ngân hàng nội địa
+      .form-check
+        input.form-check-input(type="radio" name="bankCode" id="intcardPaymentMethod" value="INTCARD")
+        label.form-check-label(for="intcardPaymentMethod") Thanh toán qua thẻ quốc tế
+      .form-check
+        input.form-check-input(type="radio", name="bankCode", id="cashPaymentMethod", value="CASH")
+        label.form-check-label(for="cashPaymentMethod") Thanh toán tiền mặt

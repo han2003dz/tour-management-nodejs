@@ -1,6 +1,9 @@
 const moment = require("moment");
 const crypto = require("crypto");
 const { sortObject } = require("../helpers/sortVnp");
+const Cart = require("../models/cart.model");
+const Tours = require("../models/tours.model");
+const Booking = require("../models/booking.model");
 const createPaymentUrl = async (req, res) => {
   try {
     if (process.env.TZ) {
@@ -44,7 +47,6 @@ const createPaymentUrl = async (req, res) => {
     }
 
     vnp_Params = sortObject(vnp_Params);
-    console.log(sortObject(vnp_Params));
 
     let querystring = require("qs");
     let signData = querystring.stringify(vnp_Params, { encode: false });
@@ -53,15 +55,26 @@ const createPaymentUrl = async (req, res) => {
     let signed = hmac.update(Buffer.from(signData, "utf-8")).digest("hex");
     vnp_Params["vnp_SecureHash"] = signed;
     vnpUrl += "?" + querystring.stringify(vnp_Params, { encode: false });
-    console.log("vnpUrl: ", vnpUrl);
+
+    const userInfo = {
+      username: req.body.username,
+      phone: req.body.phone,
+    };
+    const cartTourId = req.cookies.cartTourId;
+    const cart = await Cart.findOne({ _id: cartTourId });
+    const tourInfo = {
+      totalPrice: amount,
+    };
+    console.log(tourInfo);
+
     res.redirect(vnpUrl);
   } catch (error) {
     console.log("error create payment url: ", error);
+    res.redirect("back");
   }
 };
 
 const vnpReturn = async (req, res) => {
-  console.log("OK");
   try {
     console.log("OK");
     let vnp_Params = req.query;
@@ -88,14 +101,65 @@ const vnpReturn = async (req, res) => {
   }
 };
 
-const order = async (req, res) => {
+const checkout = async (req, res) => {
   try {
+    const cartTourId = req.cookies.cartTourId;
+    const tourId = req.params.tourId;
+    const userInfo = {
+      username: req.body.username,
+      phone: req.body.phone,
+      note: req.body.note,
+    };
+    const cart = await Cart.findOne({
+      _id: cartTourId,
+    });
+    let tourInfo = {};
+    for (const tour of cart.tours) {
+      if (tour.tour_id === tourId) {
+        const objectTour = {
+          tour_id: tour.tour_id,
+          price: 0,
+          discountPercentage: 0,
+          quantityAdult: tour.quantityAdult,
+          quantityChild: tour.quantityChild,
+          expectedDate: tour.expectedDate,
+        };
+        const dataTour = await Tours.findOne({
+          _id: tourId,
+        });
+        objectTour.discountPercentage = dataTour.discountPercentage;
+        tourInfo = objectTour;
+      }
+    }
+    const orderInfo = {
+      cart_id: cartTourId,
+      userInfo,
+      tourInfo,
+    };
+    const booking = new Booking(orderInfo);
+    await booking.save();
 
+    await Cart.findOneAndUpdate(
+      { _id: cartTourId },
+      { $pull: { tours: { tour_id: tourId } } },
+      { new: true }
+    );
+    await Tours.findOneAndUpdate(
+      { _id: tourId },
+      {
+        $inc: { stock: -1 },
+      },
+      { new: true }
+    );
+    req.flash("success", "Thanh toán thành công");
+    res.redirect("/");
   } catch (error) {
-    
+    console.error("Error during checkout:", error);
+    res.status(500).send("Error during checkout");
   }
 };
 module.exports = {
   createPaymentUrl,
   vnpReturn,
+  checkout,
 };

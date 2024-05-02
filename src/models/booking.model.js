@@ -2,18 +2,20 @@ const mongoose = require("mongoose");
 const bookingSchema = new mongoose.Schema(
   {
     code: String,
-    tours: [
-      {
-        tourId: String,
-        price: Number,
-        discountPercentage: Number,
-        quantity: Number,
-      },
-    ],
+    cart_id: String,
+    tourInfo: {
+      tourId: String,
+      price: Number,
+      discountPercentage: Number,
+      quantityAdult: Number,
+      quantityChild: Number,
+      expectedDate: Date,
+    },
     userInfo: {
       username: String,
       phone: String,
       address: String,
+      note: String,
     },
     note: String,
     status: String,
@@ -48,5 +50,5 @@ const bookingSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
-const Booking = mongoose.model("Booking", tourSchema, "booking");
+const Booking = mongoose.model("Booking", bookingSchema, "booking");
 module.exports = Booking;

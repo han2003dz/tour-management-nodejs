@@ -1,17 +1,26 @@
-mixin form-booking()
-  form.was-validated(action='/')
-    .my-3.text-center 
-      p Quý khách vui lòng nhập thông tin người đặt tour!
-    .my-3
-      label.form-label(for='uname') Tên người đặt tour:
-      input#uname.form-control(type='text' placeholder='Họ và tên...' name='uname' required='')
-      .invalid-feedback Không được để trống!
-    .mb-3
-      label.form-label(for='phone') Số điện thoại:
-      input#phone.form-control(type='text' name='phone' required='')
-      .invalid-feedback Không được để trống!
-    .mb-3.form-floating
-      textarea#floatingTextarea2.form-control(placeholder='Leave a comment here' style='height: 100px')
-      label(for='floatingTextarea2') Ghi chú
-    .mb-3.text-center
-      button.btn.btn-success(type='submit') Đặt tour
+mixin form-order(id)
+  form.was-validated(
+    id="formCheckout" 
+    action=`/api/v1/booking/checkout/${id}`
+    method='POST'
+  )
+    .row.bg-light.m-0.w-100
+      .col-12.px-4.mt-4
+        p.fw-bold.fs-4 Thông tin người đặt tour
+      .col-12.px-4.w-100
+        .m-0
+          label.form-label(for='uname') Tên người đặt tour:
+          input#uname.form-control(type='text' placeholder='Họ và tên...' name='username' required='')
+          .invalid-feedback Không được để trống!
+        .my-3
+          label.form-label(for='phone') Số điện thoại:
+          input#phone.form-control(type='text' name='phone' required='')
+          .invalid-feedback Không được để trống!
+        .form-floating.w-100.p-0.mt-2.bg-light
+          textarea#floatingTextarea2.form-control.w-100(placeholder='thông tin thêm' style='height: 100px' name="note")
+          label.form-label(for='floatingTextarea2') Ghi chú
+    .row.m-0
+      .col-12.mb-1.p-0.w-100
+        button.btn.btn-dark.w-100#btnPopup(type="submit")
+          | Thanh toán
+          i(class="bi bi-arrow-right mx-2")

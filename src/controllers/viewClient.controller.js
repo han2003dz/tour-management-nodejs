@@ -308,7 +308,6 @@ const booking = async (req, res) => {
           const totalPrice =
             item.quantityAdult * tour.priceAdult +
             item.quantityChild * tour.priceChild;
-
           dataOrder = {
             tour,
             totalPrice,
