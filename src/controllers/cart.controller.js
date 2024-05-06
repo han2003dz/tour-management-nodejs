@@ -34,6 +34,7 @@ const addPost = async (req, res) => {
           quantityAdult,
           quantityChild,
           expectedDate,
+          bookingDate: new Date(),
         };
 
         await Cart.updateOne(
@@ -46,7 +47,7 @@ const addPost = async (req, res) => {
         );
         req.flash("success", "Thêm tour vào giỏ hàng thành công!");
       }
-    }else{
+    } else {
       req.flash("error", "Bạn cần đăng nhập trước khi thêm tour vào giỏ hàng!");
     }
   } catch (error) {

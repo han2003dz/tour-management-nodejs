@@ -8,6 +8,7 @@ const cartSchema = new mongoose.Schema(
         quantityAdult: Number,
         quantityChild: Number,
         expectedDate: Date,
+        bookingDate: Date,
       },
     ],
     deleted: {

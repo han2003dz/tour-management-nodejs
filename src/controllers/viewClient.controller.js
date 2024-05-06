@@ -328,6 +328,16 @@ const booking = async (req, res) => {
   }
 };
 
+const onlinePayment = async (req, res) => {
+  try {
+    res.render("client/pages/booking/online-payment.pug", {
+      pageTitle: "Thanh toán online",
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   register,
   login,
@@ -341,4 +351,5 @@ module.exports = {
   updateCart,
   infoUserClient,
   booking,
+  onlinePayment,
 };

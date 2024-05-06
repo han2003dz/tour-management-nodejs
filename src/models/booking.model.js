@@ -18,6 +18,7 @@ const bookingSchema = new mongoose.Schema(
       note: String,
     },
     note: String,
+    transactionType: String,
     status: String,
     timeStart: {
       type: Date,

@@ -1,4 +1,5 @@
-mixin form-order(id)
+
+mixin form-order(id, totalPrice)
   form.was-validated(
     id="formCheckout" 
     action=`/api/v1/booking/checkout/${id}`
@@ -19,6 +20,49 @@ mixin form-order(id)
         .form-floating.w-100.p-0.mt-2.bg-light
           textarea#floatingTextarea2.form-control.w-100(placeholder='thông tin thêm' style='height: 100px' name="note")
           label.form-label(for='floatingTextarea2') Ghi chú
+      .col-12.px-4
+        p.mt-2 Chọn hình thức thanh toán*:
+        
+        //- .form-group.form-check.mb-2
+        //-   input(
+        //-     type="radio"
+        //-     class="form-check-input"
+        //-     id="statusOnline"
+        //-     name="status"
+        //-     value="online"
+        //-   )
+        //-   label(for="statusOnline" class="form-check-label") Thanh toán online
+        div.form-group
+          label(for='amount') Số tiền
+          input.form-control#amount(
+            name='amount'
+            placeholder='Số tiền'
+            value=totalPrice
+          )
+        div.form-group.my-2 
+          span.fw-bold Chọn phương thức thanh toán:
+          label.control-label
+            .form-check
+              input.form-check-input(type="radio" name="bankCode" id="defaultPaymentMethod" value="" checked)
+              label.form-check-label(for="defaultPaymentMethod") Cổng thanh toán VNPAYQR
+            .form-check
+              input.form-check-input(type="radio" name="bankCode" id="vnpayqrPaymentMethod" value="VNPAYQR")
+              label.form-check-label(for="vnpayqrPaymentMethod") Thanh toán qua ứng dụng hỗ trợ VNPAYQR
+            .form-check
+              input.form-check-input(type="radio" name="bankCode" id="vnbankPaymentMethod" value="VNBANK")
+              label.form-check-label(for="vnbankPaymentMethod") Thanh toán qua ATM-Tài khoản ngân hàng nội địa
+            .form-check
+              input.form-check-input(type="radio" name="bankCode" id="intcardPaymentMethod" value="INTCARD")
+              label.form-check-label(for="intcardPaymentMethod") Thanh toán qua thẻ quốc tế
+            .form-group.form-check.mb-2
+              input(
+                type="radio"
+                class="form-check-input"
+                id="statusCash"
+                name="bankCode"
+                value="CASH"
+              )
+              label(for="statusCash" class="form-check-label") Thanh toán tiền mặt
     .row.m-0
       .col-12.mb-1.p-0.w-100
         button.btn.btn-dark.w-100#btnPopup(type="submit")

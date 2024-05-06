@@ -68,5 +68,10 @@ viewClientRouter.get(
   viewClientController.booking
 );
 
+viewClientRouter.get(
+  "/booking/online-payment",
+  checkCookieMiddleware,
+  viewClientController.onlinePayment
+);
 
 module.exports = viewClientRouter;
