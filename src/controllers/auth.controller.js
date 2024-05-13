@@ -24,6 +24,8 @@ const register = catchAsync(async (req, res) => {
   const role = await Role.findOne({ roleIndex: "user" });
 
   const user = await User.create({ ...dataCreate, roles: [role._id] });
+  const cart = new Cart({ user_id: user._id });
+  await cart.save();
 
   res.status(201).json(response(201, "Thành công", user));
 });

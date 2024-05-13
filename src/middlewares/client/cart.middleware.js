@@ -9,6 +9,7 @@ module.exports.cartTourId = async (req, res, next) => {
       cart.quantity = cart.tours.length;
     }
     res.locals.miniCart = cart;
+
     next();
   } catch (error) {
     console.error("Error in cartTourId middleware:", error);
