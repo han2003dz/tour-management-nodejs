@@ -74,7 +74,12 @@ window.addEventListener("DOMContentLoaded", (event) => {
       item.addEventListener("click", () => {
         const statusCurrent = item.getAttribute("data-status");
         const id = item.getAttribute("data-id");
-        let statusChanges = statusCurrent == "active" ? "inactive" : "active";
+        let statusChanges;
+        if (statusCurrent === "active" || statusCurrent === "inactive") {
+          statusChanges = statusCurrent === "active" ? "inactive" : "active";
+        } else {
+          statusChanges = statusCurrent === "paid" ? "unpaid" : "paid";
+        }
         const action = path + `/${statusChanges}/${id}?_method=PATCH`;
         formChangeStatus.action = action;
         formChangeStatus.submit();

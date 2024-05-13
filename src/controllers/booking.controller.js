@@ -18,13 +18,16 @@ const vnpReturn = async (req, res) => {
     let hmac = crypto.createHmac("sha512", secretKey);
     let signed = hmac.update(Buffer.from(signData, "utf-8")).digest("hex");
     if (secureHash === signed) {
+      req.flash("success", "Hệ thống đã xác nhận bạn thanh toán online");
       res.redirect("/");
-      req.flash("success", "Thanh toán thành công");
     } else {
-      res.render("client/pages/booking/success", { code: "97" });
+      req.flash("error", "Thanh toán thất bại");
+      res.redirect("back");
     }
   } catch (error) {
     console.log("error vnpReturn: ", error);
+    req.flash("error", "Thanh toán thất bại");
+    res.redirect("back");
   }
 };
 
@@ -33,6 +36,7 @@ const checkout = async (req, res) => {
     const cartTourId = req.cookies.cartTourId;
     const tourId = req.params.tourId;
     const transactionType = req.body.bankCode;
+    const amountPaid = parseInt(req.body.amount);
     const userInfo = {
       username: req.body.username,
       phone: req.body.phone,
@@ -41,31 +45,38 @@ const checkout = async (req, res) => {
     const cart = await Cart.findOne({
       _id: cartTourId,
     });
+
+    const tour = cart.tours.find((tour) => tour.tour_id === tourId);
     let tourInfo = {};
-    for (const tour of cart.tours) {
-      if (tour.tour_id === tourId) {
+    if (tour) {
+      const dataTour = await Tours.findOne({ _id: tourId });
+      if (dataTour) {
         const objectTour = {
           tour_id: tour.tour_id,
-          price: 0,
-          discountPercentage: 0,
+          title: dataTour.title,
+          amountPaid,
+          discountPercentage: dataTour.discountPercentage,
           quantityAdult: tour.quantityAdult,
           quantityChild: tour.quantityChild,
           expectedDate: tour.expectedDate,
           bookingDate: tour.bookingDate,
         };
-        const dataTour = await Tours.findOne({
-          _id: tourId,
-        });
-        objectTour.discountPercentage = dataTour.discountPercentage;
         tourInfo = objectTour;
+      } else {
+        req.flash("error", "Tour không tồn tại");
       }
+    } else {
+      req.flash("error", "Bạn chưa thêm tour này vào giỏ hàng");
     }
+    let status = transactionType == "CASH" ? "unpaid" : "paid";
     const orderInfo = {
       cart_id: cartTourId,
       userInfo,
       tourInfo,
       transactionType,
+      status,
     };
+
     const booking = new Booking(orderInfo);
     await booking.save();
 
@@ -82,7 +93,7 @@ const checkout = async (req, res) => {
       { new: true }
     );
     if (transactionType == "CASH") {
-      req.flash("success", "Thanh toán thành công");
+      req.flash("success", "Hệ thống đã xác nhận bạn thanh toán bằng tiền mặt");
       res.redirect("/");
     } else {
       const vnpUrl = paymentUrl(req, res);

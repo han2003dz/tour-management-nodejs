@@ -1,9 +1,9 @@
 include ./search.pug
 include ./changeMulti.pug
-mixin header-table(link)
+mixin header-table(link, filter)
   .row.border-bottom.pb-2
     .col-5
-      +filter(filterStatus)
+      +filter(filter)
     .col-4.ms-auto.d-flex.justify-content-end
       +search(keyword)
     .col-2.d-flex.justify-content-end

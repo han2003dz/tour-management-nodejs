@@ -15,7 +15,7 @@ block main
       i.fas.fa-table.me-1
       | Danh sách quyền
     .card-body
-      +header-table(link)
+      +header-table(link, filterStatus)
       if(roles.length > 0)
         table#datatablesSimple(checkbox-multi)
           thead

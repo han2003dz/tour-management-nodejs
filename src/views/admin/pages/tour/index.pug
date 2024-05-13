@@ -14,7 +14,7 @@ block main
       i.fas.fa-table.me-1
       | Danh sách tour du lịch
     .card-body
-      +header-table(link)
+      +header-table(link, filterStatus)
       if(tours.length > 0)
         table#datatablesSimple(checkbox-multi)
           thead

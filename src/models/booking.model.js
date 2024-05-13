@@ -4,12 +4,13 @@ const bookingSchema = new mongoose.Schema(
     code: String,
     cart_id: String,
     tourInfo: {
+      title: String,
       tourId: String,
-      price: Number,
+      amountPaid: Number,
       discountPercentage: Number,
       quantityAdult: Number,
       quantityChild: Number,
-      expectedDate: Date,
+      price: Number,
     },
     userInfo: {
       username: String,

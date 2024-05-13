@@ -17,6 +17,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
       "actionAll",
       "imageAll",
       "avatarAll",
+      "phoneAll"
     ];
     handleRemoveParentClass(classesToRemove);
 

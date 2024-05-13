@@ -32,6 +32,8 @@ viewAdminRouter.get("/roles/create", viewAdminController.pageCreateRole);
 viewAdminRouter.get("/roles/detail/:id", viewAdminController.pageDetailRole);
 viewAdminRouter.get("/roles/permissions", viewAdminController.permissions);
 
+viewAdminRouter.get("/booking", viewAdminController.getOrder);
+
 viewAdminRouter.get("/login", viewAdminController.login);
 
 module.exports = viewAdminRouter;

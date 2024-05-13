@@ -4,9 +4,12 @@ const Users = require("../models/user.model");
 const Roles = require("../models/role.model");
 const Tours = require("../models/tours.model");
 const Categories = require("../models/categories.model");
+const Booking = require("../models/booking.model");
 
 const filterStatusHelper = require("../helpers/filterStatus");
+const filterStatusOrderHelper = require("../helpers/filterStatusOrder");
 const searchHelper = require("../helpers/search");
+
 const catchAsync = require("../utils/catchAsync");
 
 const dashboard = async (req, res) => {
@@ -277,6 +280,27 @@ const login = catchAsync(async (req, res) => {
   });
 });
 
+const getOrder = async (req, res) => {
+  try {
+    const filterStatusOrder = filterStatusOrderHelper(req.query);
+    const objectSearch = searchHelper(req.query);
+    const find = {
+      deleted: false,
+      ...(req.query.status && { status: req.query.status }),
+      ...(objectSearch.regex && { title: objectSearch.regex }),
+    };
+    const order = await Booking.find(find);
+    res.render("admin/pages/booking/index", {
+      pageTitle: "Danh sách đơn đặt tour",
+      order,
+      filterStatusOrder,
+      keyword: objectSearch.keyword,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   dashboard,
   users,
@@ -294,5 +318,6 @@ module.exports = {
   pageDetailRole,
   pageEditRole,
   permissions,
+  getOrder,
   login,
 };

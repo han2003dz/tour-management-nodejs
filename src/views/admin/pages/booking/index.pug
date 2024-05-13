@@ -1,0 +1,75 @@
+extends ../../layouts/default
+include ../../mixins/filterStatus
+include ../../mixins/headerTable
+include ../../mixins/router
+block main
+  - var link = "booking";
+  +router(link, "Management", "Booking")
+  .card
+    .card-header
+      i.fas.fa-table.me-1
+      | Danh sách tour được đặt
+    .card-body
+      +header-table(link, filterStatusOrder)
+      if(order.length > 0)
+        table#datatablesSimple(checkbox-multi)
+          thead
+            tr
+              th 
+                input(class="form-check-input checkAll" type="checkbox" name="checkAll")
+              th STT
+              th Tên tour
+              th Người đặt
+              th 
+                span(class="phoneAll") Số điện thoại
+              th Hình thức thanh toán
+              th Tổng tiền
+              th(class="text-center")
+                span(class="statusAll") Trạng thái
+              th 
+                span(class="actionAll") Hành động
+          tbody
+            each item, index in order
+              tr
+                td 
+                  input(
+                    class="form-check-input"
+                    type="checkbox"
+                    name="check-item"
+                    value=item.id
+                  )
+                td #{index + 1}
+                td
+                  span.float-start #{item.tourInfo.title}
+                  
+                td
+                  span.float-start #{item.userInfo.username}
+                td
+                  span.float-end #{item.userInfo.phone}
+                td
+                  span.float-start #{item.transactionType === "CASH" ? "Tiền mặt" : "Chuyển khoản"}
+                td 
+                  span.float-end(data-price) #{item.tourInfo.amountPaid}
+                td 
+                  span.float-start #{item.status === "paid" ? "Đã thanh toán" : "Chưa thanh toán"}
+                td Xem/Xác nhận
+  
+  //-               td(class="text-center")
+  //-                 a(href="#" 
+  //-                   class="badge" 
+  //-                   data-status=item.status
+  //-                   data-id=item.id
+  //-                   link-change-status
+  //-                 ) 
+  //-                   div.form-check.form-switch
+  //-                     input.form-check-input.fs-5.text-success(
+  //-                       type='checkbox'
+  //-                       id='flexSwitchCheckDefault'
+  //-                       checked=item.status === "active"
+  //-                     )
+  //-               td
+  //-                 +actions(link, item)
+  //-     else
+  //-       p.text-center Chưa có tài khoản nào được tạo!      
+  //- +formChangeStatus(link) 
+  //- +formDelete(link)
