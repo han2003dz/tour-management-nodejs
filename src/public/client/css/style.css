@@ -724,11 +724,8 @@ section {
 .section-title p {
   margin-bottom: 0;
 }
-.portfolio .info-tour {
-  font-size: 1.1rem;
-  font-weight: bold;
-  padding: 10px 10px 0 10px;
-  color: #409cc5;
+.info-tour {
+  align-items: center;
 }
 .portfolio .price-new {
   color: red;

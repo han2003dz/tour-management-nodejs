@@ -24,53 +24,76 @@ block main
         .col-lg-5
           .portfolio-info
             h3 #{tour.title} 
-            .info-tour
-              i(class="bi bi-alarm me-1 text-warning")          
-              span Thời lượng: #{tour.numberOfDays}
-            .info-tour 
-              i(class="bi bi-geo me-2 text-primary")
-              span Khởi hành: #{tour.departureLocation}
-            .info-tour
-              i(class="bi bi-truck me-2")
-              span Phương tiện: Ô tô
-            .info-tour
-              i(class="bi bi-calendar-check me-2")
-              span Ngày hoạt động: Hàng ngày
-            .d-flex
-              p Giá người lớn:
-              span.text-danger(data-price) #{tour.priceAdult} vnđ / người
-            .d-flex.mt-0
-              p Giá trẻ em - dưới 18 tuổi:
-              span.text-danger(data-price) #{tour.priceChild} vnđ / người
-            form(
-              action=`/api/v1/cart/add/${tour.id}`
-              method="POST"
-            )
-              .quantityAdult
-                span Số người lớn
-                input(
-                  class="form-control mb-2"
-                  type="number"
-                  name="quantityAdult"
-                  value="1"
-                  min="1"
-                )
-              .quantityChild
-                span Số trẻ em
-                input(
-                  class="form-control mb-2"
-                  type="number"
-                  name="quantityChild"
-                  value="0"
-                  min="0"
-                )
-              .time
-                p Chọn ngày dự kiến
-                +time-start()
-              .text-center.py-2
-                button(type="submit" class="btn btn-outline-info rounded-pill") Thêm tour vào giỏ hàng
+            div.border.p-3
+              .info-tour.border-bottom.pb-2.row
+                .col-6
+                  i(class="bi bi-upc-scan me-1")          
+                  span MÃ TOUR:
+                .col-6
+                  span #{tour.code}
+              .info-tour.border-bottom.pb-2.row
+                .col-6
+                  i(class="bi bi-alarm me-1 text-warning")          
+                  span Thời lượng:
+                .col-6
+                  span #{tour.numberOfDays}
+              .info-tour.border-bottom.py-2.row 
+                .col-6
+                  i(class="bi bi-geo me-2 text-primary")
+                  span Khởi hành: 
+                .col-6
+                  span #{tour.departureLocation}
+              .info-tour.border-bottom.py-2.row 
+                .col-6
+                  i(class="bi bi-truck me-2")
+                  span Phương tiện:
+                .col-6
+                  span Ô tô
+              .info-tour.border-bottom.py-2.row 
+                .col-6
+                  i(class="bi bi-calendar-check me-2")
+                  span Ngày hoạt động:
+                .col-6
+                  span Hàng ngày
+              .info-tour.border-bottom.py-2.row 
+                .col-6
+                  span Giá người lớn(>= 18 tuổi):
+                .col-6
+                  span.text-danger(data-price) #{tour.priceAdult}
+              .info-tour.border-bottom.py-2.row
+                .col-6
+                  span Giá trẻ em(< 18 tuổi):
+                .col-6
+                  span.text-danger(data-price) #{tour.priceChild}
+              form(
+                action=`/api/v1/cart/add/${tour.id}`
+                method="POST"
+              )
+                .quantityAdult.py-2
+                  span Số người lớn
+                  input(
+                    class="form-control mb-1"
+                    type="number"
+                    name="quantityAdult"
+                    value="1"
+                    min="1"
+                  )
+                .quantityChild
+                  span Số trẻ em
+                  input(
+                    class="form-control mb-2"
+                    type="number"
+                    name="quantityChild"
+                    value="0"
+                    min="0"
+                  )
+                .time
+                  span Chọn ngày dự kiến
+                  +time-start()
+                .text-center.py-2
+                  button(type="submit" class="btn btn-outline-info rounded-pill") Thêm tour vào giỏ hàng
       .row
         h3 Mô tả và lịch trình
-        .information
-          #{tour.information}
+        .information !{tour.information}
+
   script(src="/client/js/time.js")
