@@ -1,0 +1,53 @@
+extends ../../layouts/default
+block main
+  h1 Cài đặt chung
+  form(
+    class="border border-1 p-4 me-3"
+  )
+    .row.form-group.mb-2 
+      .col-4
+        label(for="websiteName" class="form-label") Tên website *
+        input.form-control(
+          type="text"
+          id="websiteName"
+          name="websiteName"
+          required
+        )
+    .row.form-group.mb-2 
+      .col-4
+        label(for="phone" class="form-label") Số điện thoại liên hệ *
+        input.form-control(
+          type="text"
+          id="phone"
+          name="phone"
+          required
+        )
+      .col-4
+        label(for="address" class="form-label") Địa chỉ công ty *
+        input.form-control(
+          type="text"
+          id="address"
+          name="address"
+          required
+        )
+      .col-4
+        label(for="copyright" class="form-label") Copyright *
+        input.form-control(
+          type="text"
+          id="copyright"
+          name="copyright"
+          required
+        )
+    .form-group
+      label(for="policy" class="form-label") Chính sách *
+      textarea.form-control.textarea-mce(
+        id="policy"
+        name="policy"
+        rows="6"
+        required
+      )
+    .row.w-25.m-1
+      button.btn.btn-primary(type="submit") Cập nhật
+
+    
+      

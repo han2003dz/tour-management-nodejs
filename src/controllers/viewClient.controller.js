@@ -2,6 +2,7 @@ const Tours = require("../models/tours.model");
 const Categories = require("../models/categories.model");
 const Cart = require("../models/cart.model");
 const User = require("../models/user.model");
+
 const priceNewHelper = require("../helpers/priceNew");
 const sortHelper = require("../helpers/sort");
 const { convertToSlug } = require("../helpers/convertToSlug");
@@ -336,6 +337,7 @@ const onlinePayment = async (req, res) => {
   }
 };
 
+
 module.exports = {
   register,
   login,
@@ -350,4 +352,5 @@ module.exports = {
   infoUserClient,
   booking,
   onlinePayment,
+  
 };

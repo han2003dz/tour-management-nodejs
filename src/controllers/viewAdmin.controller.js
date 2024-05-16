@@ -5,6 +5,7 @@ const Roles = require("../models/role.model");
 const Tours = require("../models/tours.model");
 const Categories = require("../models/categories.model");
 const Booking = require("../models/booking.model");
+const Setting = require("../models/setting-general.model");
 
 const filterStatusHelper = require("../helpers/filterStatus");
 const filterStatusOrderHelper = require("../helpers/filterStatusOrder");
@@ -301,6 +302,18 @@ const getOrder = async (req, res) => {
   }
 };
 
+const general = async (req, res) => {
+  try {
+    const settingGeneral = await Setting.findOne({});
+    res.render("admin/pages/settings/general", {
+      pageTitle: "Cài đặt chung",
+      settingGeneral,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   dashboard,
   users,
@@ -320,4 +333,5 @@ module.exports = {
   permissions,
   getOrder,
   login,
+  general,
 };
