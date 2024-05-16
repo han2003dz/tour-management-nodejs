@@ -3,6 +3,7 @@ include ../../mixins/status
 include ../../mixins/selectTree
 include ../../mixins/featured
 include ../../mixins/router
+include ../../mixins/transport
 block main
   +router("tours", "Management", "Tours", "Create")
   h1 Thêm tour mới
@@ -50,15 +51,27 @@ block main
         .row
           .col-6
             div(class="form-group mb-2")
-              label(for="price" class="form-label") Giá gốc (VND) *
+              label(for="priceAdult" class="form-label") Giá người lớn/1 người (>= 18 tuổi)
               input(
                 type="number"
                 class="form-control"
                 id="price"
-                name="price"
+                name="priceAdult"
                 value="0"
-                price-input
+                min="0"
               )
+          .col-5
+            div(class="form-group mb-2")
+              label(for="priceChild" class="form-label") Giá trẻ em/1 người (< 18 tuổi)
+              input(
+                type="number"
+                class="form-control"
+                id="price"
+                name="priceChild"
+                value="0"
+                min="0"
+              )
+        .row.mt-2
           .col-6
             div(class="form-group mb-2")
               label(for="discount" class="form-label") % Giảm giá
@@ -102,6 +115,8 @@ block main
           +status()
         .row.mb-2
           +featured()
+        .row.mb-2
+          +transport()
         .row
           .form-group
             label(for="info" class="form-label") Thông tin tour

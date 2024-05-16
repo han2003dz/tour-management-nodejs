@@ -1,64 +1,41 @@
-// document.addEventListener("DOMContentLoaded", function () {
-//   const input = document.getElementById("images");
-//   const previewContainer = document.getElementById("image-preview-container");
-//   if (input) {
-//     input.addEventListener("change", function () {
-//       const files = this.files;
-//       previewContainer.innerHTML = "";
-//       for (let i = 0; i < files.length; i++) {
-//         const file = files[i];
-//         const reader = new FileReader();
-//         reader.onload = function () {
-//           const container = document.createElement("div");
-//           container.classList.add("img-container");
+document.addEventListener("DOMContentLoaded", function () {
+  const images = document.getElementById("images");
+  if (images) {
+    images.addEventListener("change", function (event) {
+      const files = event.target.files;
+      const previewDiv = document.getElementById("image-preview-container");
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const img = document.createElement("img");
+          img.src = e.target.result;
+          img.classList.add("preview-img");
+          const closeButton = document.createElement("i");
+          closeButton.innerHTML =
+            '<span class="fa-regular fa-circle-xmark"></span>';
+          closeButton.classList.add("close", "btn-delete");
+          closeButton.addEventListener("click", function () {
+            const parentDiv = this.parentElement;
+            previewDiv.removeChild(parentDiv);
+          });
+          const div = document.createElement("div");
+          div.appendChild(closeButton);
+          div.appendChild(img);
+          previewDiv.appendChild(div);
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  }
 
-//           const imgElement = document.createElement("img");
-//           imgElement.src = reader.result;
-//           imgElement.classList.add("img-thumbnail", "mr-2", "mb-2");
-
-//           const iconElement = document.createElement("i");
-//           iconElement.classList.add(
-//             "fa-regular",
-//             "fa-circle-xmark",
-//             `delete-icon${i}`,
-//             "btn-delete"
-//           );
-
-//           container.appendChild(imgElement);
-//           container.appendChild(iconElement);
-//           previewContainer.appendChild(container);
-
-//           document.body.addEventListener("click", (e) => {
-//             if (e.target.matches(`.delete-icon${i}`)) {
-//               const imgContainer = e.target.parentNode.parentNode;
-//               imgContainer.parentNode.removeChild(imgContainer);
-//             }
-//           });
-//         };
-//         reader.readAsDataURL(file);
-//       }
-//     });
-//   }
-// });
-
-function deleteImage(event, index) {
-  event.preventDefault();
-  var container = event.target.parentElement;
-  container.remove();
-}
-
-// upload image
-const uploadImage = document.querySelector("[upload-image]");
-if (uploadImage) {
-  const uploadImageInput = document.querySelector("[upload-image-input]");
-  const uploadImagePreview = document.querySelector("[upload-image-preview]");
-
-  uploadImageInput.addEventListener("change", (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      uploadImagePreview.src = URL.createObjectURL(file);
-    }
-  });
-  console.log(uploadImagePreview.src);
-}
-//end upload image
+  const listBtnDelete = document.querySelectorAll(".btn-data");
+  if (listBtnDelete.length > 0) {
+    listBtnDelete.forEach((btn) => {
+      btn.addEventListener("click", function () {
+        const parentDiv = this.parentElement;
+        parentDiv.remove();
+      });
+    });
+  }
+});

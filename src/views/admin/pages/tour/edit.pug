@@ -46,21 +46,22 @@ block main
               id="images"
               name="images"
               accept="image/*"
-              upload-image-input
+              multiple
             )
             div(id="image-preview-container" class="mt-2")
               each image, index in tour.images
-                div(class="img-container")
-                  img(
+                div
+                  i(class="close btn-delete btn-data")
+                    span(class="fa-regular fa-circle-xmark")
+                  img(  
                     src=tour.images[index]
-                    class="img-thumbnail"
+                    class="preview-img"
                   )
-                  i(class="fa-regular fa-circle-xmark btn-delete" onclick=`deleteImage(event, ${index})`)
       .col-8
         .row
           .col-5
             div(class="form-group mb-2")
-              label(for="priceAdult" class="form-label") Giá người lớn/người
+              label(for="priceAdult" class="form-label") Giá người lớn/1 người (>= 18 tuổi)
               input(
                 type="number"
                 class="form-control"
@@ -71,7 +72,7 @@ block main
               )
           .col-5
             div(class="form-group mb-2")
-              label(for="priceChild" class="form-label") Giá trẻ em/người- dưới 16 tuổi
+              label(for="priceChild" class="form-label") Giá trẻ em/1 người(< 18 tuổi)
               input(
                 type="number"
                 class="form-control"

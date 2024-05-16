@@ -9,7 +9,7 @@ const Booking = require("../models/booking.model");
 const filterStatusHelper = require("../helpers/filterStatus");
 const filterStatusOrderHelper = require("../helpers/filterStatusOrder");
 const searchHelper = require("../helpers/search");
-
+const priceNew = require("../helpers/priceNew");
 const catchAsync = require("../utils/catchAsync");
 
 const dashboard = async (req, res) => {
