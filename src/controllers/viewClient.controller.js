@@ -149,8 +149,6 @@ const resultSearch = async (req, res) => {
             departureLocation: tour.departureLocation,
             stock: tour.stock,
             slug: tour.slug,
-            price: tour.price,
-            priceNew: tour.priceNew,
             featured: tour.featured,
             infoCategory: {
               title: infoCategory.title,

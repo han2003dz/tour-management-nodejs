@@ -47,7 +47,6 @@ if (boxSearch) {
   input.addEventListener("keyup", () => {
     const keyword = input.value;
     const link = `/search/suggest?keyword=${keyword}`;
-    console.log(input);
     fetch(link)
       .then((res) => res.json())
       .then((data) => {
