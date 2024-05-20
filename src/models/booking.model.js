@@ -11,6 +11,7 @@ const bookingSchema = new mongoose.Schema(
       quantityAdult: Number,
       quantityChild: Number,
       price: Number,
+      expectedDate: Date,
     },
     userInfo: {
       username: String,

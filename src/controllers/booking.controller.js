@@ -59,7 +59,6 @@ const checkout = async (req, res) => {
           quantityAdult: tour.quantityAdult,
           quantityChild: tour.quantityChild,
           expectedDate: tour.expectedDate,
-          bookingDate: tour.bookingDate,
         };
         tourInfo = objectTour;
       } else {
