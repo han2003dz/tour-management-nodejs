@@ -80,4 +80,10 @@ viewClientRouter.get(
   viewClientController.onlinePayment
 );
 
+viewClientRouter.get(
+  "/user/shopping-history/:userId",
+  checkCookieMiddleware,
+  viewClientController.history
+);
+
 module.exports = viewClientRouter;

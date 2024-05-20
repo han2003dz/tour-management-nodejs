@@ -5,11 +5,11 @@
 nav.nav-menu
   ul
     li
-      a.nav-link.scrollto.active(href='/user/info')
+      a.nav-link.scrollto.active(href=`/info/${user.id}`)
         i(class="fa-solid fa-user")
         span Thông tin tài khoản
     li
-      a.nav-link.scrollto(href='/user/shopping-history')
+      a.nav-link.scrollto(href=`/user/shopping-history/${user.id}`)
         i(class="fa-solid fa-clock-rotate-left")
         span Lịch sử đặt tour
     li
