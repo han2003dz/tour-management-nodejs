@@ -11,16 +11,12 @@ nav.nav-menu
     li
       a.nav-link.scrollto(href='/user/shopping-history')
         i(class="fa-solid fa-clock-rotate-left")
-        span Lịch sử mua hàng
+        span Lịch sử đặt tour
     li
       a.nav-link.scrollto(href='/')
         i(class="fa-solid fa-magnifying-glass-dollar")
         span Tra cứu hóa đơn
     li
-      a.nav-link.scrollto(href='#portfolio')
-        i(class="fa-solid fa-pen-to-square")
-        span Chỉnh sửa thông tin
-    li
-      a.nav-link.scrollto(href="/user/logout")
+      a.nav-link.scrollto(href="/api/v1/auth/logout")
         i(class="fa-solid fa-right-from-bracket")
         span Đăng xuất
