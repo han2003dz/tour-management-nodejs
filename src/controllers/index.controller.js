@@ -6,6 +6,7 @@ module.exports = {
   tourController: require("./tours.controller"),
   categoryController: require("./categories.controller"),
   roleController: require("./roles.controller"),
+  settingController: require("./settings.controller"),
   viewClientController: require("./viewClient.controller"),
   viewAdminController: require("./viewAdmin.controller"),
 };

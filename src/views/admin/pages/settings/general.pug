@@ -3,6 +3,9 @@ block main
   h1 Cài đặt chung
   form(
     class="border border-1 p-4 me-3"
+    action=`/api/v1/settings/general?_method=PATCH`
+    method="POST"
+    enctype="multipart/form-data"
   )
     .row.form-group.mb-2 
       .col-4
@@ -11,15 +14,42 @@ block main
           type="text"
           id="websiteName"
           name="websiteName"
+          value=(settingGeneral ? settingGeneral.websiteName : "")
           required
+        )
+    .row.form-group.mb-2(upload-image)
+      .col-4
+        label(for="logo") Logo
+        input.form-control(
+          type="file"
+          class="form-control-file"
+          id="logo"
+          name="logo"
+          accept="image/*"
+          upload-image-input
+        )
+        img(
+          src=(settingGeneral ? settingGeneral.logo : "")
+          upload-image-preview
+          class="image-preview"
         )
     .row.form-group.mb-2 
       .col-4
-        label(for="phone" class="form-label") Số điện thoại liên hệ *
+        label(for="phone" class="form-label") Số điện thoại công ty *
         input.form-control(
           type="text"
           id="phone"
           name="phone"
+          value=(settingGeneral ? settingGeneral.phone : "")
+          required
+        )
+      .col-4
+        label(for="email" class="form-label") email công ty *
+        input.form-control(
+          type="text"
+          id="email"
+          name="email"
+          value=(settingGeneral ? settingGeneral.email : "")
           required
         )
       .col-4
@@ -28,14 +58,17 @@ block main
           type="text"
           id="address"
           name="address"
+          value=(settingGeneral ? settingGeneral.address : "")
           required
         )
+    .row.form-group.mb-2 
       .col-4
         label(for="copyright" class="form-label") Copyright *
         input.form-control(
           type="text"
           id="copyright"
           name="copyright"
+          value=(settingGeneral ? settingGeneral.copyright : "")
           required
         )
     .form-group
@@ -44,8 +77,8 @@ block main
         id="policy"
         name="policy"
         rows="6"
-        required
-      )
+        value=(settingGeneral ? settingGeneral.policy : "")
+      ) #{settingGeneral.policy}
     .row.w-25.m-1
       button.btn.btn-primary(type="submit") Cập nhật
 

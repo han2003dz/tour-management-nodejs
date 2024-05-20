@@ -2,6 +2,7 @@ const Tours = require("../models/tours.model");
 const Categories = require("../models/categories.model");
 const Cart = require("../models/cart.model");
 const User = require("../models/user.model");
+const Setting = require("../models/setting-general.model");
 
 const priceNewHelper = require("../helpers/priceNew");
 const sortHelper = require("../helpers/sort");
@@ -337,6 +338,17 @@ const onlinePayment = async (req, res) => {
   }
 };
 
+const policy = async (req, res) => {
+  try {
+    const setting = await Setting.findOne({}).select("policy");
+    res.render("client/pages/policy/index", {
+      pageTitle: "Trang chính sách",
+      setting,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 module.exports = {
   register,
@@ -352,5 +364,5 @@ module.exports = {
   infoUserClient,
   booking,
   onlinePayment,
-  
+  policy,
 };

@@ -32,6 +32,12 @@ viewClientRouter.get(
   viewClientController.priceTable
 );
 
+viewClientRouter.get(
+  "/policy",
+  checkCookieMiddleware,
+  viewClientController.policy
+);
+
 viewClientRouter.get("/cart", checkCookieMiddleware, viewClientController.cart);
 viewClientRouter.get(
   "/cart/updateQuantityAdult/:tourId/:quantityAdult",

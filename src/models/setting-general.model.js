@@ -9,6 +9,7 @@ const settingSchema = new mongoose.Schema(
     },
     logo: String,
     phone: String,
+    email: String,
     address: String,
     copyright: String,
     policy: String,

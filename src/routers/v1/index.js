@@ -1,4 +1,3 @@
-
 const userRouter = require("./users.router");
 const authRouter = require("./auth.router");
 const tourRouter = require("./tour.router");
@@ -6,7 +5,7 @@ const categoryRouter = require("./category.router");
 const roleRouter = require("./role.router");
 const cartRouter = require("./cart.router");
 const bookingRouter = require("./booking.router");
-
+const settingRouter = require("./setting.router");
 
 const router = require("express").Router();
 
@@ -38,6 +37,10 @@ const routes = [
   {
     path: "/booking",
     route: bookingRouter,
+  },
+  {
+    path: "/settings",
+    route: settingRouter,
   },
 ];
 
