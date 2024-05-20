@@ -3,7 +3,7 @@ mixin sort()
     .col-3
       .select-sort.d-flex(sort)
         select(
-          class="form-control form-select form-select-sm"
+          class="form-control form-select form-select-sm w-75"
           name="sort"
           sort-select
         )
@@ -17,9 +17,9 @@ mixin sort()
           option(value="numberOfDays-desc") Thời lượng giảm dần 
           option(value="numberOfDays-asc") Thời lượng tăng
         button(
-            class="btn btn-danger"
-            sort-clear
-          ) Clear
+          class="btn btn-danger"
+          sort-clear
+        ) Clear
 mixin sort-category()
   .select-sort(sort)
     select(

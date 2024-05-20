@@ -1,6 +1,8 @@
 extends ../../layouts/default
 include ../../mixins/sort
 include ../../mixins/breadcrumb
+include ../../mixins/pagination
+
 block main
   +breadcrumbs(pageTitle, 'Bảng giá')
   .price-table.p-5
@@ -29,4 +31,6 @@ block main
               a(class="btn btn-outline-info btn-sm rounded-pill" 
                 href=`detail/${item.slug}`
               ) XEM TOUR
+    if(pagination)
+      +pagination(pagination)
                 

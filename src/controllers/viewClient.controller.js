@@ -46,16 +46,31 @@ const home = async (req, res) => {
 
 const priceTable = async (req, res) => {
   try {
-    let sort = {};
-    sortHelper.addToSort(req, sort);
-    const tours = await Tours.find({
+    const find = {
       status: "active",
       deleted: false,
-    }).sort(sort);
+    };
+    let sort = {};
+    sortHelper.addToSort(req, sort);
+    const total = await Tours.countDocuments(find);
+    let objectPagination = paginationHelper(
+      {
+        currentPage: 1,
+        limitItem: 6,
+      },
+      req.query,
+      total
+    );
+
+    const tours = await Tours.find(find)
+      .sort(sort)
+      .limit(objectPagination.limitItem)
+      .skip(objectPagination.skip);
     const newTours = priceNewHelper.priceNewTours(tours);
     res.render("client/pages/priceTable/index", {
       pageTitle: "Bảng giá tours",
       tours: newTours,
+      pagination: objectPagination,
     });
   } catch (error) {
     console.log(error);
