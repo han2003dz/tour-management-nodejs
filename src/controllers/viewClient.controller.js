@@ -288,7 +288,7 @@ const detailTourClient = async (req, res) => {
 const infoUserClient = async (req, res) => {
   try {
     const user = await User.findOne({
-      _id: req.params.id, 
+      _id: req.params.id,
       isLocked: false,
     }).select("username phone avatar email gender");
     res.render("client/pages/user/info", {
@@ -373,6 +373,14 @@ const history = async (req, res) => {
   } catch (error) {}
 };
 
+const contact = async (req, res) => {
+  try {
+    res.render("client/pages/contact/index", {
+      pageTitle: "Liên hệ",
+    });
+  } catch (error) {}
+};
+
 module.exports = {
   register,
   login,
@@ -389,4 +397,5 @@ module.exports = {
   onlinePayment,
   policy,
   history,
+  contact,
 };

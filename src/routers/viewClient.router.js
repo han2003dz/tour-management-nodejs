@@ -2,6 +2,7 @@ const viewClientRouter = require("express").Router();
 const { viewClientController } = require("../controllers/index.controller");
 const categoryMiddleware = require("../middlewares/client/category.middleware");
 const cartMiddleware = require("../middlewares/client/cart.middleware");
+const infoWebSite = require("../middlewares/infoWebSite.middleware");
 
 const {
   checkCookieMiddleware,
@@ -9,6 +10,7 @@ const {
 
 viewClientRouter.use(categoryMiddleware.category);
 viewClientRouter.use(cartMiddleware.cartTourId);
+viewClientRouter.use(infoWebSite.settingGeneral);
 
 viewClientRouter.get("/register", viewClientController.register);
 viewClientRouter.get("/login", viewClientController.login);
@@ -84,6 +86,12 @@ viewClientRouter.get(
   "/user/shopping-history/:userId",
   checkCookieMiddleware,
   viewClientController.history
+);
+
+viewClientRouter.get(
+  "/contact",
+  checkCookieMiddleware,
+  viewClientController.contact
 );
 
 module.exports = viewClientRouter;

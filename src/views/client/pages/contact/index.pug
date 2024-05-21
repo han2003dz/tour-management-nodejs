@@ -1,0 +1,49 @@
+extends ../../layouts/default
+include ../../mixins/breadcrumb
+block main 
+  +breadcrumbs(pageTitle, 'Liên hệ')
+  section#contact.contact.section-bg
+    .container(data-aos='fade-up')
+      .section-title
+        h2 Liên hệ với chúng tôi
+      .row
+        .col-lg-6
+          .info-box.mb-4
+            i.bi.bi-map
+            h3 Địa chỉ
+            p #{settingGeneral.address}
+        .col-lg-3.col-md-6
+          .info-box.mb-4
+            i.bi.bi-envelope
+            h3 Email
+            p #{settingGeneral.email}
+        .col-lg-3.col-md-6
+          .info-box.mb-4
+            i.bi.bi-phone-call
+            h3 Phone
+            p #{settingGeneral.phone}
+      .row
+        .col-lg-6
+          iframe.mb-4.mb-lg-0(
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.062146669548!2d105.73299711541993!3d21.051732792519672!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313454b6dc3a5cd1%3A0x6bd4811b5eb63d76!2zVHLGsOG7nW5nIMSQaeG7hWkgxJDDtG5nIG5naGnhu4dwIFRo4bqvbmcgVGhp4buDdCwgVGhhbmggTG9uZywgVGjDoW5oIFh1w6JuLCBWaWV0bmFt!5e0!3m2!1svi!2s!4v1687972387540" 
+            frameborder='0' 
+            style='border:0; width: 100%; height: 384px;' 
+            allowfullscreen=''
+          )
+        .col-lg-6
+          form.php-email-form(
+            action='' 
+            method='POST' 
+            role='form'
+          )
+            .row
+              .col-md-6.form-group
+                input#name.form-control(type='text' name='username' placeholder='Họ Tên' required='')
+              .col-md-6.form-group.mt-3.mt-md-0
+                input#email.form-control(type='email' name='email' placeholder='Email' required='')
+            .form-group.mt-3
+              input#subject.form-control(type='text' name='phone' placeholder='Số điện thoại' required='')
+            .form-group.mt-3
+              textarea.form-control(name='notes' rows='5' placeholder='ghi chú' required='')
+            .text-center
+              button(type='submit') Gửi thông tin liên hệ

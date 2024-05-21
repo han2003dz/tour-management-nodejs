@@ -1,4 +1,7 @@
-extends ../../layouts/default.pug
+extends ../../layouts/default
+include ../../mixins/breadcrumb
+
 block main
+  +breadcrumbs(pageTitle, 'Chính sách')
   div.p-4
     .policy !{setting.policy}
