@@ -45,7 +45,7 @@ viewClientRouter.get(
   viewClientController.updateCart
 );
 viewClientRouter.get(
-  "/cart/updateQuantityChild/:tourId/:quantityClild",
+  "/cart/updateQuantityChild/:tourId/:quantityChild",
   checkCookieMiddleware,
   viewClientController.updateCart
 );
