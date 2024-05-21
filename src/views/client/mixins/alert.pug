@@ -5,7 +5,7 @@ mixin alert-success(time)
         show-alert 
         data-time=time
       ) #{messages.success}
-        i(close-alert class="bi-solid bi-circle-xmark mx-2")
+        i(close-alert class="bi bi-x-circle mx-2")
 
 mixin alert-error(time)
   if messages.error
@@ -14,4 +14,4 @@ mixin alert-error(time)
         show-alert 
         data-time=time
       ) #{messages.error} 
-        i(close-alert class="bi-solid bi-circle-xmark mx-2")
+        i(close-alert class="bi bi-x-circle mx-2")
