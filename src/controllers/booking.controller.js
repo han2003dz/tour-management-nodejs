@@ -59,8 +59,10 @@ const checkout = async (req, res) => {
           quantityAdult: tour.quantityAdult,
           quantityChild: tour.quantityChild,
           expectedDate: tour.expectedDate,
+          image: dataTour.images[0],
+          numberOfDays: dataTour.numberOfDays,
         };
-        tourInfo = objectTour;
+        tourInfo = Object.assign({}, objectTour);
       } else {
         req.flash("error", "Tour không tồn tại");
       }

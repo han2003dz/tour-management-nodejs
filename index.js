@@ -40,6 +40,9 @@ const systemConfig = require("./src/config/system");
 app.locals.prefixAdmin = systemConfig.prefixAdmin;
 app.locals.moment = moment;
 
+const cron = require("node-cron");
+process.stdin.resume();
+
 app.set("views", `${__dirname}/src/views`);
 app.set("view engine", "pug");
 app.use(express.static(`${__dirname}/src/public`));

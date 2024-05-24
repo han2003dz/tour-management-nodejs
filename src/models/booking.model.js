@@ -12,6 +12,8 @@ const bookingSchema = new mongoose.Schema(
       quantityChild: Number,
       price: Number,
       expectedDate: Date,
+      image: String,
+      numberOfDays: String,
     },
     userInfo: {
       username: String,
@@ -22,6 +24,7 @@ const bookingSchema = new mongoose.Schema(
     note: String,
     transactionType: String,
     status: String,
+    statusTrip: String,
     timeStart: {
       type: Date,
       default: Date.now,

@@ -1,8 +1,33 @@
 extends ../../layouts/default
+include ../../mixins/moment
 block main
   .container
     .row
       .col-3.d-flex.flex-column.nav-info-user
-        include ../../partials/navbar.pug
-      .col-9
-        h1 Lịch sử đặt tour
+        include ../../partials/navbar
+      .col-9.container.history-container
+        if record.length > 0
+          each item, index in record
+            .card.booking-card
+              .row
+                .col-4
+                  img.card-img-top(src=item.tourInfo.image alt=item.tourInfo.title)
+                .col-6
+                  .card-body
+                    h5.card-title
+                      i.bi.bi-geo-alt-fill
+                      | Tour: #{item.tourInfo.title}
+                    p.card-text
+                      i.bi.bi-calendar-check
+                      span.mx-2 Ngày đặt:
+                      +formatDate(item.tourInfo.timeStart)
+                    p.card-text
+                      i.bi.bi-calendar-check
+                      span.mx-2 Ngày đi:
+                      +formatDate(item.tourInfo.expectedDate)
+                    p.card-text
+                      i.bi.bi-info-circle
+                      span.m-2 #{item.tourInfo.title} - #{item.tourInfo.numberOfDays}
+                    a.btn.btn-primary(href='#') Xem chi tiết
+        else
+          p.text-center Bạn chưa có tour được đặt! 

@@ -30,3 +30,62 @@
 ::placeholder {
   font-size: 12px;
 }
+
+/* history order */
+.history-container {
+  margin-top: 50px;
+}
+
+.history-title {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #343a40;
+}
+
+.booking-card {
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.booking-card:hover {
+  transform: translateY(-5px);
+}
+
+.booking-card img {
+  border-radius: 15px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.booking-card .card-body {
+  padding: 20px;
+}
+
+.booking-card h5 {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+  color: #007bff;
+}
+
+.booking-card p {
+  margin-bottom: 5px;
+  color: #6c757d;
+}
+
+.booking-card .card-footer {
+  background-color: transparent;
+  border-top: none;
+  text-align: right;
+}
+
+.no-bookings {
+  text-align: center;
+  font-size: 1.2em;
+  color: #6c757d;
+  margin-top: 50px;
+}

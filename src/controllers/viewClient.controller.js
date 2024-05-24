@@ -3,6 +3,7 @@ const Categories = require("../models/categories.model");
 const Cart = require("../models/cart.model");
 const User = require("../models/user.model");
 const Setting = require("../models/setting-general.model");
+const Booking = require("../models/booking.model");
 
 const priceNewHelper = require("../helpers/priceNew");
 const sortHelper = require("../helpers/sort");
@@ -367,10 +368,19 @@ const policy = async (req, res) => {
 
 const history = async (req, res) => {
   try {
+    const user_id = req.params.userId;
+    const cart = await Cart.findOne({ user_id });
+    if (!cart) {
+      return res.status(404).send("Cart not found");
+    }
+    const record = await Booking.find({ cart_id: cart._id, deleted: false });
     res.render("client/pages/user/history", {
       pageTitle: "Lịch sử đặt tour",
+      record,
     });
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const contact = async (req, res) => {
