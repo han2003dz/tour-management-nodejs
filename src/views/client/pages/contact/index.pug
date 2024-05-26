@@ -32,18 +32,18 @@ block main
           )
         .col-lg-6
           form.php-email-form(
-            action='' 
-            method='POST' 
-            role='form'
+            id="contactForm"
           )
             .row
               .col-md-6.form-group
-                input#name.form-control(type='text' name='username' placeholder='Họ Tên' required='')
+                input#username.form-control(type='text' name='username' placeholder='Họ Tên' required='')
               .col-md-6.form-group.mt-3.mt-md-0
                 input#email.form-control(type='email' name='email' placeholder='Email' required='')
             .form-group.mt-3
-              input#subject.form-control(type='text' name='phone' placeholder='Số điện thoại' required='')
+              input#phone.form-control(type='text' name='phone' placeholder='Số điện thoại' required='')
             .form-group.mt-3
-              textarea.form-control(name='notes' rows='5' placeholder='ghi chú' required='')
+              textarea.form-control#notes(name='notes' rows='5' placeholder='ghi chú' required='')
             .text-center
               button(type='submit') Gửi thông tin liên hệ
+block script
+  script(src="/client/js/contact.js")
