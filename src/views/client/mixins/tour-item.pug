@@ -1,22 +1,4 @@
 mixin tour-item(item)
-  //- .col-lg-4.col-md-6.portfolio-item.filter-app
-  //-   a(href=`/detail/${item.slug}`)
-  //-     .portfolio-wrap.tour-item.border.rounded
-  //-       if item.images[0]
-  //-         img.img-fluid.img-tour(
-  //-           src=item.images[0] alt=item.title
-  //-         )
-  //-       if(item.featured == "1")
-  //-         .inner-featured.rounded Nổi bật
-  //-       .info-tour
-  //-         span.title #{item.title} 
-  //-       .info-tour
-  //-         i(class="bi bi-alarm me-1")          
-  //-         span.numberOfDays #{item.numberOfDays}
-  //-       .info-tour Khởi hành: #{item.departureLocation}
-  //-       .stock Số lượng tour còn: #{item.stock}  
-  //-       .text-center.py-2
-  //-         button(class="btn btn-outline-info rounded-pill") XEM TOUR
   .col-lg-4.col-md-6.mb-4.portfolio-item
     .card.h-100.tour-card
       img.card-img-top(src=item.images[0] alt=item.title)

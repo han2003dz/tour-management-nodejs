@@ -724,46 +724,7 @@ section {
 .section-title p {
   margin-bottom: 0;
 }
-/* .info-tour {
-  align-items: center;
-}
-.portfolio .price-new {
-  color: red;
-  padding: 0 10px 10px 10px;
-  font-size: 1.3rem;
-  font-weight: bold;
-}
-.portfolio .price-old {
-  font-size: 0.9rem;
-  color: #777;
-}
-.portfolio .stock {
-  padding: 10px 0 10px 10px;
-  color: #18d26e;
-  font-weight: bold;
-}
-.tour-item:hover {
-  cursor: pointer;
-  box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
-}
-.tour-item {
-  position: relative;
-}
-.inner-featured {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background-color: red;
-  color: #fff;
-  padding: 3px 6px;
-  font-weight: 600;
-  font-style: 14px;
-}
-.img-tour {
-  width: 100%;
-  height: 240px;
-  object-fit: cover;
-} */
+/* tour-item */
 .portfolio-item {
   height: 300px;
 }
