@@ -24,7 +24,7 @@ const bookingSchema = new mongoose.Schema(
     note: String,
     transactionType: String,
     status: String,
-    statusTrip: String,
+    statusTrip: { type: String, default: "Chưa tới ngày đi" },
     timeStart: {
       type: Date,
       default: Date.now,

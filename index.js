@@ -2,9 +2,9 @@ require("dotenv").config();
 
 const express = require("express");
 const app = express();
-
 // connect database
 const database = require("./src/config/database");
+require("./src/utils/statusTrip");
 database.connect();
 
 // router
