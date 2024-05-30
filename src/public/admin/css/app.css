@@ -39,3 +39,12 @@
 td.number {
   text-align: end;
 }
+
+#bookingChart {
+  width: 100% !important;
+  height: 100% !important;
+}
+.chart {
+  width: 90%;
+  height: 500px;
+}

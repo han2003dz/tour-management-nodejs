@@ -37,4 +37,7 @@ viewAdminRouter.get("/booking", viewAdminController.getOrder);
 viewAdminRouter.get("/login", viewAdminController.login);
 
 viewAdminRouter.get("/settings", viewAdminController.general);
+
+viewAdminRouter.get("/statistic", viewAdminController.statistic);
+
 module.exports = viewAdminRouter;

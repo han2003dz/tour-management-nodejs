@@ -314,6 +314,15 @@ const general = async (req, res) => {
   }
 };
 
+const statistic = async (req, res) => {
+  try {
+    res.render("admin/pages/statistic/index", {
+      pageTitle: "Thống kê số liệu",
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
 module.exports = {
   dashboard,
   users,
@@ -334,4 +343,5 @@ module.exports = {
   getOrder,
   login,
   general,
+  statistic,
 };
