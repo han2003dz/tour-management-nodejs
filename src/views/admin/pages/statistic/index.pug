@@ -1,6 +1,14 @@
 extends ../../layouts/default
 
 block main
+  //- div
+  //-   label(for='statsOption') Thống kê theo: 
+  //-   select#statsOption
+  //-     option(value='day') Ngày
+  //-     option(value='month') Tháng
+  //-     option(value='year') Năm
+  //-   button(onclick='fetchStatistics()') Lấy dữ liệu
+
   .container.chart
     canvas(id="bookingChart" width="400" height="200")
 block script

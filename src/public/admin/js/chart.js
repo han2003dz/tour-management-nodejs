@@ -11,6 +11,13 @@ fetch("/api/v1/statistic")
         scales: {
           y: {
             beginAtZero: true,
+            ticks: {
+              callback: function (value) {
+                if (Number.isInteger(value)) {
+                  return value;
+                }
+              },
+            },
           },
         },
       },
