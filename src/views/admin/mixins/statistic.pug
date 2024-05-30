@@ -1,0 +1,12 @@
+mixin statistic(title, item)
+  .card-body
+    h5.card-title #{title}
+    p.card-text
+      | Số lượng: 
+      span#categories-total #{item.total}
+    p.card-text
+      | Hoạt động: 
+      span#categories-active #{item.active}
+    p.card-text
+      | Dừng hoạt động: 
+      span#categories-inactive #{item.inactive}

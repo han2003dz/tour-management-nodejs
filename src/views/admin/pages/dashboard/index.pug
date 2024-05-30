@@ -1,4 +1,5 @@
 extends ../../layouts/default
+include ../../mixins/statistic
 block main
   .m-2
     .row.mt-4
@@ -19,34 +20,18 @@ block main
           //-     p Số điện thoại: <b>#{user.phone}</b>
           //-   if(role.title)
           //-     p Phân quyền: <b>#{role.title}</b>
-      .col-6
-        .card.mb-4
-          .card-header Danh mục sản phẩm
-          .card-body
-            p Số lượng: <b>#{statistic.Categories.total}</b>
-            p Hoạt động: <b>#{statistic.Categories.active}</b>
-            p Dừng hoạt động: <b>#{statistic.Categories.inactive}</b>
-
-      .col-6
-        .card.mb-4
-          .card-header Sản phẩm
-          .card-body
-            p Số lượng: <b>5</b>
-            p Hoạt động: <b>3</b>
-            p Dừng hoạt động: <b>2</b>
-
-      .col-6
-        .card.mb-4
-          .card-header Tài khoản admin
-          .card-body
-            p Số lượng: <b>5</b>
-            p Hoạt động: <b>3</b>
-            p Dừng hoạt động: <b>2</b>
-
-      .col-6
-        .card.mb-4
-          .card-header Tài khoản client
-          .card-body
-            p Số lượng: <b>5</b>
-            p Hoạt động: <b>3</b>
-            p Dừng hoạt động: <b>2</b>
+      .d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pt-3.pb-2.mb-3.border-bottom
+        h1.h2 Dashboard
+      .row
+        .col-md-3
+          .card.text-white.bg-primary.mb-3
+            +statistic("Danh mục", statistic.categories)
+        .col-md-3
+          .card.text-white.bg-info.mb-3
+            +statistic("Tour", statistic.tours)
+        .col-md-3
+          .card.text-white.bg-success.mb-3
+            +statistic("Tour đã đặt", statistic.booking)
+        .col-md-3
+          .card.text-white.bg-secondary.mb-3
+            +statistic("Tài khoản", statistic.user)

@@ -11,44 +11,16 @@ const filterStatusHelper = require("../helpers/filterStatus");
 const filterStatusOrderHelper = require("../helpers/filterStatusOrder");
 const searchHelper = require("../helpers/search");
 const priceNew = require("../helpers/priceNew");
+const statisticHelper = require("../helpers/statistic");
 const catchAsync = require("../utils/catchAsync");
 
 const dashboard = async (req, res) => {
   const statistic = {
-    Categories: {
-      total: 0,
-      active: 0,
-      inactive: 0,
-    },
-    product: {
-      total: 0,
-      active: 0,
-      inactive: 0,
-    },
-    account: {
-      total: 0,
-      active: 0,
-      inactive: 0,
-    },
-    user: {
-      total: 0,
-      active: 0,
-      inactive: 0,
-    },
+    categories: await statisticHelper(Categories),
+    tours: await statisticHelper(Tours),
+    user: await statisticHelper(Users),
+    booking: await statisticHelper(Booking),
   };
-  statistic.Categories.total = await Categories.countDocuments({
-    deleted: false,
-  });
-
-  statistic.Categories.active = await Categories.countDocuments({
-    deleted: false,
-    status: "active",
-  });
-
-  statistic.Categories.inactive = await Categories.countDocuments({
-    deleted: false,
-    status: "inactive",
-  });
 
   res.render("admin/pages/dashboard/index.pug", {
     pageTitle: "Dashboard",
