@@ -14,8 +14,45 @@ const priceNew = require("../helpers/priceNew");
 const catchAsync = require("../utils/catchAsync");
 
 const dashboard = async (req, res) => {
+  const statistic = {
+    Categories: {
+      total: 0,
+      active: 0,
+      inactive: 0,
+    },
+    product: {
+      total: 0,
+      active: 0,
+      inactive: 0,
+    },
+    account: {
+      total: 0,
+      active: 0,
+      inactive: 0,
+    },
+    user: {
+      total: 0,
+      active: 0,
+      inactive: 0,
+    },
+  };
+  statistic.Categories.total = await Categories.countDocuments({
+    deleted: false,
+  });
+
+  statistic.Categories.active = await Categories.countDocuments({
+    deleted: false,
+    status: "active",
+  });
+
+  statistic.Categories.inactive = await Categories.countDocuments({
+    deleted: false,
+    status: "inactive",
+  });
+
   res.render("admin/pages/dashboard/index.pug", {
     pageTitle: "Dashboard",
+    statistic,
   });
 };
 const users = async (req, res) => {
