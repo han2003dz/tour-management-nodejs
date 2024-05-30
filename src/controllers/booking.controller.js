@@ -106,7 +106,33 @@ const checkout = async (req, res) => {
   }
 };
 
+const cancelTrip = async (req, res) => {
+  try {
+    const id = req.params.id;
+    await Booking.updateOne(
+      {
+        _id: id,
+      },
+      {
+        deleted: true,
+        deletedAt: new Date(),
+      }
+    );
+    res.json({
+      code: 200,
+      message: "Hủy thành công",
+    });
+  } catch (error) {
+    res.json({
+      code: 400,
+      message: "Hủy thất bại!",
+      error: error,
+    });
+  }
+};
+
 module.exports = {
   vnpReturn,
   checkout,
+  cancelTrip,
 };

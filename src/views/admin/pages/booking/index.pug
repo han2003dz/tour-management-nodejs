@@ -2,6 +2,7 @@ extends ../../layouts/default
 include ../../mixins/filterStatus
 include ../../mixins/headerTable
 include ../../mixins/router
+include ../../mixins/moment
 block main
   - var link = "booking";
   +router(link, "Management", "Booking")
@@ -12,7 +13,7 @@ block main
     .card-body
       +header-table(link, filterStatusOrder)
       if(order.length > 0)
-        table#datatablesSimple(checkbox-multi)
+        table#datatablesSimple.tableBooking(checkbox-multi)
           thead
             tr
               th 
@@ -20,6 +21,7 @@ block main
               th STT
               th Tên tour
               th Người đặt
+              th Ngày đi
               th 
                 span(class="phoneAll") Số điện thoại
               th Hình thức thanh toán
@@ -41,7 +43,9 @@ block main
                 td #{index + 1}
                 td
                   span.float-start #{item.tourInfo.title}
-                  
+                td
+                  span.float-end
+                    +formatDate(item.tourInfo.expectedDate)
                 td
                   span.float-start #{item.userInfo.username}
                 td
@@ -52,24 +56,17 @@ block main
                   span.float-end(data-price) #{item.tourInfo.amountPaid}
                 td 
                   span.float-start #{item.status === "paid" ? "Đã thanh toán" : "Chưa thanh toán"}
-                td Xem/Xác nhận
-  
-  //-               td(class="text-center")
-  //-                 a(href="#" 
-  //-                   class="badge" 
-  //-                   data-status=item.status
-  //-                   data-id=item.id
-  //-                   link-change-status
-  //-                 ) 
-  //-                   div.form-check.form-switch
-  //-                     input.form-check-input.fs-5.text-success(
-  //-                       type='checkbox'
-  //-                       id='flexSwitchCheckDefault'
-  //-                       checked=item.status === "active"
-  //-                     )
-  //-               td
-  //-                 +actions(link, item)
-  //-     else
-  //-       p.text-center Chưa có tài khoản nào được tạo!      
-  //- +formChangeStatus(link) 
-  //- +formDelete(link)
+                td 
+                  a(class="btn btn-primary btn-sm btn-action" 
+                    href=`${prefixAdmin}/booking/detail/${item.id}`
+                  )
+                    i(class="fa-solid fa-eye")
+                  button.btn-cancel-item(
+                    class="btn btn-danger btn-sm ms-2 btn-action" 
+                    data-item-id=item.id
+                  )
+                    | Hủy
+      else
+        p.text-center Không tìm thấy kết quả!
+block script
+  script(src="/admin/js/booking.js")
