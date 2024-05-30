@@ -14,19 +14,19 @@ const statistic = async (req, res) => {
         },
       },
       {
-        $sort: { "_id.year": 1, "_id.month": 1, "_id.day": 1 },
+        $sort: { "_id.day": 1, "_id.month": 1, "_id.year": 1 },
       },
       {
         $project: {
           _id: 0,
           date: {
             $dateToString: {
-              format: "%Y-%m-%d",
+              format: "%d-%m-%Y",
               date: {
                 $dateFromParts: {
-                  year: "$_id.year",
-                  month: "$_id.month",
                   day: "$_id.day",
+                  month: "$_id.month",
+                  year: "$_id.year",
                 },
               },
             },
