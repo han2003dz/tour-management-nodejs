@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema(
     address: String,
     phone: String,
     avatar: String,
-    status: String,
+    status: { type: String, default: "active" },
     role_id: String,
     gender: String,
     isLocked: {

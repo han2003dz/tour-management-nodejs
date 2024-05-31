@@ -23,7 +23,7 @@ const bookingSchema = new mongoose.Schema(
     },
     note: String,
     transactionType: String,
-    status: String,
+    status: { type: String, default: "active" },
     statusTrip: { type: String, default: "Chưa tới ngày đi" },
     timeStart: {
       type: Date,

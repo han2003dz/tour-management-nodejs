@@ -13,7 +13,7 @@ const roleSchema = new Schema(
       type: Array,
       default: [],
     },
-    status: String,
+    status: { type: String, default: "active" },
     deleted: {
       type: Boolean,
       default: false,
