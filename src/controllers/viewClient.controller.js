@@ -143,7 +143,7 @@ const updateCart = async (req, res) => {
 
 const resultSearch = async (req, res) => {
   try {
-    const keyword = `${req.query.keyword}`;
+    const keyword = req.query.keyword;
     const type = req.params.type;
     let arrTours = [];
     if (keyword) {
@@ -388,7 +388,31 @@ const contact = async (req, res) => {
     res.render("client/pages/contact/index", {
       pageTitle: "Liên hệ",
     });
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const forgotPassword = async (req, res) => {
+  try {
+    res.render("client/pages/user/forgot-password", {
+      pageTitle: "Quên mật khẩu",
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const otp = async (req, res) => {
+  try {
+    const email = req.query.email;
+    res.render("client/pages/user/otp", {
+      pageTitle: "OTP",
+      email,
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 module.exports = {
@@ -408,4 +432,6 @@ module.exports = {
   policy,
   history,
   contact,
+  forgotPassword,
+  otp,
 };

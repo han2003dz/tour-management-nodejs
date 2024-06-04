@@ -1,0 +1,18 @@
+extends ../../layouts/auth
+block main
+  .container.d-flex.align-items-center.justify-content-center
+    .otp.bg-light.p-4.rounded.shadow-lg.w-50
+      h3.text-center Nhập mã OTP
+      form#otp-form
+        .mb-3
+          label.form-label(for='emailInput') Email
+          input#emailInput.form-control(type='email' name='email' value=email aria-describedby='emailHelp' readonly)
+          label.form-label.mt-2(for='otpInput') Nhập otp của bạn
+          input#otpInput.form-control(type='otp' name='otp' aria-describedby='otpHelp')
+          .d-flex.justify-content-between.mt-2
+            p Lưu ý mã OTP đã được gửi về mail của bạn.
+            a(href='/login') 
+              p Về trang login
+        button.btn.btn-primary.w-100.rounded-0(type='submit') Xác nhận
+block script
+  script(src="/client/js/forgot-password.js")

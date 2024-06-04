@@ -17,4 +17,6 @@ router.patch(
   uploadCloud.uploadSingle,
   controller.editPatch
 );
+
+router.post("/forgot-password", controller.forgotPassword);
 module.exports = router;

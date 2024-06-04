@@ -1,30 +1,32 @@
 extends ../../layouts/auth
 block main
-  .card-body
-    h4.title.text-center.mt-4
-      | Đăng ký
-    form.form-box.px-3(
-      id="registerForm"
-      )
-      .form-input
-        span
-          i(class="bi bi-person-fill")
-        input(type='text' name='username' placeholder='Nhập tên...' tabindex='10' required)
-      .form-input.my-2
-        span
-          i(class="bi bi-envelope")
-        input(type='email' name='email' placeholder='Nhập email...' tabindex='10' required)
-      .form-input
-        span
-          i(class="bi bi-key")
-        input(type='password' id="password" name='password' placeholder='Nhập mật khẩu...' required)
-        .eye
-          i(class="bi bi-eye-fill text-dark eye-pass")
-      .form-input
-        span
-          i(class="bi bi-key")
-        input(type='password' id="confirm" name='confirm' placeholder='Nhập lại mật khẩu...' required)
-      .mb-3
-        button.btn.btn-block.text-uppercase(type='submit')
-          | Đăng ký
+  .col-lg-10.col-xl-9.card.flex-row.mx-auto.px-0
+    .img-left.d-none.d-md-flex
+    .card-body
+      h4.title.text-center.mt-4
+        | Đăng ký
+      form.form-box.px-3(
+        id="registerForm"
+        )
+        .form-input
+          span
+            i(class="bi bi-person-fill")
+          input(type='text' name='username' placeholder='Nhập tên...' tabindex='10' required)
+        .form-input.my-2
+          span
+            i(class="bi bi-envelope")
+          input(type='email' name='email' placeholder='Nhập email...' tabindex='10' required)
+        .form-input
+          span
+            i(class="bi bi-key")
+          input(type='password' id="password" name='password' placeholder='Nhập mật khẩu...' required)
+          .eye
+            i(class="bi bi-eye-fill text-dark eye-pass")
+        .form-input
+          span
+            i(class="bi bi-key")
+          input(type='password' id="confirm" name='confirm' placeholder='Nhập lại mật khẩu...' required)
+        .mb-3
+          button.btn.btn-block.text-uppercase(type='submit')
+            | Đăng ký
 

@@ -1,5 +1,5 @@
 module.exports = (objectPagination, query, totalRecord) => {
-  // Lấy trang hiện tại từ tham số truy vấn, mặc định là trang 1 nếu không có
+  // Lấy trang hiện tại từ tham số truy vấn, mặc định là trang 1
   const currentPage = parseInt(query.page) || 1;
 
   // Đảm bảo trang hiện tại không nhỏ hơn 1 và không lớn hơn tổng số trang

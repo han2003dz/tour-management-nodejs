@@ -1,45 +1,47 @@
 extends ../../layouts/auth
 block main
-  .card-body
-    h4.title.text-center.mt-4
-      | Đăng nhập
-    form.form-box.px-3(id="loginForm")
-      .form-input
-        span
-          i(class="bi bi-envelope")
-        input(type='email' name='' placeholder='Nhập email...' tabindex='10' required='' id="email")
-      .form-input
-        span
-          i(class="bi bi-key")
-        input(type='password' id="password" name='' placeholder='Nhập mật khẩu...' required)
-        .eye
-          i(class="bi bi-eye-fill text-dark eye-pass")
-      .mb-3.d-flex.justify-content-between
-        .custom-control.custom-checkbox
-          input#cb1.custom-control-input(
-            type='checkbox' name='' class='basic_checkbox_1' checked)
-          label.custom-control-label(for='cb1') Remember me
-        .forget
-          a.forget-link(href='#')
-            | Quên mật khẩu?
-      .mb-3
-        button.btn.btn-block.text-uppercase(type='submit')
-          | Login
-      .text-center.mb-3
-        | or login with
-      .row.mb-3
-        .col-4
-          a.btn.btn-block.btn-social.btn-facebook(href='#')
-            | facebook
-        .col-4
-          a.btn.btn-block.btn-social.btn-google(href='#')
-            | google
-        .col-4
-          a.btn.btn-block.btn-social.btn-twitter(href='#')
-            | twitter
-      hr.my-4
-      .text-center.mb-2
-        | Bạn chưa có tài khoản?
-        a.register-link(href='/register')
-          | Đăng ký
+  .col-lg-10.col-xl-9.card.flex-row.mx-auto.px-0
+    .img-left.d-none.d-md-flex
+    .card-body
+      h4.title.text-center.mt-4
+        | Đăng nhập
+      form.form-box.px-3(id="loginForm")
+        .form-input
+          span
+            i(class="bi bi-envelope")
+          input(type='email' name='' placeholder='Nhập email...' tabindex='10' required='' id="email")
+        .form-input
+          span
+            i(class="bi bi-key")
+          input(type='password' id="password" name='' placeholder='Nhập mật khẩu...' required)
+          .eye
+            i(class="bi bi-eye-fill text-dark eye-pass")
+        .mb-3.d-flex.justify-content-between
+          .custom-control.custom-checkbox
+            input#cb1.custom-control-input(
+              type='checkbox' name='' class='basic_checkbox_1' checked)
+            label.custom-control-label(for='cb1') Remember me
+          .forget
+            a.forget-link(href='/forgot-password')
+              | Quên mật khẩu?
+        .mb-3
+          button.btn.btn-block.text-uppercase(type='submit')
+            | Login
+        .text-center.mb-3
+          | or login with
+        .row.mb-3
+          .col-4
+            a.btn.btn-block.btn-social.btn-facebook(href='#')
+              | facebook
+          .col-4
+            a.btn.btn-block.btn-social.btn-google(href='#')
+              | google
+          .col-4
+            a.btn.btn-block.btn-social.btn-twitter(href='#')
+              | twitter
+        hr.my-4
+        .text-center.mb-2
+          | Bạn chưa có tài khoản?
+          a.register-link(href='/register')
+            | Đăng ký
 
