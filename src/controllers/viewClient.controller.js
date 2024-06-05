@@ -415,6 +415,18 @@ const otp = async (req, res) => {
   }
 };
 
+const resetPassword = async (req, res) => {
+  try {
+    const email = req.query.email;
+    res.render("client/pages/user/reset-password", {
+      pageTitle: "Đổi mật khẩu",
+      email,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   register,
   login,
@@ -434,4 +446,5 @@ module.exports = {
   contact,
   forgotPassword,
   otp,
+  resetPassword,
 };

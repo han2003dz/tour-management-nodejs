@@ -94,8 +94,59 @@ const forgotPassword = async (req, res) => {
     console.log(error);
   }
 };
+
+const otpPost = async (req, res) => {
+  try {
+    const { email, otp } = req.body;
+    const data = await ForgotPassword.findOne({
+      email,
+      otp,
+    });
+    if (!data) {
+      res.json({
+        code: 300,
+        message: "OTP không hợp lệ",
+      });
+    }
+    res.json({
+      code: 200,
+      message: "OTP hợp lệ",
+    });
+  } catch (error) {
+    res.json({
+      code: 400,
+      message: "Lỗi 404",
+    });
+    console.log(error);
+  }
+};
+
+const resetPasswordPost = async (req, res) => {
+  try {
+    const { password, email } = req.body;
+    await Users.updateOne(
+      {
+        email,
+      },
+      {
+        password,
+      }
+    );
+    res.json({
+      code: 200,
+      message: "Cập nhật mật khẩu thành công",
+    });
+  } catch (error) {
+    res.json({
+      code: 400,
+      message: "Cập nhật mật khẩu thất bại",
+    });
+  }
+};
 module.exports = {
   createPost,
   editPatch,
   forgotPassword,
+  otpPost,
+  resetPasswordPost,
 };

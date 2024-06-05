@@ -19,4 +19,8 @@ router.patch(
 );
 
 router.post("/forgot-password", controller.forgotPassword);
+
+router.post("/otp", controller.otpPost);
+router.post("/reset-password", controller.resetPasswordPost);
+
 module.exports = router;

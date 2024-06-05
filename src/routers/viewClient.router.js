@@ -8,7 +8,6 @@ const {
   checkCookieMiddleware,
 } = require("../middlewares/checkCookie.middleware");
 
-
 viewClientRouter.use(categoryMiddleware.category);
 viewClientRouter.use(cartMiddleware.cartTourId);
 viewClientRouter.use(infoWebSite.settingGeneral);
@@ -17,6 +16,7 @@ viewClientRouter.get("/register", viewClientController.register);
 viewClientRouter.get("/login", viewClientController.login);
 viewClientRouter.get("/forgot-password", viewClientController.forgotPassword);
 viewClientRouter.get("/otp", viewClientController.otp);
+viewClientRouter.get("/reset-password", viewClientController.resetPassword);
 
 viewClientRouter.get("/", checkCookieMiddleware, viewClientController.home);
 
