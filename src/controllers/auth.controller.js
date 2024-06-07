@@ -103,13 +103,9 @@ const loginAdmin = async (req, res, next) => {
         }
       );
       res.cookie("tokens", accessToken, { signed: true, httpOnly: true });
-      res.redirect("/admin");
-      req.flash("success", "Đăng nhập thành công!");
+      res.status(200).json(response(200, "Thành công", accessToken));
     } else {
-      req.flash(
-        "error",
-        "Tài khoản này chưa được cấp quyền truy cập hệ thống!"
-      );
+      res.status(400).json({ code: 400, message: "Thất bại" });
       res.redirect("back");
     }
   } catch (error) {

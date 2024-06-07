@@ -1,43 +1,111 @@
 const viewAdminRouter = require("express").Router();
 const { viewAdminController } = require("../controllers/index.controller");
-viewAdminRouter.get("/", viewAdminController.dashboard);
+const authMiddleware = require("../middlewares/auth.middleware");
+viewAdminRouter.get(
+  "/",
+  authMiddleware.authMiddleware,
+  viewAdminController.dashboard
+);
 
-viewAdminRouter.get("/tours", viewAdminController.tours);
-viewAdminRouter.get("/tours/edit/:id", viewAdminController.pageEditTour);
-viewAdminRouter.get("/tours/create", viewAdminController.pageCreateTour);
-viewAdminRouter.get("/tours/detail/:id", viewAdminController.pageDetailTour);
+viewAdminRouter.get(
+  "/tours",
+  authMiddleware.authMiddleware,
+  viewAdminController.tours
+);
+viewAdminRouter.get(
+  "/tours/edit/:id",
+  authMiddleware.authMiddleware,
+  viewAdminController.pageEditTour
+);
+viewAdminRouter.get(
+  "/tours/create",
+  authMiddleware.authMiddleware,
+  viewAdminController.pageCreateTour
+);
+viewAdminRouter.get(
+  "/tours/detail/:id",
+  authMiddleware.authMiddleware,
+  viewAdminController.pageDetailTour
+);
 
-viewAdminRouter.get("/categories", viewAdminController.categories);
+viewAdminRouter.get(
+  "/categories",
+  authMiddleware.authMiddleware,
+  viewAdminController.categories
+);
 viewAdminRouter.get(
   "/categories/edit/:id",
+  authMiddleware.authMiddleware,
   viewAdminController.pageEditCategory
 );
 viewAdminRouter.get(
   "/categories/create",
+  authMiddleware.authMiddleware,
   viewAdminController.pageCreateCategory
 );
 viewAdminRouter.get(
   "/categories/detail/:id",
+  authMiddleware.authMiddleware,
   viewAdminController.pageDetailCategory
 );
 
-viewAdminRouter.get("/users", viewAdminController.users);
+viewAdminRouter.get(
+  "/users",
+  authMiddleware.authMiddleware,
+  viewAdminController.users
+);
 // viewAdminRouter.get("/users/edit/:id", viewAdminController.pageEditAccount);
-viewAdminRouter.get("/users/create", viewAdminController.pageCreateAccount);
+viewAdminRouter.get(
+  "/users/create",
+  authMiddleware.authMiddleware,
+  viewAdminController.pageCreateAccount
+);
 // viewAdminRouter.get("/users/detail/:id", viewAdminController.pageDetailAccount);
 
-viewAdminRouter.get("/roles", viewAdminController.roles);
-viewAdminRouter.get("/roles/edit/:id", viewAdminController.pageEditRole);
-viewAdminRouter.get("/roles/create", viewAdminController.pageCreateRole);
-viewAdminRouter.get("/roles/detail/:id", viewAdminController.pageDetailRole);
-viewAdminRouter.get("/roles/permissions", viewAdminController.permissions);
+viewAdminRouter.get(
+  "/roles",
+  authMiddleware.authMiddleware,
+  viewAdminController.roles
+);
+viewAdminRouter.get(
+  "/roles/edit/:id",
+  authMiddleware.authMiddleware,
+  viewAdminController.pageEditRole
+);
+viewAdminRouter.get(
+  "/roles/create",
+  authMiddleware.authMiddleware,
+  viewAdminController.pageCreateRole
+);
+viewAdminRouter.get(
+  "/roles/detail/:id",
+  authMiddleware.authMiddleware,
+  viewAdminController.pageDetailRole
+);
+viewAdminRouter.get(
+  "/roles/permissions",
+  authMiddleware.authMiddleware,
+  viewAdminController.permissions
+);
 
-viewAdminRouter.get("/booking", viewAdminController.getOrder);
+viewAdminRouter.get(
+  "/booking",
+  authMiddleware.authMiddleware,
+  viewAdminController.getOrder
+);
 
 viewAdminRouter.get("/login", viewAdminController.login);
 
-viewAdminRouter.get("/settings", viewAdminController.general);
+viewAdminRouter.get(
+  "/settings",
+  authMiddleware.authMiddleware,
+  viewAdminController.general
+);
 
-viewAdminRouter.get("/statistic", viewAdminController.statistic);
+viewAdminRouter.get(
+  "/statistic",
+  authMiddleware.authMiddleware,
+  viewAdminController.statistic
+);
 
 module.exports = viewAdminRouter;
