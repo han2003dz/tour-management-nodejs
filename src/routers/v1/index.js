@@ -8,6 +8,7 @@ const bookingRouter = require("./booking.router");
 const settingRouter = require("./setting.router");
 const contactRouter = require("./contact.router");
 const statisticRouter = require("./statistic.router");
+const reviewRouter = require("./review.router");
 const router = require("express").Router();
 
 const routes = [
@@ -50,6 +51,10 @@ const routes = [
   {
     path: "/statistic",
     route: statisticRouter,
+  },
+  {
+    path: "/review",
+    route: reviewRouter,
   },
 ];
 

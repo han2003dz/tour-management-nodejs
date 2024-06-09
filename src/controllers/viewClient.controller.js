@@ -11,6 +11,7 @@ const { convertToSlug } = require("../helpers/convertToSlug");
 const paginationHelper = require("../helpers/pagination");
 
 const catchAsync = require("../utils/catchAsync");
+const Review = require("../models/review.model");
 
 const register = catchAsync(async (req, res) => {
   res.render("client/pages/auth/register", {
@@ -121,6 +122,7 @@ const cart = async (req, res) => {
     res.redirect("back");
   }
 };
+
 const updateCart = async (req, res) => {
   try {
     const cartId = req.cookies.cartTourId;
@@ -283,9 +285,13 @@ const detailTourClient = async (req, res) => {
       tour.category = category;
     }
     tour.priceNew = priceNewHelper.priceNewTour(tour);
+
+    const reviews = await Review.findOne({ tourId: tour.id }).populate("userId");
+
     res.render("client/pages/tours/detail", {
       pageTitle: tour.title,
       tour,
+      reviews,
     });
   } catch (error) {
     res.redirect(`/`);
