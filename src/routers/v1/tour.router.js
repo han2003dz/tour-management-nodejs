@@ -22,5 +22,6 @@ router.patch(
 router.delete("/delete/:id", controller.deleteRecord);
 router.patch("/change-status/:status/:id", controller.changeStatus);
 router.patch("/change-multi", controller.changeMulti);
+router.patch("/like/:typeLike/:idTour", controller.like);
 
 module.exports = router;

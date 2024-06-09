@@ -128,10 +128,44 @@ const changeMulti = async (req, res) => {
   }
 };
 
+const like = async (req, res) => {
+  try {
+    const id = req.params.idTour;
+    const typeLike = req.params.typeLike;
+    const tour = await Tours.findOne({
+      _id: id,
+      status: "active",
+      deleted: false,
+    });
+
+    const newLike = typeLike == "like" ? tour.like + 1 : tour.like - 1;
+    await Tours.updateOne(
+      {
+        _id: id,
+      },
+      {
+        like: newLike,
+      }
+    );
+    res.json({
+      code: 200,
+      message: "Thành công!",
+      like: newLike,
+    });
+  } catch (error) {
+    res.json({
+      code: 400,
+      message: "Thất bại!",
+    });
+    console.log(error);
+  }
+};
+
 module.exports = {
   createPost,
   editPatch,
   deleteRecord,
   changeStatus,
   changeMulti,
+  like,
 };

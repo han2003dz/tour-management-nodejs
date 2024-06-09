@@ -25,7 +25,19 @@ h6 {
 #main {
   margin-top: 93px;
 }
+.inner-like {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 2px;
+  cursor: pointer;
+}
 
+.inner-like.active {
+  color: #b90000;
+}
+.testimonial-item{
+  height: 200px;
+}
 .back-to-top {
   position: fixed;
   visibility: hidden;

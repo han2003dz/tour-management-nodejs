@@ -127,3 +127,29 @@ if (uploadImg) {
 }
 
 //end upload image
+
+// like a tour
+const listBtnLike = document.querySelectorAll("[button-like]");
+if (listBtnLike.length > 0) {
+  listBtnLike.forEach((btnLike) => {
+    btnLike.addEventListener("click", () => {
+      const idSong = btnLike.getAttribute("button-like");
+      const isActive = btnLike.classList.contains("active");
+      const typeLike = isActive ? "dislike" : "like";
+      const link = `/api/v1/tours/like/${typeLike}/${idSong}`;
+      const optionsMethod = {
+        method: "PATCH",
+      };
+      fetch(link, optionsMethod)
+        .then((res) => res.json())
+        .then((data) => {
+          if (data && data.code == 200) {
+            const dataLike = btnLike.querySelector("[data-like]");
+            dataLike.innerHTML = `${data.like} like`;
+            btnLike.classList.toggle("active");
+          }
+        });
+    });
+  });
+}
+// end like a tour

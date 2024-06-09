@@ -36,13 +36,27 @@ window.addEventListener("DOMContentLoaded", (event) => {
     const dataPath = formDeleteRecord.getAttribute("data-path");
     btnDelete.forEach((button) => {
       button.addEventListener("click", () => {
-        const isConfirm = confirm("Bạn có chắc muốn xóa sản phẩm này không ?");
-        if (isConfirm) {
-          const id = button.getAttribute("data-id");
-          const action = `${dataPath}/${id}?_method=DELETE`;
-          formDeleteRecord.action = action;
-          formDeleteRecord.submit();
-        }
+        Swal.fire({
+          title: "Bạn có chắc chắn muốn xóa?",
+          text: "Bạn muốn xóa tour này!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Bạn đã xóa thành công",
+              icon: "success",
+            });
+            const id = button.getAttribute("data-id");
+            const action = `${dataPath}/${id}?_method=DELETE`;
+            formDeleteRecord.action = action;
+            formDeleteRecord.submit();
+          }
+        });
       });
     });
   }

@@ -30,6 +30,6 @@ module.exports.authMiddleware = catchAsync(async (req, res, next) => {
     req.locals.roles = roles;
     next();
   } catch (error) {
-    return res.redirect("admin/login");
+    res.redirect("admin/login");
   }
 });

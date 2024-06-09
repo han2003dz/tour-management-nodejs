@@ -26,9 +26,15 @@ const login = catchAsync(async (req, res) => {
 
 const home = async (req, res) => {
   try {
-    const [toursFeatured, toursNew] = await Promise.all([
+    const [toursFeatured, toursNew, tourTopLike] = await Promise.all([
       Tours.find({ featured: "1", deleted: false, status: "active" }).limit(6),
       Tours.find({ deleted: false, status: "active" }),
+      Tours.find({
+        deleted: false,
+        status: "active",
+      })
+        .sort({ like: -1 })
+        .limit(6),
     ]);
     const [newToursFeatured, tours] = await Promise.all([
       priceNewHelper.priceNewTours(toursFeatured),
@@ -38,6 +44,7 @@ const home = async (req, res) => {
       pageTitle: "Trang chủ",
       newToursFeatured,
       tours,
+      tourTopLike,
     });
   } catch (error) {
     console.error(error);

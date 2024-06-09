@@ -13,5 +13,8 @@ mixin tour-item(item)
         h6.card-subtitle.my-2(data-price) #{item.priceAdult}
         .departure-location Khởi hành: #{item.departureLocation}
         span.stock #{item.stock > 0 ? `Số lượng tour còn: ${item.stock}` : 'Đã hết vé'}
+        div(class="inner-action inner-like" button-like=item.id)
+          i(class="bi bi-heart me-2")
+          span(data-like) #{item.like} Yêu thích
 
 
