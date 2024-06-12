@@ -35,7 +35,7 @@ h6 {
 .inner-like.active {
   color: #b90000;
 }
-.testimonial-item{
+.testimonial-item {
   height: 200px;
 }
 .back-to-top {
@@ -66,6 +66,21 @@ h6 {
 .back-to-top.active {
   visibility: visible;
   opacity: 1;
+}
+
+.img-user-review {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 999px;
+}
+
+.reviews-container{
+  border-left: 1px solid #ddd;
+  background: #fff;
+}
+.time-feedback{
+  font-size: 0.9rem;
 }
 
 @media screen and (max-width: 768px) {

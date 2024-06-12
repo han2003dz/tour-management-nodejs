@@ -1,5 +1,10 @@
 extends ../../layouts/default
 include ../../mixins/time-start
+include ../../mixins/user-none
+include ../../mixins/moment
+include ../../mixins/stars
+include ../../mixins/pagination
+
 block main
   section.breadcrumbs
     .container
@@ -92,8 +97,37 @@ block main
                   +time-start()
                 .text-center.py-2
                   button(type="submit" class="btn btn-info rounded-pill") Thêm tour vào giỏ hàng
-      .row
-        h3 Mô tả và lịch trình
+      .row.mt-3
+        h3.fw-bold MÔ TẢ VÀ LỊCH TRÌNH
         .information !{tour.information}
-
+      .row.reviews-container.p-2.shadow.bg-body.rounded
+        h3.fw-bold PHẢN HỒI TỪ KHÁCH HÀNG
+        #reviews
+          if reviews
+            each item in reviews
+              div(class="review p-3 mb-4 border rounded")
+                .d-flex.mb-2
+                  img(src=item.infoUser.avatar class="img-user-review")
+                  .info-right.ms-2
+                    p.p-0.m-0.fw-bold #{item.infoUser.username || 'Người ẩn danh'}
+                    i.text-secondary.time-feedback
+                      +formatDateTime(item.createdAt)
+                    case item.rating
+                      when 5
+                        +five-stars()
+                      when 4
+                        +four-stars()
+                      when 3
+                        +three-stars()
+                      when 2
+                        +two-stars()
+                      when 1
+                        +one-stars()
+                    p #{item.comment}
+          else
+            p.text-center Chưa có bình luận nào
+        if(pagination)
+          +pagination(pagination)
+  if user
+    +user-none(user)
   script(src="/client/js/time.js")

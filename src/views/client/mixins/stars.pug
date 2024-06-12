@@ -2,3 +2,28 @@ mixin stars()
   .star.d-flex.justify-content-center.text-warning
     - for (let i = 0; i < 5; i++)
       i(class="bi bi-star-fill star mx-1")
+
+mixin five-stars()
+  .star.d-flex.text-warning
+    - for (let i = 0; i < 5; i++)
+      i(class="bi bi-star-fill star me-1")
+
+mixin four-stars()
+  .star.d-flex.text-warning
+    - for (let i = 0; i < 4; i++)
+      i(class="bi bi-star-fill star me-1")
+
+mixin three-stars()
+  .star.d-flex.text-warning
+    - for (let i = 0; i < 3; i++)
+      i(class="bi bi-star-fill star me-1")
+
+mixin two-stars()
+  .star.d-flex.text-warning
+    - for (let i = 0; i < 2; i++)
+      i(class="bi bi-star-fill star me-1")
+
+mixin one-star()
+  .star.d-flex.text-warning
+    - for (let i = 0; i < 1; i++)
+      i(class="bi bi-star-fill star me-1")

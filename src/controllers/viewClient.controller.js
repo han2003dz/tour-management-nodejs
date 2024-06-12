@@ -4,6 +4,7 @@ const Cart = require("../models/cart.model");
 const User = require("../models/user.model");
 const Setting = require("../models/setting-general.model");
 const Booking = require("../models/booking.model");
+const Review = require("../models/review.model");
 
 const priceNewHelper = require("../helpers/priceNew");
 const sortHelper = require("../helpers/sort");
@@ -11,7 +12,6 @@ const { convertToSlug } = require("../helpers/convertToSlug");
 const paginationHelper = require("../helpers/pagination");
 
 const catchAsync = require("../utils/catchAsync");
-const Review = require("../models/review.model");
 
 const register = catchAsync(async (req, res) => {
   res.render("client/pages/auth/register", {
@@ -285,13 +285,26 @@ const detailTourClient = async (req, res) => {
       tour.category = category;
     }
     tour.priceNew = priceNewHelper.priceNewTour(tour);
-
-    const reviews = await Review.findOne({ tourId: tour.id }).populate("userId");
-
+    const total = await Review.countDocuments({ tourId: tour.id });
+    let objectPagination = paginationHelper(
+      {
+        currentPage: 1,
+        limitItem: 5,
+      },
+      req.query,
+      total
+    );
+    const reviews = await Review.find({ tourId: tour.id })
+      .sort({
+        createdAt: -1,
+      })
+      .limit(objectPagination.limitItem)
+      .skip(objectPagination.skip);
     res.render("client/pages/tours/detail", {
       pageTitle: tour.title,
       tour,
       reviews,
+      pagination: objectPagination,
     });
   } catch (error) {
     res.redirect(`/`);
@@ -387,6 +400,7 @@ const history = async (req, res) => {
       return res.status(404).send("Cart not found");
     }
     const record = await Booking.find({ cart_id: cart._id, deleted: false });
+    console.log(record);
     res.render("client/pages/user/history", {
       pageTitle: "Lịch sử đặt tour",
       record,
