@@ -30,6 +30,14 @@ block main
                       span.m-2 #{item.tourInfo.title} - #{item.tourInfo.numberOfDays}
                     .d-flex.w-100.justify-content-between
                       a.btn.btn-primary(href='#') Xem chi tiết
+                      if item.statusTrip === "Đã qua ngày đi"
+                        button.btn.btn-primary(
+                          feedback
+                          data-id-user=user.id
+                          data-id-tour=item.tourInfo.tourId
+                        ) Đánh giá
                       i #{item.statusTrip}
         else
           p.text-center Bạn chưa có tour được đặt! 
+block script 
+  script(src="/client/js/history.js")

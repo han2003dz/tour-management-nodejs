@@ -3,19 +3,18 @@ const Review = require("../models/review.model");
 const Users = require("../models/user.model");
 const addReview = async (req, res) => {
   try {
-    const { rating, comment, userId } = req.body;
-    console.log(res.locals.user);
-    const find = {
+    const { rating, comment } = req.body;
+    const { userId, tourId } = req.params;
+    const findTour = {
       deleted: false,
-      slug: req.params.slugTour,
+      _id: tourId,
       status: "active",
     };
 
     const [tour, user] = await Promise.all([
-      Tours.findOne(find),
+      Tours.findOne(findTour),
       Users.findOne({ _id: userId }).select("avatar username"),
     ]);
-    console.log(user);
     if (!tour) {
       return res.status(404).json({ code: 404, message: "Tour not found" });
     }

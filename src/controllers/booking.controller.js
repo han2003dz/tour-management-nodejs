@@ -52,7 +52,7 @@ const checkout = async (req, res) => {
       const dataTour = await Tours.findOne({ _id: tourId });
       if (dataTour) {
         const objectTour = {
-          tour_id: tour.tour_id,
+          tourId: tour.tour_id,
           title: dataTour.title,
           amountPaid,
           discountPercentage: dataTour.discountPercentage,
