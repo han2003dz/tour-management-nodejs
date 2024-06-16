@@ -3,7 +3,9 @@ const Review = require("../models/review.model");
 const Users = require("../models/user.model");
 const addReview = async (req, res) => {
   try {
-    const { rating, comment } = req.body;
+    const comment = req.body.comment;
+    const rating = parseInt(req.body.rating, 10);
+    console.log(rating);
     const { userId, tourId } = req.params;
     const findTour = {
       deleted: false,

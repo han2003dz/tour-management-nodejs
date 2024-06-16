@@ -7,22 +7,46 @@ const review = () => {
         const tourId = btn.getAttribute("data-id-tour");
         const { value: text } = await Swal.fire({
           input: "textarea",
-          inputLabel: "Message",
+          inputLabel: "Nội dung đánh giá",
           inputPlaceholder: "Type your message here...",
           inputAttributes: {
             "aria-label": "Type your message here",
           },
           showCancelButton: true,
         });
+        const { value: rating } = await Swal.fire({
+          title: "Chọn mức sao bạn muốn đánh giá",
+          input: "select",
+          inputOptions: {
+            Ratings: {
+              1: "1",
+              2: "2",
+              3: "3",
+              4: "4",
+              5: "5",
+            },
+          },
+          inputPlaceholder: "Select a rating",
+          showCancelButton: true,
+          inputValidator: (value) => {
+            return new Promise((resolve) => {
+              if (value) {
+                resolve();
+              } else {
+                resolve("You need to select a rating :)");
+              }
+            });
+          },
+        });
 
-        if (text) {
+        if (text || rating) {
           try {
             await fetch(`/api/v1/review/submit/${userId}/${tourId}`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
               },
-              body: JSON.stringify({ comment: text, rating: 5 }),
+              body: JSON.stringify({ comment: text, rating: Number(rating) }),
             })
               .then((response) => response.json())
               .then((data) => {
