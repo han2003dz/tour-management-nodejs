@@ -23,4 +23,6 @@ router.post("/forgot-password", controller.forgotPassword);
 router.post("/otp", controller.otpPost);
 router.post("/reset-password", controller.resetPasswordPost);
 
+router.get("/look-up-bill", controller.lookUpBill);
+
 module.exports = router;

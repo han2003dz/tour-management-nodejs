@@ -1,10 +1,15 @@
 const bcrypt = require("bcrypt");
 const Users = require("../models/user.model");
 const Roles = require("../models/role.model");
+const Tours = require("../models/tours.model");
+const Booking = require("../models/booking.model");
+const Cart = require("../models/cart.model");
 const systemConfig = require("../config/system");
 const generateHelper = require("../helpers/generate");
 const ForgotPassword = require("../models/forgot-password");
 const sendMailHelper = require("../helpers/sendMail");
+const moment = require("moment");
+
 const createPost = async (req, res) => {
   try {
     const emailExist = await Users.findOne({
@@ -143,10 +148,95 @@ const resetPasswordPost = async (req, res) => {
     });
   }
 };
+
+const lookUpBill = async (req, res) => {
+  try {
+    function formatCurrency(value) {
+      return value.toLocaleString("vi-VN", {
+        style: "currency",
+        currency: "VND",
+      });
+    }
+    const { code, email } = req.query;
+    const [user, booking] = await Promise.all([
+      Users.findOne({ email, deleted: false }),
+      Booking.findOne({ code }),
+    ]);
+    if (!user) {
+      res.json({
+        code: 300,
+        message: "Email không hợp lệ",
+      });
+      return;
+    }
+    const cart = await Cart.findOne({ user_id: user.id });
+
+    if (!cart || (!booking || cart.id !== booking.cart_id)) {
+      res.json({
+        code: 300,
+        message: "Mã order không chính xác",
+      });
+      return;
+    }
+    const subject = "Hoá đơn";
+    const html = `
+      <h1>Công ty du lịch VN TOURISM</h1>
+      <p>Địa chỉ: Cầu Diễn, Nam Từ Liêm, Tp.Hà Nội</p>
+      <p>Điện thoại: 0389843271</p>
+      <hr></hr>
+      <p>Tên khách hàng: ${user.username}</p>
+      <p>Số điện thoại: ${user.phone}</p>
+  
+      <table style="width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 18px; text-align: left;">
+        <thead>
+          <tr>
+            <th style="padding: 12px; border: 1px solid #dddddd; background-color: #f2f2f2;">Tên tour</th>
+            <th style="padding: 12px; border: 1px solid #dddddd; background-color: #f2f2f2;">Số lượng người lớn</th>
+            <th style="padding: 12px; border: 1px solid #dddddd; background-color: #f2f2f2;">Số lượng trẻ em</th>
+            <th style="padding: 12px; border: 1px solid #dddddd; background-color: #f2f2f2;">Ngày đi</th>
+            <th style="padding: 12px; border: 1px solid #dddddd; background-color: #f2f2f2;">Thành tiền</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background-color: #f9f9f9;">
+            <td style="padding: 12px; border: 1px solid #dddddd;">${
+              booking.tourInfo.title
+            }</td>
+            <td style="padding: 12px; border: 1px solid #dddddd;">${
+              booking.tourInfo.quantityAdult
+            }</td>
+            <td style="padding: 12px; border: 1px solid #dddddd;">${
+              booking.tourInfo.quantityChild
+            }</td>
+            <td style="padding: 12px; border: 1px solid #dddddd;">${moment(
+              booking.tourInfo.expectedDate
+            ).format("DD/MM/YYYY")}</td>
+            <td style="padding: 12px; border: 1px solid #dddddd;">${formatCurrency(
+              booking.tourInfo.amountPaid
+            )}</td>
+          </tr>
+        </tbody>
+      </table>
+    `;
+    sendMailHelper.sendMail(email, subject, html);
+    res.json({
+      code: 200,
+      message: "Thành công",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      code: 500,
+      message: "An error occurred",
+    });
+  }
+};
+
 module.exports = {
   createPost,
   editPatch,
   forgotPassword,
   otpPost,
   resetPasswordPost,
+  lookUpBill,
 };

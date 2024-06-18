@@ -97,4 +97,10 @@ viewClientRouter.get(
   viewClientController.contact
 );
 
+viewClientRouter.get(
+  "/user/look-up-bill/:userId",
+  checkCookieMiddleware,
+  viewClientController.lookUpBill
+);
+
 module.exports = viewClientRouter;

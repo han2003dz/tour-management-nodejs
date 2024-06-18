@@ -1,0 +1,19 @@
+extends ../../layouts/default
+block main 
+  
+  .container
+    .row
+      .col-3.d-flex.flex-column.nav-info-user
+        include ../../partials/navbar
+      .col-9
+        h1 Tra cứu hóa đơn
+        p.text-center Để tra cứu hóa đơn bạn đã thanh toán cần nhập đúng mã tour bạn muốn tra cứu
+        .d-flex.justify-content-center
+          i(class="bi bi-exclamation-circle-fill")
+          p.mx-2.email(name="email" data-email=user.email)
+            | Chú ý hóa đơn của bạn sẽ được gửi về email: #{user.email}
+        .d-flex.justify-content-center
+          button.btn.btn-primary(btnBill) Nhập mã tour
+block script 
+  script(src="/client/js/send-bill.js")
+    

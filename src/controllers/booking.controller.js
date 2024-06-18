@@ -3,6 +3,7 @@ const Tours = require("../models/tours.model");
 const Booking = require("../models/booking.model");
 const { paymentUrl } = require("../helpers/paymentUrl");
 const { sortObject } = require("../helpers/sortVnp");
+const { generateOrderCode } = require("../helpers/generateCode");
 
 const vnpReturn = async (req, res) => {
   try {
@@ -70,14 +71,16 @@ const checkout = async (req, res) => {
       req.flash("error", "Bạn chưa thêm tour này vào giỏ hàng");
     }
     let status = transactionType == "CASH" ? "unpaid" : "paid";
+    const countOrder = await Booking.countDocuments();
+    const code = generateOrderCode(countOrder + 1);
     const orderInfo = {
       cart_id: cartTourId,
       userInfo,
       tourInfo,
       transactionType,
       status,
+      code,
     };
-
     const booking = new Booking(orderInfo);
     await booking.save();
 

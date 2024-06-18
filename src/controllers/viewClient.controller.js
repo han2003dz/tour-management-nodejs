@@ -454,6 +454,14 @@ const resetPassword = async (req, res) => {
   }
 };
 
+const lookUpBill = async (req, res) => {
+  try {
+    res.render("client/pages/user/look-up-bill", {
+      pageTitle: "Tra cứu hóa đơn",
+    });
+  } catch (error) {}
+};
+
 module.exports = {
   register,
   login,
@@ -474,4 +482,5 @@ module.exports = {
   forgotPassword,
   otp,
   resetPassword,
+  lookUpBill,
 };

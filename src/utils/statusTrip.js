@@ -14,6 +14,8 @@ cron.schedule("0 0 0 * * *", async () => {
         statusTrip = "Tới ngày đi";
       } else {
         statusTrip = "Đã qua ngày đi";
+        await item.save();
+        break;
       }
 
       item.statusTrip = statusTrip;
