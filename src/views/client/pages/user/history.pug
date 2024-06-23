@@ -3,20 +3,22 @@ include ../../mixins/moment
 block main
   .container
     .row
-      .col-3.d-flex.flex-column.nav-info-user
+      .col-2.d-flex.flex-column.nav-info-user
         include ../../partials/navbar
-      .col-9.container.history-container
+      .col-10.history-container
         if record.length > 0
           each item, index in record
             .card.booking-card
               .row
                 .col-4
                   img.card-img-top(src=item.tourInfo.image alt=item.tourInfo.title)
-                .col-8
+                .col-6
                   .card-body
                     h5.card-title
                       i.bi.bi-geo-alt-fill
                       | Tour: #{item.tourInfo.title}
+                    p.card-text
+                      span Mã ORDER: #{item.code}
                     p.card-text
                       i.bi.bi-calendar-check
                       span.mx-2 Ngày đặt:
@@ -28,15 +30,18 @@ block main
                     p.card-text
                       i.bi.bi-info-circle
                       span.m-2 #{item.tourInfo.title} - #{item.tourInfo.numberOfDays}
-                    .d-flex.w-100.justify-content-between
-                      a.btn.btn-primary(href='#') Xem chi tiết
-                      if item.statusTrip === "Đã qua ngày đi"
-                        button.btn.btn-primary(
-                          feedback
-                          data-id-user=user.id
-                          data-id-tour=item.tourInfo.tourId
-                        ) Đánh giá
-                      i #{item.statusTrip}
+                .col-2.mt-4
+                  .row.mb-2
+                    i #{item.statusTrip}
+                  .row
+                    if item.statusTrip === "Đã qua ngày đi"
+                      button.btn.btn-outline-primary(
+                        feedback
+                        data-id-user=user.id
+                        data-id-tour=item.tourInfo.tourId
+                        style="width: 100px;"
+                      ) Đánh giá
+                  
         else
           p.text-center Bạn chưa có tour được đặt! 
 block script 
