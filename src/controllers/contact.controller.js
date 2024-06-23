@@ -11,7 +11,7 @@ const contactSubmitPost = async (req, res) => {
       .status(500)
       .json({ status: "error", message: "Failed to save contact" });
   }
-};
+}; 
 
 module.exports = {
   contactSubmitPost,

@@ -337,6 +337,7 @@ const booking = async (req, res) => {
         _id: cartTourId,
       });
       let dataOrder = {};
+      let deposit = 0;
       for (const item of cart.tours) {
         if (item.tour_id === tourId) {
           const tour = await Tours.findOne({
@@ -350,6 +351,8 @@ const booking = async (req, res) => {
           const totalPrice =
             item.quantityAdult * tour.priceAdult +
             item.quantityChild * tour.priceChild;
+          deposit = totalPrice * 0.3;
+
           dataOrder = {
             tour,
             totalPrice,
@@ -362,6 +365,7 @@ const booking = async (req, res) => {
       res.render("client/pages/booking/order.pug", {
         pageTitle: "Thanh toán",
         dataOrder,
+        deposit,
       });
     }
   } catch (error) {

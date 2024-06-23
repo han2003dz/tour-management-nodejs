@@ -1,5 +1,5 @@
 
-mixin form-order(id, totalPrice)
+mixin form-order(id, deposit)
   form.was-validated(
     id="formCheckout" 
     action=`/api/v1/booking/checkout/${id}`
@@ -22,11 +22,11 @@ mixin form-order(id, totalPrice)
           label.form-label(for='floatingTextarea2') Ghi chú
       .col-12.px-4
         div.form-group
-          label(for='amount') Số tiền
+          label.mt-2(for='amount') Lưu ý để đặt tour bạn cần phải đặt cọc 30% giá trị của tour
           input.form-control#amount(
             name='amount'
             placeholder='Số tiền'
-            value=totalPrice
+            value=deposit
           )
         div.form-group.my-2 
           span.fw-bold Chọn phương thức thanh toán:
