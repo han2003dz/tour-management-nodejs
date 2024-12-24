@@ -7,6 +7,7 @@ module.exports = {
   categoryController: require("./categories.controller"),
   roleController: require("./roles.controller"),
   settingController: require("./settings.controller"),
+  trashController: require("./trash.controller"),
   viewClientController: require("./viewClient.controller"),
   viewAdminController: require("./viewAdmin.controller"),
 };

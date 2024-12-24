@@ -1,0 +1,55 @@
+extends ../../layouts/default
+//- include ../../mixins/filterStatus
+//- include ../../mixins/moment
+include ../../mixins/headerTrash
+include ../../mixins/action
+include ../../mixins/router
+//- include ../../mixins/formChangeStatus.pug
+include ../../mixins/formUpdateTrash.pug
+block main
+  - var link = "trash";
+  +router(link, "Management", "Trash")
+  .card
+    .card-header
+      i.fas.fa-table.me-1
+      | Danh sách tour đã xóa
+    .card-body
+      +header-table-trash(link)
+      if(tours.length > 0)
+        table#datatablesSimple(checkbox-multi)
+          thead
+            tr
+              th 
+                input(class="form-check-input checkAll" type="checkbox" name="checkAll")
+              th STT
+              th Tên Tour
+              th Còn lại
+              th Thời lượng
+              th Giá
+              th 
+                span(class="actionAll") Hành động
+          tbody
+            each item, index in tours
+              tr
+                td
+                  input(
+                    class="form-check-input"
+                    type="checkbox"
+                    name="check-item"
+                    value=item.id
+                  )
+                td #{index + 1}
+                td 
+                  span.float-start  #{item.title}
+                td
+                  span.float-end #{item.stock}
+                td 
+                  span.float-start #{item.numberOfDays}
+                td
+                  span.float-end(data-price) #{item.priceAdult} đ
+                td
+                  +actionsTrashPage(link, item)
+      else
+        p.text-center Chưa có tour du lịch nào!  
+  //- +formChangeStatus(link) 
+  +formUpdate(link)    

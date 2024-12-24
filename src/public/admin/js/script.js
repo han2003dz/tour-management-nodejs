@@ -62,6 +62,38 @@ window.addEventListener("DOMContentLoaded", (event) => {
   }
   // deleteRecord
 
+  const btnUpdate = document.querySelectorAll("[button-update]");
+  if (btnUpdate.length > 0) {
+    const formUpdateRecord = document.querySelector("#form-update-record");
+    const dataPath = formUpdateRecord.getAttribute("data-path");
+    btnUpdate.forEach((button) => {
+      button.addEventListener("click", () => {
+        Swal.fire({
+          title: "Bạn có chắc chắn muốn cập nhật tour?",
+          text: "Bạn muốn cập nhật tour này!",
+          icon: "question",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire({
+              title: "Updated!",
+              text: "Bạn đã cập nhật thành công",
+              icon: "success",
+            });
+            const id = button.getAttribute("data-id");
+            const action = `${dataPath}/${id}?_method=PATCH`;
+            console.log("OKK");
+            formUpdateRecord.action = action;
+            formUpdateRecord.submit();
+          }
+        });
+      });
+    });
+  }
+
   // Form Search
   const formSearch = document.querySelector("#form-search");
   if (formSearch) {

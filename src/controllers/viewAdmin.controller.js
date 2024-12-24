@@ -284,6 +284,17 @@ const permissions = async (req, res) => {
   }
 };
 
+const getTrash = async (req, res) => {
+  try {
+    let find = { deleted: true };
+    const tours = await Tours.find(find);
+    res.render("admin/pages/trash/index.pug", {
+      pageTitle: "Trash",
+      tours,
+    });
+  } catch (error) {}
+};
+
 const login = catchAsync(async (req, res) => {
   res.render("admin/pages/auth/login", {
     pageTitle: "Đăng nhập",
@@ -353,4 +364,5 @@ module.exports = {
   login,
   general,
   statistic,
+  getTrash,
 };

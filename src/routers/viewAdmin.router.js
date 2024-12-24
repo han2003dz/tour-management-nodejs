@@ -8,6 +8,12 @@ viewAdminRouter.get(
 );
 
 viewAdminRouter.get(
+  "/trash",
+  authMiddleware.authMiddleware,
+  viewAdminController.getTrash
+);
+
+viewAdminRouter.get(
   "/tours",
   authMiddleware.authMiddleware,
   viewAdminController.tours

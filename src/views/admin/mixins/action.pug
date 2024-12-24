@@ -12,3 +12,9 @@ mixin actions(link, item)
     button-delete
   )
     i(class="fa-solid fa-trash")
+mixin actionsTrashPage(link, item)
+  button(class="btn btn-primary btn-sm btn-action" 
+    data-id=item.id 
+    button-update
+  )
+    i(class="fa-solid fa-check")

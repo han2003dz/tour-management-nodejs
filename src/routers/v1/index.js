@@ -9,8 +9,8 @@ const settingRouter = require("./setting.router");
 const contactRouter = require("./contact.router");
 const statisticRouter = require("./statistic.router");
 const reviewRouter = require("./review.router");
+const trashRouter = require("./trash.router");
 const router = require("express").Router();
-
 const routes = [
   {
     path: "/users",
@@ -55,6 +55,10 @@ const routes = [
   {
     path: "/review",
     route: reviewRouter,
+  },
+  {
+    path: "/trash",
+    route: trashRouter,
   },
 ];
 

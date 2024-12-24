@@ -14,7 +14,11 @@ const tourSchema = new mongoose.Schema(
     priceChild: Number,
     images: Array,
     discountPercentage: Number,
-    stock: Number,
+    stock: {
+      type: Number,
+      required: true,
+      min: [0, "Stock must be at least 0"], // Validation for minimum value
+    },
     schedule: String,
     featured: String,
     status: { type: String, default: "active" },
