@@ -33,6 +33,7 @@ const tourSchema = new mongoose.Schema(
       type: Date,
       default: Date.now,
     },
+    bookingCount: number,
     slug: {
       type: String,
       slug: "title",

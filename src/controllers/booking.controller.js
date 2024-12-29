@@ -92,7 +92,7 @@ const checkout = async (req, res) => {
     await Tours.findOneAndUpdate(
       { _id: tourId },
       {
-        $inc: { stock: -1 },
+        $inc: { stock: -1, bookingCount: +1 },
       },
       { new: true }
     );
